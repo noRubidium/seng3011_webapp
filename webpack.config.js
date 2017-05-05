@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = {
   context: path.join(__dirname, 'app'),
   entry: './index.js',
-  devtool: debug ? "inline-sourcemap" : null,
+  devtool: debug ? "inline-sourcemap" : "nosources-source-map",
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -29,10 +29,18 @@ module.exports = {
       },
     ],
   },
-  plugins: debug ? [] : [
+  plugins: debug ? [
+    new webpack.HotModuleReplacementPlugin(),
+  ] : [
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: false,
+      sourcemap: false,
+      compress: {
+        warnings: false,
+        drop_console: true,
+      }
+    }),
   ],
   resolve: {
     modules: [
@@ -41,6 +49,8 @@ module.exports = {
     ]
   },
   devServer: {
+    hotOnly: true,
+    hot: true,
     inline:true,
     port: 8005
   },
