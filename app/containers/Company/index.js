@@ -1,41 +1,29 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { inc, dec } from 'actions/counter';
+import CompanyInfo from 'components/CompanyInfo';
+import CompanyNews from 'components/CompanyNews';
+import CompanyStats from 'components/CompanyStats';
 
-@connect((store) => {
-  return {
-    counter: store.counter
-  };
-})
 export default class Company extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {step: 1};
-  }
-
-  updateStep (e) {
-    console.log(e);
-    this.setState({step: parseInt(e.target.value.replace(/\D/ig, ''))});
-  }
-
-  inc () {
-    this.props.dispatch(inc(this.state.step));
   }
 
   render () {
-    const { counter } = this.props;
-    const { count } = counter;
-    return (<div>
-      company:{count}
-      <input
-        onChange={this.updateStep.bind(this)}
-        value={this.state.step}
-      />
-      <button
-        onClick={this.inc.bind(this)}>
-        HI
-      </button>
-    </div>);
+    return (
+      <div>
+        <div>
+          <CompanyInfo />
+        </div>
+        <section className='row'>
+          <div className='col-6 col-sm-4 placeholder'> {/*need styling */}
+            <CompanyNews />
+          </div>
+          <div className='col-6 col-sm-8 placeholder'>
+            <CompanyStats />
+          </div>
+        </section>
+      </div>
+    );
   }
 }
