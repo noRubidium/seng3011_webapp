@@ -67,7 +67,7 @@ export function load_company_info (company_code, dispatch) {
     },
     COMPANY_DATA_LOADED,
     dispatch,
-    `http://127.0.0.1:8000/companies/${company_code}`
+    `http://api.kairworship.xyz/companies/${company_code}`
   );
 }
 
