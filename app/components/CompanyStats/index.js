@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_stats, load_abs_stats } from 'actions/company';
-import StockChart from 'components/util/index.js';
+import StockChart from 'components/StockChart';
 
 @connect((store) => {
   return {
