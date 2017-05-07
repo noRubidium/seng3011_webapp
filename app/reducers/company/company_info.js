@@ -5,8 +5,10 @@ const default_state = {
   /* Stub data for testing display*/
   company_id: 'DMP.AX',
   name: 'Domino\'s',
+  info: 'Pizza Company',
   url: 'http://...',
   thumbnail: 'http://...',
+  categories: [],
   share_links: [
     {url: 'http://...', logo: 'http://...'}, // Facebook
     {url: 'http://...', logo: 'http://...'}, // twitter
@@ -23,10 +25,17 @@ export default (state=default_state, action) => {
         id: payload.company_code,
       };
     case actionTypes.COMPANY_DATA_LOADED:
+      console.log('PAYLOAD',payload);
       return {
         ...state,
         loading: false,
-        /* a lot of updates */
+        company_id: payload.id,
+        name: payload.name,
+        info: payload.info,
+        url: payload.url,
+        thumbnail: payload.thumbnail,
+        categories: payload.categories,
+        share_links: payload.share_links
       };
   }
   return state;
