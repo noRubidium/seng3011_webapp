@@ -1,6 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, 'app'),
@@ -27,10 +28,18 @@ module.exports = {
           ],
         },
       },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css!sass') // loaders: ['style', 'css', 'sass']
+      }
     ],
   },
   plugins: debug ? [
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin({
+      filename: 'dist/styles/main.css',
+      allChunks: true,
+    }),
   ] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -41,6 +50,10 @@ module.exports = {
         drop_console: true,
       }
     }),
+    new ExtractTextPlugin({
+      filename: 'dist/styles/main.css',
+      allChunks: true,
+    })
   ],
   resolve: {
     modules: [
