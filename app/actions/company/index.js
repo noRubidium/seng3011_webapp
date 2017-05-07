@@ -40,7 +40,7 @@ const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => 
       console.log(data);
       dispatch({
         type: loaded_action_type,
-        payload: data,
+        payload: data.rss.channel.item,
       });
     });
 };
