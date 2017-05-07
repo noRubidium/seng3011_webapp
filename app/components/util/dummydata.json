@@ -1,0 +1,160 @@
+{
+  "Header": {
+    "end_date": "2012-01-01",
+    "team": "Eleven51",
+    "elapsed_time": 3.2689571380615234,
+    "version": "v4",
+    "time": "2017-05-07 04:03:13",
+    "start_date": "2010-10-05"
+  },
+  "MonthlyRetailData": [
+    {
+      "category": "Food",
+      "regional_data": [
+        {
+          "state": "Total",
+          "data": [
+            {
+              "date": "2010-10-31",
+              "turnover": 8239.5
+            },
+            {
+              "date": "2010-11-30",
+              "turnover": 8288.1
+            },
+            {
+              "date": "2010-12-31",
+              "turnover": 9491.8
+            },
+            {
+              "date": "2011-01-31",
+              "turnover": 8403.6
+            },
+            {
+              "date": "2011-02-28",
+              "turnover": 7649.6
+            },
+            {
+              "date": "2011-03-31",
+              "turnover": 8285
+            },
+            {
+              "date": "2011-04-30",
+              "turnover": 8211.3
+            },
+            {
+              "date": "2011-05-31",
+              "turnover": 8059
+            },
+            {
+              "date": "2011-06-30",
+              "turnover": 7878.3
+            },
+            {
+              "date": "2011-07-31",
+              "turnover": 8315.2
+            },
+            {
+              "date": "2011-08-31",
+              "turnover": 8360.3
+            },
+            {
+              "date": "2011-09-30",
+              "turnover": 8274.2
+            },
+            {
+              "date": "2011-10-31",
+              "turnover": 8606.3
+            },
+            {
+              "date": "2011-11-30",
+              "turnover": 8569.9
+            },
+            {
+              "date": "2011-12-31",
+              "turnover": 9936
+            },
+            {
+              "date": "2012-01-31",
+              "turnover": 8534.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "HouseholdGood",
+      "regional_data": [
+        {
+          "state": "Total",
+          "data": [
+            {
+              "date": "2010-10-31",
+              "turnover": 3692.1
+            },
+            {
+              "date": "2010-11-30",
+              "turnover": 3831
+            },
+            {
+              "date": "2010-12-31",
+              "turnover": 4839.5
+            },
+            {
+              "date": "2011-01-31",
+              "turnover": 3458.3
+            },
+            {
+              "date": "2011-02-28",
+              "turnover": 3065.6
+            },
+            {
+              "date": "2011-03-31",
+              "turnover": 3365.1
+            },
+            {
+              "date": "2011-04-30",
+              "turnover": 3253.1
+            },
+            {
+              "date": "2011-05-31",
+              "turnover": 3391.7
+            },
+            {
+              "date": "2011-06-30",
+              "turnover": 3531.3
+            },
+            {
+              "date": "2011-07-31",
+              "turnover": 3463.3
+            },
+            {
+              "date": "2011-08-31",
+              "turnover": 3578.6
+            },
+            {
+              "date": "2011-09-30",
+              "turnover": 3613.9
+            },
+            {
+              "date": "2011-10-31",
+              "turnover": 3769
+            },
+            {
+              "date": "2011-11-30",
+              "turnover": 3920.7
+            },
+            {
+              "date": "2011-12-31",
+              "turnover": 4867.7
+            },
+            {
+              "date": "2012-01-31",
+              "turnover": 3540.6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
