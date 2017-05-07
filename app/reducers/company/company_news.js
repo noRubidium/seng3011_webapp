@@ -33,7 +33,7 @@ export default (state=default_state, action) => {
         ...state,
         loading: false,
         /* a lot of updates */
-        data: payload,
+        news: payload,
       };
   }
   return state;
