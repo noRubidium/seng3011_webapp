@@ -3,7 +3,8 @@ import { actionTypes } from 'actions/company';
 const default_state = {
   loading: false,
   /* Stub data for testing display*/
-  company_id: 'DMP',
+  company_id: 'DMP.AX',
+  data: '',
   news: [
     {
       url: 'http://...',
@@ -32,6 +33,7 @@ export default (state=default_state, action) => {
         ...state,
         loading: false,
         /* a lot of updates */
+        data: payload,
       };
   }
   return state;
