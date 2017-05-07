@@ -12,14 +12,14 @@ export default class CompanyNews extends LoadableComponent {
 
   constructor (props) {
     super(props);
-    console.log(this);
+
     const { company_id, dispatch } = this.props;
     load_company_news(company_id, dispatch);
-    console.log("HELLOO" + this.props);
+
   }
   render () {
     const { news } = this.props;
-    console.log("THIS IS NEWS:", news);
+
     this.loaded_object = (<div>
       news for:{this.props.company_id}
       <div className="list-group">
@@ -36,7 +36,7 @@ export default class CompanyNews extends LoadableComponent {
         }
       </div>
     </div>);
-    console.log("LOADEDOBJ: ", this.loaded_object);
+
     return super.render();
   }
 }

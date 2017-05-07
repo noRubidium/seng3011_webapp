@@ -14,7 +14,7 @@ export default class CompanyInfo extends LoadableComponent {
   constructor (props) {
     super(props);
     const { company_id, dispatch } = this.props;
-    console.log('COMPANY_ID:', company_id);
+
     load_company_info(company_id, dispatch);
   }
 
@@ -24,7 +24,7 @@ export default class CompanyInfo extends LoadableComponent {
     const fb_share = (
       <FacebookButton appId={appId} >Share on Facebook</FacebookButton>
     );
-    console.log(fb_share);
+
     this.loaded_object = (<div>
       <h1>
       {this.props.name} <small>{this.props.company_id}</small>

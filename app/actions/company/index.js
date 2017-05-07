@@ -27,7 +27,7 @@ const async_action = (loading_action, loaded_action_type, dispatch, url) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      
       dispatch({
         type: loaded_action_type,
         payload: data,
@@ -38,7 +38,7 @@ const async_action = (loading_action, loaded_action_type, dispatch, url) => {
 const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => {
   dispatch(loading_action);
   const x2js = new X2JS();
-  console.log(x2js);
+  
   fetch(url)
     .then((response) => response.text())
     .then((str) => {
