@@ -51,12 +51,13 @@ export default class StockChart extends React.Component{
         [1, 2, 3, 4, 6]
       ]];
 
-      let series = stateNames.map((e, i) => {
+      const stateSeries = stateNames.map((e, i) => {
         return {type: 'line', dataGrouping: { units: groupingUnits },
                 name: e, data: dataArray[i],
                 visible: e === 'AUS'};
       });
-      series.push({
+
+      const companySeries = [{
           type: 'line',
           name: 'Stock',
           data: formattedFinanceData,
@@ -64,7 +65,9 @@ export default class StockChart extends React.Component{
           dataGrouping: {
             units: groupingUnits
           }
-        });
+        }];
+
+      const series = stateSeries.concat(companySeries);
       return series;
     }
 
@@ -124,6 +127,6 @@ export default class StockChart extends React.Component{
 
         series:this.createConfigSeries(dataArray, stateNames, formattedFinanceData)
       };
-        return (<ReactHighstock config={config}></ReactHighstock>);
+        return (<ReactHighstock config={config} />);
     }
 }
