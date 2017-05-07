@@ -37,7 +37,6 @@ const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => 
   fetch(url)
     .then(response => x2js.xml2js(response.text()))
     .then(data => {
-      console.log(data);
       dispatch({
         type: loaded_action_type,
         payload: data.rss.channel.item,
