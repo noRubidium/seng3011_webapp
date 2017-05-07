@@ -24,7 +24,8 @@ export default class StockChart extends React.Component{
       }
       return categories;
     }
-
+    //This gets the data points for a category array (a sub array from api call)
+    //and returns only the data points in the array
     getDataArray(categoryArray) {
       var dataPointArray = [];
       for (var dataPoint in categoryArray) {
