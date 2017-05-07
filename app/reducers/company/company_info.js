@@ -28,7 +28,7 @@ export default (state=default_state, action) => {
       console.log('PAYLOAD',payload);
       return {
         ...state,
-        ..payload,
+        ...payload,
         loading: false
       };
   }

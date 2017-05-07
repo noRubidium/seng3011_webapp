@@ -10,7 +10,7 @@ const default_state = {
   volume: 139717,
   day_high_price: 62.11,
   day_low_price: 61.26,
-  change_in_percent: -0.308%
+  change_in_percent: '-0.308%',
 
 };
 
@@ -28,7 +28,7 @@ export default (state=default_state, action) => {
       return {
         ...state,
         ...payload,
-        loading: false
+        loading: false,
       };
   }
   return state;
