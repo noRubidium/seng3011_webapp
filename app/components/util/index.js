@@ -87,11 +87,8 @@ export default class StockChart extends React.Component{
       const pattern = '([0-9]{4})-([0-9]{2})-([0-9]{2})'
 
       for (var i in retailData[0].regional_data[0].data) {
-        // console.log(Date.parse(retailData[0].regional_data[0].data[i].date));
-
-        const date = retailData[0].regional_data[0].data[i].date;
-        var matches = date.match(pattern);
-        configCategories.push(Date.UTC(matches[1], matches[2],-1));
+        const date = new Date(retailData[0].regional_data[0].data[i].date);
+        configCategories.push(date.getTime());
       }
 
       return configCategories;
@@ -105,7 +102,8 @@ export default class StockChart extends React.Component{
 
       const config = {
         chart: {
-          height: '500px'
+          height: '500px',
+          zoomType: 'x'
         },
 
 		    rangeSelector: {
