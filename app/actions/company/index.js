@@ -58,6 +58,7 @@ export function load_company_price (company_code, dispatch) {
     COMPANY_PRICE_LOADED,
     dispatch,
     `http://api.kaiworship.xyz/rapper/data.asx.com.au/data/1/share/${company_code.slice(0,3)}/prices%3Finterval=daily&count=2`
+
   );
 }
 
