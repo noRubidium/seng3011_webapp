@@ -4,9 +4,6 @@ var Highcharts = require('highcharts');
 import LoadableComponent from 'components/LoadableComponent';
 var data = require('./dummydata.json');
 var ReactHighstock = require('react-highcharts/ReactHighstock.src');
-// import Date from 'datejs'
-
-
 
 const ReactHighcharts = require('react-highcharts'); // Expects that Highcharts was loaded in the code.
 
@@ -16,35 +13,42 @@ export default class StockChart extends React.Component{
       return data
     }
 
-    getCategoriesData(retailData) {
+    // 9 arrays, one for each state and one for total
+    getDataForStates(retailData) {  //only one is given
       var dates = this.formatDates(retailData);
-      var categoryArray = [];
-      for (var key in retailData) {
-          categoryArray.push(this.getDataArray(retailData[key].regional_data[0].data, dates));
+      var stateArrays = [];
+      for (var state in retailData[0].regional_data) {  //for each state get the datapoints
+        stateArrays.push(this.getDataArray(retailData[0].regional_data[state].data, dates));
       }
-      return categoryArray;
+      return stateArrays;
     }
 
-    getCategoryNames(retailData) {
-      var categories = [];
-      for (var key in retailData) {
-          categories.push(retailData[key].category);
-      }
-      return categories;
-    }
-    //This gets the data points for a category array (a sub array from api call)
-    //and returns only the data points in the array
-    getDataArray(categoryArray, dates) {
+    // For the state array given, create a 2D array
+    // date in milliseconds -> datapoint
+    getDataArray(stateArray, dates) {
       var dataPointArray = [];
-      for (var index in categoryArray) {
-        var whyisitpurple = [dates[index], categoryArray[index].turnover];
-        dataPointArray.push(whyisitpurple);
+      for (var index in stateArray) {
+        var stateData = [dates[index], stateArray[index].turnover];
+        dataPointArray.push(stateData);
       }
       return dataPointArray;
     }
 
-    // Obtain the
-    createConfigSeries(dataArray, seriesNames) {
+    // Single array with the state names for the legend
+    getStateNames(retailData) {
+      var categories = [];
+      for (var key in retailData[0].regional_data) {
+        if (retailData[0].regional_data[key].state == "Total") {  //replace TOTAL with AUS
+          categories.push("AUS");
+        } else {
+          categories.push(retailData[0].regional_data[key].state);
+        }
+      }
+      return categories;
+    }
+
+    // Obtain the full series to plot on the chart
+    createConfigSeries(dataArray, stateNames) {
       // set the allowed units for data grouping
       var groupingUnits = [[
         'week',                         // unit name
@@ -56,8 +60,15 @@ export default class StockChart extends React.Component{
 
       var series = [];
 
-      for (var index in seriesNames) {
-        series.push({type: 'line', dataGrouping: { units: groupingUnits }, name: seriesNames[index], data: dataArray[index]});
+      for (var index in stateNames) {
+        if (stateNames[index] == "AUS") {
+          series.push({type: 'line', dataGrouping: { units: groupingUnits },
+                      name: stateNames[index], data: dataArray[index]});
+        } else {
+          series.push({type: 'line', dataGrouping: { units: groupingUnits },
+                      name: stateNames[index], data: dataArray[index],
+                      visible:false});
+        }
       }
       series.push({
           type: 'line',
@@ -90,27 +101,22 @@ export default class StockChart extends React.Component{
         const date = new Date(retailData[0].regional_data[0].data[i].date);
         configCategories.push(date.getTime());
       }
-
       return configCategories;
     }
 
     //Create the div which the chart will be rendered to.
     render () {
       var retailData = this.getData().MonthlyRetailData;
-      var dataArray = this.getCategoriesData(retailData);
-      var seriesNames = this.getCategoryNames(retailData);
+      var dataArray = this.getDataForStates(retailData);
+      var stateNames = this.getStateNames(retailData);
 
       const config = {
         legend: {
           enabled: true,
           align: 'right',
-          backgroundColor: '#FCFFC5',
-          borderColor: 'black',
-          borderWidth: 2,
           layout: 'vertical',
           verticalAlign: 'top',
           y: 100,
-          shadow: true
         },
         chart: {
           height: '500px',
@@ -122,18 +128,18 @@ export default class StockChart extends React.Component{
 		    },
 
 		    title: {
-		        text: 'AAPL Historical'
+		        text: 'Passed in from SUPER'
 		    },
 
 		    yAxis: [{
 		        title: {
-		            text: 'OHLC'
+		            text: 'SOME METRIC'
 		        },
 		        height: 200,
 		        lineWidth: 2
 		    }, {
 		        title: {
-		            text: 'Volume'
+		            text: 'Stock Price'
 		        },
 		        top: 300,
 		        height: 100,
@@ -141,7 +147,7 @@ export default class StockChart extends React.Component{
 		        lineWidth: 2
 		    }],
 
-        series:this.createConfigSeries(dataArray, seriesNames)
+        series: this.createConfigSeries(dataArray, stateNames)
       };
         return (<ReactHighstock config={config}></ReactHighstock>);
     }
