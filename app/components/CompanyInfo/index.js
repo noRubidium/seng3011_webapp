@@ -1,10 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  ShareButtons,
+  ShareCounts,
+  generateShareIcon
+} from 'react-share';
 
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_info } from 'actions/company';
 import { load_company_price } from 'actions/company';
 
+
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  PinterestShareButton,
+  VKShareButton,
+  OKShareButton
+} = ShareButtons;
 
 @connect((store) => {
   return store.company.company_info;
@@ -29,7 +46,6 @@ export default class CompanyInfo extends LoadableComponent {
       Thumbnail: {this.props.thumbnail}
       Categories: {this.props.categories}
       share_links: {this.props.share_links}
-
     </div>);
     return super.render();
   }
