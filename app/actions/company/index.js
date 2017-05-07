@@ -1,6 +1,8 @@
 import X2JS from 'x2js';
 
 // refer to the counter action
+const COMPANY_PRICE_LOADING = 'COMPANY_PRICE_LOADING';
+const COMPANY_PRICE_LOADED = 'COMPANY_PRICE_LOADED';
 const COMPANY_DATA_LOADING = 'COMPANY_DATA_LOADING';
 const COMPANY_DATA_LOADED = 'COMPANY_DATA_LOADED';
 const COMPANY_NEWS_LOADING = 'COMPANY_NEWS_LOADING';
@@ -9,6 +11,8 @@ const COMPANY_STATS_LOADING = 'COMPANY_STATS_LOADING';
 const COMPANY_STATS_LOADED = 'COMPANY_STATS_LOADED';
 
 export const actionTypes = {
+  COMPANY_PRICE_LOADING,
+  COMPANY_PRICE_LOADED,
   COMPANY_DATA_LOADING,
   COMPANY_DATA_LOADED,
   COMPANY_NEWS_LOADING,
@@ -45,6 +49,18 @@ const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => 
     });
 };
 
+export function load_company_price (company_code, dispatch) {
+  async_action(
+    {
+      type: COMPANY_PRICE_LOADING,
+      payload: { company_code },
+    },
+    COMPANY_PRICE_LOADED,
+    dispatch,
+    `http://data.asx.com.au/data/1/share/${company_code.slice(0,3)}/prices?interval=daily&count=1`
+  );
+}
+
 export function load_company_info (company_code, dispatch) {
   async_action(
     {
@@ -53,7 +69,7 @@ export function load_company_info (company_code, dispatch) {
     },
     COMPANY_DATA_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/company/${company_code}`
+    `http://api.kaiworship.xyz/companies/${company_code}`
   );
 }
 
