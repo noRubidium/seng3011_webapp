@@ -87,7 +87,6 @@ export function load_company_stats (company_id, dispatch) {
   fetch(url)
     .then(response => response.text())
     .then(data => {
-      console.log(data);
       const result = data.split('\n').filter((s) => (s.split(',').length === 7 && parseFloat(s.split(',')[6])))
         .map((s) => {
           const d = s.split(',');
