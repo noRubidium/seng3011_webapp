@@ -24,6 +24,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "datejs": "^1.0.0-rc3",
     "highcharts": "^5.0.11",
     "history": "^4.6.1",
     "react": "^15.5.4",
