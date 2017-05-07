@@ -7,7 +7,7 @@ var data = require('./dummydata.json');
 
 const ReactHighcharts = require('react-highcharts'); // Expects that Highcharts was loaded in the code.
 
-class StockChart extends React.Component{
+export default class StockChart extends React.Component{
 
     getCategoriesData(retailData) {
       var categoryArray = [];
@@ -38,7 +38,11 @@ class StockChart extends React.Component{
     }
 
     createConfig(dataArray, seriesNames) {
-
+      var series = [];
+      for (var index in seriesNames) {
+        series.push({name: seriesNames[index], data: dataArray[index]});
+      }
+      return series;
     }
 
     //Create the div which the chart will be rendered to.
@@ -47,21 +51,11 @@ class StockChart extends React.Component{
       var dataArray = this.getCategoriesData(retailData);
       var seriesNames = this.getCategoryNames(retailData);
 
-      this.crateConfig(dataArray, seriesNames);
-
       const config = {
         xAxis: {
           categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         },
-        series: [{
-          name:"Pranav",
-          data: dataArray[0]
-        },
-        {
-          name:"Vaishnavi",
-          data: dataArray[1]
-        }]
-
+        series:this.createConfig(dataArray, seriesNames)
       };
         return (<ReactHighcharts config={config}></ReactHighcharts>);
     }
