@@ -18,7 +18,7 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: true,
-        id: payload.company_code,
+        id: payload.company_id,
       };
     case actionTypes.COMPANY_STATS_LOADED:
       return {

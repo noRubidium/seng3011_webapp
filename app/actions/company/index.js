@@ -7,6 +7,9 @@ const COMPANY_NEWS_LOADING = 'COMPANY_NEWS_LOADING';
 const COMPANY_NEWS_LOADED = 'COMPANY_NEWS_LOADED';
 const COMPANY_STATS_LOADING = 'COMPANY_STATS_LOADING';
 const COMPANY_STATS_LOADED = 'COMPANY_STATS_LOADED';
+const COMPANY_PRICE_LOADING = 'COMPANY_PRICE_LOADING';
+const COMPANY_PRICE_LOADED = 'COMPANY_PRICE_LOADED';
+
 
 export const actionTypes = {
   COMPANY_DATA_LOADING,
@@ -14,7 +17,9 @@ export const actionTypes = {
   COMPANY_NEWS_LOADING,
   COMPANY_NEWS_LOADED,
   COMPANY_STATS_LOADING,
-  COMPANY_STATS_LOADED
+  COMPANY_STATS_LOADED,
+  COMPANY_PRICE_LOADING,
+  COMPANY_PRICE_LOADED,
 };
 
 const async_action = (loading_action, loaded_action_type, dispatch, url) => {
@@ -45,19 +50,32 @@ const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => 
     });
 };
 
-export function load_company_info (company_code, dispatch) {
+export function load_company_info (company_id, dispatch) {
   async_action(
     {
       type: COMPANY_DATA_LOADING,
-      payload: { company_code },
+      payload: { company_id },
     },
     COMPANY_DATA_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/company/${company_code}`
+    `http://api.kaiworship.xyz/companies/${company_id}`
   );
 }
 
-export function load_company_stats (company_code, dispatch) {
+export function load_company_price (company_id, dispatch) {
+  async_action(
+    {
+      type: COMPANY_PRICE_LOADING,
+      payload: { company_id },
+    },
+    COMPANY_PRICE_LOADED,
+    dispatch,
+    `http://api.kaiworship.xyz/rapper/data.asx.com.au/data/1/share/${company_id.slice(0,3)}/prices%3Finterval=daily&count=2`
+
+  );
+}
+
+export function load_company_stats (company_id, dispatch) {
   const today = new Date();
   const lower_date = new Date(2003, 1, 1);
 
@@ -70,22 +88,22 @@ export function load_company_stats (company_code, dispatch) {
   async_action(
     {
       type: COMPANY_STATS_LOADING,
-      payload: { company_code },
+      payload: { company_id },
     },
     COMPANY_STATS_LOADED,
     dispatch,
-    `http://174.138.67.207/InstrumentID/${company_code}/DateOfInterest/${yyyy}-${mm}-${dd}/List_of_Var/Trading_Info/Upper_window/0/Lower_window/${diff_date}`
+    `http://174.138.67.207/InstrumentID/${company_id}/DateOfInterest/${yyyy}-${mm}-${dd}/List_of_Var/Trading_Info/Upper_window/0/Lower_window/${diff_date}`
   );
 }
 
-export function load_company_news (company_code, dispatch) {
+export function load_company_news (company_id, dispatch) {
   async_action_xml(
     {
       type: COMPANY_NEWS_LOADING,
-      payload: { company_code },
+      payload: { company_id },
     },
     COMPANY_NEWS_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/rapper/feeds.finance.yahoo.com/rss/2.0/headline%3Fs=${company_code}&region=AU&lang=en-US`
+    `http://api.kaiworship.xyz/rapper/feeds.finance.yahoo.com/rss/2.0/headline%3Fs=${company_id}&region=AU&lang=en-US`
   );
 }
