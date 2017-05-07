@@ -16,6 +16,6 @@ export function load_companies (dispatch) {
     },
     COMPANIES_LOADED,
     dispatch,
-    'http://api.kaiworship.xyz/companies/'
+    'http://127.0.0.1:8000/companies/'
   );
 }

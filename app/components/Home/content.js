@@ -20,7 +20,7 @@ export default class HomeContent extends LoadableComponent {
   render () {
     const { companies } = this.props;
     const companyList = companies.map((c) => <HomeContentTile company={c}/>)
-    this.loaded_object = (<div>
+    this.loaded_object = (<div className='company-tiles'>
       {companyList}
     </div>);
     return super.render();
