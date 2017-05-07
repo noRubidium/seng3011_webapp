@@ -27,15 +27,8 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_PRICE_LOADED:
       return {
         ...state,
-        loading: false,
-        code: payload.code,
-        close_date: payload.close_date,
-        close: payload.close_price,
-        change_price: payload.change_price,
-        volume: payload.volume,
-        day_high_price: payload.day_high_price,
-        day_low_price: payload.day_low_price,
-        change_in_percent: payload.change_in_percent
+        ...payload,
+        loading: false
       };
   }
   return state;

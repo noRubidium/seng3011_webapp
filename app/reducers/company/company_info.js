@@ -28,14 +28,8 @@ export default (state=default_state, action) => {
       console.log('PAYLOAD',payload);
       return {
         ...state,
-        loading: false,
-        company_id: payload.id,
-        name: payload.name,
-        info: payload.info,
-        url: payload.url,
-        thumbnail: payload.thumbnail,
-        categories: payload.categories,
-        share_links: payload.share_links
+        ..payload,
+        loading: false
       };
   }
   return state;
