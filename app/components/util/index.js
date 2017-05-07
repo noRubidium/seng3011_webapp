@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-var Highcharts = require('highcharts');
+const Highcharts = require('highcharts');
 import LoadableComponent from 'components/LoadableComponent';
-var data = require('./dummydata.json');
-var financeData = require('./financedata.json');
-var ReactHighstock = require('react-highcharts/ReactHighstock.src');
+const data = require('./dummydata.json');
+const financeData = require('./financedata.json');
+const ReactHighstock = require('react-highcharts/ReactHighstock.src');
 
 const ReactHighcharts = require('react-highcharts'); // Expects that Highcharts was loaded in the code.
 
 export default class StockChart extends React.Component{
 
     getData() {
-      return data
+      return this.props.absData;
     }
 
     getFinData() {
-      return financeData
+      return this.props.financeData;
     }
     // 9 arrays, one for each state and one for total
     getDataForStates(retailData) {  //only one is given
-      var dates = this.formatDates(retailData);
+      const dates = this.formatDates(retailData);
       var stateArrays = [];
       for (var state in retailData[0].regional_data) {  //for each state get the datapoints
         stateArrays.push(this.getDataArray(retailData[0].regional_data[state].data, dates));
@@ -52,15 +52,10 @@ export default class StockChart extends React.Component{
     }
 
     formatFinanceData(financeData){
-      var array = [];
-      for (var index in financeData) {
-        if(financeData[index].Trading_Info){
-          var closePrice = financeData[index].Trading_Info.Close;
-          const date = new Date(financeData[index].Date);
-          array.push([date.getTime(),closePrice])
-        }
-      }
-      return array;
+      const result = financeData.map((e) => {
+        return [(new Date(e.date)).getTime(),e.price];
+      });
+      return result;
     }
 
     // Obtain the full series to plot on the chart
@@ -111,11 +106,11 @@ export default class StockChart extends React.Component{
 
     //Create the div which the chart will be rendered to.
     render () {
-      var retailData = this.getData().MonthlyRetailData;
-      var dataArray = this.getDataForStates(retailData);
-      var stateNames = this.getStateNames(retailData);
-      var financeData = this.getFinData().CompanyReturns[0].Data;
-      var formattedFinanceData = this.formatFinanceData(financeData);
+      const retailData = this.getData().MonthlyRetailData;
+      const dataArray = this.getDataForStates(retailData);
+      const stateNames = this.getStateNames(retailData);
+      const financeData = this.getFinData();
+      const formattedFinanceData = this.formatFinanceData(financeData);
 
       const config = {
         legend: {
@@ -140,7 +135,7 @@ export default class StockChart extends React.Component{
 
 		    yAxis: [{
 		        title: {
-		            text: 'SOME METRIC'
+		            text: 'Million dollar'
 		        },
 		        height: 200,
 		        lineWidth: 2

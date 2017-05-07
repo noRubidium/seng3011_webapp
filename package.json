@@ -24,6 +24,8 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "csvjson": "^4.1.3",
+    "csvtojson": "^1.1.5",
     "datejs": "^1.0.0-rc3",
     "highcharts": "^5.0.11",
     "history": "^4.6.1",

@@ -3,12 +3,12 @@ import { actionTypes } from 'actions/company';
 const default_state = {
   loading: 0, // Use a counter since multiple loading
   /* Stub data for testing display */
-  company_id: 'DMP',
+  company_id: 'DMP.AX',
   name: 'Domino\'s',
   url: 'http://...',
   logo: 'http://...',
-  return_data: [],
-  abs_data: [],
+  financeData: null,
+  absData: null,
 };
 
 export default (state=default_state, action) => {
@@ -17,15 +17,29 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_STATS_LOADING:
       return {
         ...state,
-        loading: true,
+        loading: state.loading + 1,
         id: payload.company_code,
       };
     case actionTypes.COMPANY_STATS_LOADED:
+      console.log(payload);
       return {
         ...state,
-        loading: false,
+        loading: state.loading - 1,
         /* a lot of updates */
+        financeData: payload,
       };
+    case actionTypes.ABS_LOADING:
+      return {
+        ...state,
+        loading: state.loading + 1,
+        id: payload.company_code,
+      };
+    case actionTypes.ABS_LOADED:
+      return {
+        ...state,
+        loading: state.loading - 1,
+        absData: payload,
+      }
   }
   return state;
 };
