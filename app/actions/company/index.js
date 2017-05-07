@@ -67,7 +67,7 @@ export function load_company_info (company_code, dispatch) {
     },
     COMPANY_DATA_LOADED,
     dispatch,
-    `http://api.kairworship.xyz/companies/${company_code}`
+    `http://api.kaiworship.xyz/companies/${company_code}`
   );
 }
 
