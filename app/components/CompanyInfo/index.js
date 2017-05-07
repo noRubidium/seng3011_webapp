@@ -35,17 +35,17 @@ export default class CompanyInfo extends LoadableComponent {
   }
 
   render () {
-    this.loaded_object = (<div>
-      <h1>
-      {this.props.name} <small>{this.props.company_id}</small>
-      </h1>
-      Name: {this.props.name}
-      Code: {this.props.company_id}
-      Information: {this.props.info}
-      Url: {this.props.url}
-      Thumbnail: {this.props.thumbnail}
-      Categories: {this.props.categories}
-    </div>);
+    this.loaded_object = (
+      <div>
+        <div className="col-md-2"><img src={'https://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/052013/dominos_logo.png?itok=rfMA20SQ'} /></div>
+        <div className="col-md-10">
+          <h1>
+          {this.props.name} <small>{this.props.company_id}</small>
+          </h1>
+          <div>{this.props.info}</div>
+          <a class="white-text" href={this.props.url} target="_blank">{this.props.url}</a>
+        </div>
+      </div>);
     return super.render();
   }
 }
