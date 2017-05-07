@@ -101,6 +101,17 @@ export default class StockChart extends React.Component{
       var seriesNames = this.getCategoryNames(retailData);
 
       const config = {
+        legend: {
+          enabled: true,
+          align: 'right',
+          backgroundColor: '#FCFFC5',
+          borderColor: 'black',
+          borderWidth: 2,
+          layout: 'vertical',
+          verticalAlign: 'top',
+          y: 100,
+          shadow: true
+        },
         chart: {
           height: '500px',
           zoomType: 'x'
