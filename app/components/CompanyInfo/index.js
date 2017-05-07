@@ -32,7 +32,6 @@ export default class CompanyInfo extends LoadableComponent {
     super(props);
     const { company_id, dispatch } = this.props;
     load_company_info(company_id, dispatch);
-    console.log('HEREE',this);
   }
 
   render () {

@@ -17,44 +17,33 @@ export default class CompanyPrice extends LoadableComponent {
   }
 
   render () {
-    this.loaded_object = (<div>
-      <table class="table table-bordered">
-        <thead>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </thead>
+    this.loaded_object = (<div class="container">
+      <table className="table table-bordered">
         <tbody>
-          <tr rowspan="2">
-            <th scope="row" colspan="3">
+          <tr>
+            <td rowspan="2">
               {this.props.close_price}
               Change {this.props.change_price} ({this.props.change_percentage})
               Close date {this.props.close_date}
-            </th>
-          </tr>
-          <tr>
-            <td>
-              High
-              {this.props.day_high_price}
+            </td>
+            <td rowspan="2">
+              High: {this.props.day_high_price}
             </td>
             <td>
-              Low
-              {this.props.day_low_price}
+              Prev close: {this.props.prev_close_price}
             </td>
           </tr>
           <tr>
             <td>
-              Prev close
-              {this.props.prev_close}
+              Low: {this.props.day_low_price}
             </td>
             <td>
-              Volume
-              {this.props.volume}
+              Volume: {this.props.volume}
             </td>
           </tr>
         </tbody>
       </table>
+
     </div>);
     return super.render();
   }

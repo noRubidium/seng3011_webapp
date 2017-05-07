@@ -27,8 +27,9 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_PRICE_LOADED:
       return {
         ...state,
-        ...payload,
+        ...payload.data[0],
         loading: false,
+        prev_close_price: payload.data[1].close_price,
       };
   }
   return state;
