@@ -1,3 +1,5 @@
+import X2JS from 'x2js';
+
 // refer to the counter action
 const COMPANY_PRICE_LOADING = 'COMPANY_PRICE_LOADING';
 const COMPANY_PRICE_LOADED = 'COMPANY_PRICE_LOADED';
@@ -34,16 +36,16 @@ const async_action = (loading_action, loaded_action_type, dispatch, url) => {
 
 const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => {
   dispatch(loading_action);
+  const x2js = new X2JS();
+  console.log(x2js);
   fetch(url)
     .then(response => response.text())
-    .then((response) => response[method]())
-    .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-    .then((data) => {
-      console.log(data);
+    .then(str => {
+      const data = (x2js.xml2js(str));
       dispatch({
         type: loaded_action_type,
-        payload: data,
-      })
+        payload: data.rss.channel.item,
+      });
     });
 };
 
@@ -91,6 +93,6 @@ export function load_company_news (company_code, dispatch) {
     },
     COMPANY_NEWS_LOADED,
     dispatch,
-    `https://feeds.finance.yahoo.com/rss/2.0/headline?s=${company_code}.AX&region=AU&lang=en-US`
+    `http://api.kaiworship.xyz/rapper/feeds.finance.yahoo.com/rss/2.0/headline%3Fs=${company_code}&region=AU&lang=en-US`
   );
 }
