@@ -14,7 +14,7 @@ export default class Main extends React.Component {
                         <div className="navbar-header">
                             <Link className="navbar-brand" to='/'>ELEVEN51</Link>
                         </div>
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        {/*}<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
                                 <li className={this.props.location && this.props.location.pathname == '/stats'?'active':''}>
                                 <Link to='/stats'>STATS</Link>
@@ -23,7 +23,7 @@ export default class Main extends React.Component {
                                 <Link to='/company'>COMPANY</Link>
                                 </li>
                             </ul>
-                        </div>
+                        </div>*/}
                     </div>
                 </nav>}
                 <div className="container layout">

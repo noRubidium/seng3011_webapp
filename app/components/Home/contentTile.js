@@ -20,7 +20,6 @@ export default class HomeContentTile extends React.Component {
       <div className='col-sm-3 col-md-3'>
         <Link to={`/company/${id}/`}>
           <div key={id} className='company-tile' style={style}>
-            <div class='overlay'></div>
             <h4 className='name'>{name}</h4>
           </div>
         </Link>
