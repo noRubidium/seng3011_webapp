@@ -64,7 +64,7 @@ export default class StockChart extends React.Component{
     }
 
     // Obtain the full series to plot on the chart
-    createConfigSeries(dataArray, seriesNames, formattedFinanceData) {
+    createConfigSeries(dataArray, stateNames, formattedFinanceData) {
       // set the allowed units for data grouping
       var groupingUnits = [[
         'week',                         // unit name
@@ -154,7 +154,7 @@ export default class StockChart extends React.Component{
 		        lineWidth: 2
 		    }],
 
-        series:this.createConfigSeries(dataArray, seriesNames, formattedFinanceData)
+        series:this.createConfigSeries(dataArray, stateNames, formattedFinanceData)
       };
         return (<ReactHighstock config={config}></ReactHighstock>);
     }
