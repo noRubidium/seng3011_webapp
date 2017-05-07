@@ -15,6 +15,7 @@ export default class HomeContentTile extends React.Component {
       backgroundRepeatY: 'no-repeat',
       backgroundSize: 'contain'
     };
+
     return (
       <div className='col-sm-3 col-md-3'>
         <Link to={`/company/${id}/`}>
