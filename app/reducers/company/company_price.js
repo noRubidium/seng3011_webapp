@@ -10,7 +10,7 @@ const default_state = {
   volume: 139717,
   day_high_price: 62.11,
   day_low_price: 61.26,
-  change_in_percent: -0.308%
+  change_in_percent: '-0.308%',
 
 };
 
@@ -27,8 +27,9 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_PRICE_LOADED:
       return {
         ...state,
-        ...payload,
-        loading: false
+        ...payload.data[0],
+        loading: false,
+        prev_close_price: payload.data[1].close_price,
       };
   }
   return state;
