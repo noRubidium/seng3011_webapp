@@ -61,7 +61,7 @@ export function load_abs_stats (category, dispatch) {
     },
     ABS_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/v5/Retail/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=1990-01-01&endDate=2018-01-01`
+    `http://api.kaiworship.xyz/v5/Retail/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
   );
 }
 
