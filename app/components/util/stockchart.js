@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 var Highcharts = require('highcharts');
 import LoadableComponent from 'components/LoadableComponent';
 var data = require('./dummydata.json');
+var stockData = require('./financedata.json');
 var ReactHighstock = require('react-highcharts/ReactHighstock.src');
 
 
@@ -53,6 +54,8 @@ export default class StockChart extends React.Component{
       var retailData = this.getData().MonthlyRetailData;
       var dataArray = this.getCategoriesData(retailData);
       var seriesNames = this.getCategoryNames(retailData);
+
+      var
 
       // set the allowed units for data grouping
 		var groupingUnits = [[
