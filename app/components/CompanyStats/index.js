@@ -24,11 +24,13 @@ export default class CompanyInfo extends LoadableComponent {
       this.setState({abs_started: true});
       const { dispatch, company_id } = this.props;
       load_company_stats(company_id, dispatch);
-      load_abs_stats('HouseholdGood', dispatch);
+      load_abs_stats(this.props.info.categories[0], dispatch);
     }
     if (this.props.absData && this.props.financeData) {
       this.loaded_object = (<div>
-        <StockChart absData={this.props.absData} financeData={this.props.financeData}/>
+        <StockChart absData={this.props.absData} financeData={this.props.financeData}
+        company_name={this.props.info.name}
+        categories={this.props.info.categories}/>
         </div>);
     }
     return super.render();

@@ -4,6 +4,8 @@ import X2JS from 'x2js';
 // refer to the counter action
 import { async_action } from 'utils/asyncAction';
 
+const COMPANY_PRICE_LOADING  = 'COMPANY_PRICE_LOADING';
+const COMPANY_PRICE_LOADED   = 'COMPANY_PRICE_LOADED';
 const COMPANY_DATA_LOADING  = 'COMPANY_DATA_LOADING';
 const COMPANY_DATA_LOADED   = 'COMPANY_DATA_LOADED';
 const COMPANY_NEWS_LOADING  = 'COMPANY_NEWS_LOADING';
@@ -91,5 +93,16 @@ export function load_company_stats (company_id, dispatch) {
         payload: result
       });
     });
-
 }
+
+export function load_company_price (company_id, dispatch) {
+   async_action(
+     {
+       type: COMPANY_PRICE_LOADING,
+       payload: { company_id },
+     },
+     COMPANY_PRICE_LOADED,
+     dispatch,
+     `http://api.kaiworship.xyz/rapper/data.asx.com.au/data/1/share/${company_id.slice(0,3)}/prices%3Finterval=daily&count=2`
+   );
+ }

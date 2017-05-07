@@ -83,7 +83,7 @@ export default class StockChart extends React.Component{
       const financeData = this.getFinData();
       const formattedFinanceData = this.formatFinanceData(financeData);
 
-      const { company_name } = this.props;
+      const { company_name, categories } = this.props;
 
       const config = {
         legend: {
@@ -108,7 +108,7 @@ export default class StockChart extends React.Component{
 
 		    yAxis: [{
 		        title: {
-		            text: 'Turnover (million AUD)'
+		            text: `${categories[0]} Reatail Turnover (million AUD)`
 		        },
 		        height: 200,
 		        lineWidth: 2
