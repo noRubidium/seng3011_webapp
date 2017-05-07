@@ -32,6 +32,7 @@ export default class CompanyInfo extends LoadableComponent {
     super(props);
     const { company_id, dispatch } = this.props;
     load_company_info(company_id, dispatch);
+    console.log('HEREE',this);
   }
 
   render () {
@@ -45,7 +46,6 @@ export default class CompanyInfo extends LoadableComponent {
       Url: {this.props.url}
       Thumbnail: {this.props.thumbnail}
       Categories: {this.props.categories}
-      share_links: {this.props.share_links}
     </div>);
     return super.render();
   }
