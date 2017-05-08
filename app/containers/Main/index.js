@@ -9,24 +9,24 @@ export default class Main extends React.Component {
     render(){
         return(
             <div>
-                <nav className="navbar navbar-default">
+                {<nav className="navbar navbar-default" id="navbar-eleven51">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <Link className="navbar-brand" to='/'>Eleven51</Link>
+                            <Link className="navbar-brand" to='/'>ELEVEN51</Link>
                         </div>
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        {/*}<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
                                 <li className={this.props.location && this.props.location.pathname == '/stats'?'active':''}>
-                                <Link to='/stats'>Stats</Link>
+                                <Link to='/stats'>STATS</Link>
                                 </li>
                                 <li className={this.props.location && this.props.location.pathname == '/company'?'active':''}>
-                                <Link to='/company'>Company</Link>
+                                <Link to='/company'>COMPANY</Link>
                                 </li>
                             </ul>
-                        </div>
+                        </div>*/}
                     </div>
-                </nav>
-                <div className="container">
+                </nav>}
+                <div className="container layout">
                   <Switch>
                     <Route path="/stats" component={Stats}/>
                     <Route path="/company" component={Company}/>

@@ -1,0 +1,29 @@
+body {
+  background: url('../images/stats.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  font-family: 'Asap', 'Open Sans', sans-serif;
+}
+
+#navbar-eleven51 {
+  background: none;
+  border: none;
+
+  .navbar-brand {
+    color: white;
+    font-weight: bold;
+    margin-left: 0;
+  }
+
+  a {
+    color: white;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.layout {
+  width: 80%;
+}

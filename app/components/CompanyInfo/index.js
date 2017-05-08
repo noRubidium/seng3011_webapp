@@ -1,27 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  ShareButtons,
-  ShareCounts,
-  generateShareIcon
-} from 'react-share';
+import { FacebookButton, FacebookCount } from "react-social";
 
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_info } from 'actions/company';
 import { load_company_price } from 'actions/company';
 
-
-const {
-  FacebookShareButton,
-  GooglePlusShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
-  TelegramShareButton,
-  WhatsappShareButton,
-  PinterestShareButton,
-  VKShareButton,
-  OKShareButton
-} = ShareButtons;
 
 @connect((store) => {
   return store.company.company_info;
