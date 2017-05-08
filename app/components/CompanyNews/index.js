@@ -5,6 +5,8 @@ import textToReactMarkup from 'react-markup-text';
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_news } from 'actions/company';
 
+import NewsPanel from 'components/CompanyNews/news_panel';
+
 @connect((store) => {
   return store.company.company_news;
 })
@@ -21,19 +23,19 @@ export default class CompanyNews extends LoadableComponent {
     const { news } = this.props;
     console.log("THIS IS NEWS:", news);
     this.loaded_object = (<div>
-      news for:{this.props.company_id}
-      <div className="list-group">
+      Latest News
+      <div style={{height:"500px"}}>
+      <div className="list-group" style={{"height":"100%", overflow:"scroll", "padding-top":"10px", "margin-bottom":"10px"}}>
         {
           this.props.news.map((item) => {
             return(
-              <a href={item.link} className="list-group-item">
-                <p className="list-group-item-heading" dangerouslySetInnerHTML={{__html: item.title}} style={{"font-weight":"bold"}}/>
-                <p className="list-group-item-text" dangerouslySetInnerHTML={{__html: item.description}} style={{"font-size":"10pt", "margin-top":"10px"}}/>
-                <p className="list-group-item-text" style={{"color":"#0f0f0f", "font-size":"10pt", "margin-top":"10px"}}>{item.pubDate}</p>
-              </a>
+              <NewsPanel
+                item={item}
+              />
             );
           })
         }
+        </div>
       </div>
     </div>);
     console.log("LOADEDOBJ: ", this.loaded_object);
