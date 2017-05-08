@@ -1,0 +1,23 @@
+body {
+  background: url("../images/stats.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  font-family: 'Asap', 'Open Sans', sans-serif; }
+
+#navbar-eleven51 {
+  background: none;
+  border: none; }
+  #navbar-eleven51 .navbar-brand {
+    color: white;
+    font-weight: bold;
+    margin-left: 0; }
+  #navbar-eleven51 a {
+    color: white; }
+    #navbar-eleven51 a:hover {
+      color: black; }
+
+.layout {
+  width: 80%; }
+
+/*# sourceMappingURL=main.css.map */
