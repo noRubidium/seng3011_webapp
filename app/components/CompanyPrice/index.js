@@ -16,28 +16,28 @@ export default class CompanyPrice extends LoadableComponent {
   }
 
   render () {
-    this.loaded_object = (<div class="container">
-      <table class="table table-bordered" className="table table-bordered">
+    this.loaded_object = (<div class='container'>
+      <table className='table table-bordered company-price-table'>
         <tbody>
           <tr>
-            <td rowSpan="2">
+            <td rowSpan='2'>
               <div className='stock-price'>${this.props.close_price}</div>
-              <div className='stock-price-change'>Change <span className={this.props.change_price > 0.0 ? 'green-color' : 'red-color'}>{this.props.change_price}({this.props.change_in_percent})</span></div>
-              <div className='stock-close-date'>{this.props.close_date.slice(0,10)}</div>
+              <div className='stock-price-change'>Change: <span className={this.props.change_price > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}>{this.props.change_price} ({this.props.change_in_percent})</span></div>
+              <div className='stock-close-date'>Closing date: <span className='stock-close-date-value'>{this.props.close_date.slice(0,10)}</span></div>
             </td>
             <td>
-              High <div className={this.props.day_high_price > this.props.close_price ? 'green-color' : 'red-color'}>${this.props.day_high_price}</div>
+              High <div className={this.props.day_high_price > this.props.close_price ? 'green-color other-prices' : 'red-color other-prices'}>${this.props.day_high_price}</div>
             </td>
             <td>
-              Prev Close: <div>${this.props.prev_close_price}</div>
+              Prev Close: <div className='other-prices'>${this.props.prev_close_price}</div>
             </td>
           </tr>
           <tr>
             <td>
-              Low <div className={this.props.day_low_price < this.props.close_price ? 'red-color' : 'green-color'}>${this.props.day_low_price}</div>
+              Low <div className={this.props.day_low_price < this.props.close_price ? 'red-color other-prices' : 'green-color other-prices'}>${this.props.day_low_price}</div>
             </td>
             <td>
-              Volume: <div>{this.props.volume}</div>
+              Volume: <div className='other-prices'>{this.props.volume}</div>
             </td>
           </tr>
         </tbody>
