@@ -22,8 +22,8 @@ export default class CompanyInfo extends LoadableComponent {
   render () {
     if (!this.state.abs_started && !this.props.info.loading) {
       this.setState({abs_started: true});
-      const { dispatch, company_id } = this.props;
-      load_company_stats(company_id, dispatch);
+      const { dispatch, cid } = this.props;
+      load_company_stats(cid, dispatch);
       load_abs_stats(this.props.info.categories[0], dispatch);
     }
     if (this.props.absData && this.props.financeData) {

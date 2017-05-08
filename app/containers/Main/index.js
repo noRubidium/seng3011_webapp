@@ -29,7 +29,7 @@ export default class Main extends React.Component {
                 <div className="container layout">
                   <Switch>
                     <Route path="/stats" component={Stats}/>
-                    <Route path="/company" component={Company}/>
+                    <Route path="/company/:company_id" component={Company}/>
                     <Route exact path="/" component={Home} />
                   </Switch>
                 </div>
