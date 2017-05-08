@@ -31,7 +31,7 @@ export const actionTypes = {
 const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => {
   dispatch(loading_action);
   const x2js = new X2JS();
-  
+
   fetch(url)
     .then((response) => response.text())
     .then((str) => {
@@ -70,7 +70,7 @@ export function load_company_price (company_id, dispatch) {
 
 
 export function load_company_news (company_code, dispatch) {
-  async_action(
+  async_action_xml(
     {
       type: COMPANY_NEWS_LOADING,
       payload: { company_code },
