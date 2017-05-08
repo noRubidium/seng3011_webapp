@@ -14,9 +14,9 @@ export default class CompanyInfo extends LoadableComponent {
 
   constructor (props) {
     super(props);
-    const { company_id, dispatch } = this.props;
-    load_company_info(company_id, dispatch);
-    load_company_price(company_id, dispatch);
+    const { cid, dispatch } = this.props;
+    load_company_info(cid, dispatch);
+    load_company_price(cid, dispatch);
     console.log('AFTER price',this);
   }
 

@@ -10,17 +10,18 @@ export default class Company extends React.Component {
   }
 
   render () {
+    const { company_id } = this.props.match.params;
     return (
       <div>
         <div>
-          <CompanyInfo />
+          <CompanyInfo cid={company_id}/>
         </div>
         <section className='row'>
           <div className='col-6 col-sm-4 placeholder'> {/*need styling */}
-            <CompanyNews />
+            <CompanyNews cid={company_id}/>
           </div>
           <div className='col-6 col-sm-8 placeholder'>
-            <CompanyStats />
+            <CompanyStats cid={company_id}/>
           </div>
         </section>
       </div>
