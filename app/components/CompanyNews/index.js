@@ -17,15 +17,14 @@ export default class CompanyNews extends LoadableComponent {
     console.log(this);
     const { company_id, dispatch } = this.props;
     load_company_news(company_id, dispatch);
-    console.log("HELLOO" + this.props);
   }
   render () {
     const { news } = this.props;
     console.log("THIS IS NEWS:", news);
     this.loaded_object = (<div>
       Latest News
-      <div style={{height:"500px"}}>
-      <div className="list-group" style={{"height":"100%", overflow:"scroll", "padding-top":"10px", "margin-bottom":"10px"}}>
+      <div className='news-container'>
+      <div className='list-group' className='news-list'>
         {
           this.props.news.map((item) => {
             return(
@@ -38,7 +37,6 @@ export default class CompanyNews extends LoadableComponent {
         </div>
       </div>
     </div>);
-    console.log("LOADEDOBJ: ", this.loaded_object);
     return super.render();
   }
 }

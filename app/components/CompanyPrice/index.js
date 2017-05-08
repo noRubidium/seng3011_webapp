@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_price } from 'actions/company';
 
-import dateFormat from 'dateformat';
-
 @connect((store) => {
   return store.company.company_price;
 })
