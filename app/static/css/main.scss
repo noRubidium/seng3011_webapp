@@ -1,5 +1,8 @@
 body {
-  background: url('../images/stats.jpg');
+  background: url('../images/stats.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
   font-family: 'Asap', 'Open Sans', sans-serif;
 }
 
