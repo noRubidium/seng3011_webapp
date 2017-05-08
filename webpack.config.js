@@ -30,6 +30,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        include: path.resolve(__dirname, "app"),
         loader: ExtractTextPlugin.extract('css!sass') // loaders: ['style', 'css', 'sass']
       }
     ],

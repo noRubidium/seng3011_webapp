@@ -26,14 +26,14 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: true,
-        id: payload.company_code,
+        id: payload.company_id,
       };
     case actionTypes.COMPANY_NEWS_LOADED:
       return {
         ...state,
         loading: false,
         /* a lot of updates */
-        data: payload,
+        news: payload,
       };
   }
   return state;

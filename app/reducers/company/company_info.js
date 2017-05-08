@@ -22,10 +22,10 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: true,
-        id: payload.company_code,
+        company_id: payload.company_id,
       };
     case actionTypes.COMPANY_DATA_LOADED:
-      console.log('PAYLOAD',payload);
+      
       return {
         ...state,
         ...payload,
