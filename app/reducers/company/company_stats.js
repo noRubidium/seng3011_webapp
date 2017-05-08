@@ -7,8 +7,8 @@ const default_state = {
   name: 'Domino\'s',
   url: 'http://...',
   logo: 'http://...',
-  return_data: [],
-  abs_data: [],
+  financeData: null,
+  absData: null,
 };
 
 export default (state=default_state, action) => {
@@ -17,15 +17,28 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_STATS_LOADING:
       return {
         ...state,
-        loading: true,
-        id: payload.company_id,
+        loading: state.loading + 1,
+        company_id: payload.company_id,
       };
     case actionTypes.COMPANY_STATS_LOADED:
       return {
         ...state,
-        loading: false,
+        loading: state.loading - 1,
         /* a lot of updates */
+        financeData: payload,
       };
+    case actionTypes.ABS_LOADING:
+      return {
+        ...state,
+        loading: state.loading + 1,
+        id: payload.company_code,
+      };
+    case actionTypes.ABS_LOADED:
+      return {
+        ...state,
+        loading: state.loading - 1,
+        absData: payload,
+      }
   }
   return state;
 };

@@ -11,7 +11,6 @@ const default_state = {
   day_high_price: 62.11,
   day_low_price: 61.26,
   change_in_percent: '-0.308%',
-
 };
 
 

@@ -1,15 +1,19 @@
+import csvjson from 'csvjson';
 import X2JS from 'x2js';
 
 // refer to the counter action
-const COMPANY_DATA_LOADING = 'COMPANY_DATA_LOADING';
-const COMPANY_DATA_LOADED = 'COMPANY_DATA_LOADED';
-const COMPANY_NEWS_LOADING = 'COMPANY_NEWS_LOADING';
-const COMPANY_NEWS_LOADED = 'COMPANY_NEWS_LOADED';
+import { async_action } from 'utils/asyncAction';
+
+const COMPANY_PRICE_LOADING  = 'COMPANY_PRICE_LOADING';
+const COMPANY_PRICE_LOADED   = 'COMPANY_PRICE_LOADED';
+const COMPANY_DATA_LOADING  = 'COMPANY_DATA_LOADING';
+const COMPANY_DATA_LOADED   = 'COMPANY_DATA_LOADED';
+const COMPANY_NEWS_LOADING  = 'COMPANY_NEWS_LOADING';
+const COMPANY_NEWS_LOADED   = 'COMPANY_NEWS_LOADED';
 const COMPANY_STATS_LOADING = 'COMPANY_STATS_LOADING';
 const COMPANY_STATS_LOADED = 'COMPANY_STATS_LOADED';
-const COMPANY_PRICE_LOADING = 'COMPANY_PRICE_LOADING';
-const COMPANY_PRICE_LOADED = 'COMPANY_PRICE_LOADED';
-
+const ABS_LOADING = 'ABS_LOADING';
+const ABS_LOADED = 'ABS_LOADED';
 
 export const actionTypes = {
   COMPANY_DATA_LOADING,
@@ -20,19 +24,8 @@ export const actionTypes = {
   COMPANY_STATS_LOADED,
   COMPANY_PRICE_LOADING,
   COMPANY_PRICE_LOADED,
-};
-
-const async_action = (loading_action, loaded_action_type, dispatch, url) => {
-  dispatch(loading_action);
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      
-      dispatch({
-        type: loaded_action_type,
-        payload: data,
-      })
-    });
+  ABS_LOADING,
+  ABS_LOADED,
 };
 
 const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => {
@@ -75,35 +68,57 @@ export function load_company_price (company_id, dispatch) {
   );
 }
 
-export function load_company_stats (company_id, dispatch) {
-  const today = new Date();
-  const lower_date = new Date(2003, 1, 1);
 
-  const one_day = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-  const diff_date = Math.round(Math.abs((lower_date.getTime() - today.getTime())/(one_day)));
-
-  const dd = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-  const mm = today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1; //January is 0!
-  const yyyy = today.getFullYear();
+export function load_company_news (company_code, dispatch) {
   async_action(
     {
-      type: COMPANY_STATS_LOADING,
-      payload: { company_id },
-    },
-    COMPANY_STATS_LOADED,
-    dispatch,
-    `http://174.138.67.207/InstrumentID/${company_id}/DateOfInterest/${yyyy}-${mm}-${dd}/List_of_Var/Trading_Info/Upper_window/0/Lower_window/${diff_date}`
-  );
-}
-
-export function load_company_news (company_id, dispatch) {
-  async_action_xml(
-    {
       type: COMPANY_NEWS_LOADING,
-      payload: { company_id },
+      payload: { company_code },
     },
     COMPANY_NEWS_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/rapper/feeds.finance.yahoo.com/rss/2.0/headline%3Fs=${company_id}&region=AU&lang=en-US`
+   `http://api.kaiworship.xyz/rapper/feeds.finance.yahoo.com/rss/2.0/headline%3Fs=${company_code}&region=AU&lang=en-US`
   );
+}
+
+export function load_abs_stats (category, dispatch) {
+  async_action(
+    {
+      type: ABS_LOADING,
+      payload: { category },
+    },
+    ABS_LOADED,
+    dispatch,
+    `http://api.kaiworship.xyz/v5/Retail/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
+  );
+}
+
+export function load_company_stats (company_id, dispatch) {
+  dispatch({
+    type: COMPANY_STATS_LOADING,
+    payload: { company_id },
+  });
+
+  // get date
+  const today = new Date();
+  const dd = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
+  const mm = today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1; //January is 0!
+  const yyyy = today.getFullYear();
+
+  let financeData = [];
+  const url = `http://adage.cse.unsw.edu.au:8080/yahooAPI/v1/data?period=EndOfDay&a_year=1990&a_mon=01&a_day=01&z_year=${yyyy}&z_mon=${mm}&z_day=${dd}&ins_code=${company_id}`;
+  // shit have to load it ourselves
+  fetch(url)
+    .then(response => response.text())
+    .then(data => {
+      const result = data.split('\n').filter((s) => (s.split(',').length === 7 && parseFloat(s.split(',')[6])))
+        .map((s) => {
+          const d = s.split(',');
+          return {'date': d[0], 'price': parseFloat(d[6])};
+        }).reverse();
+      dispatch({
+        type: COMPANY_STATS_LOADED,
+        payload: result
+      });
+    });
 }
