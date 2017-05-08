@@ -3,14 +3,14 @@ import { actionTypes } from 'actions/company';
 const default_state = {
   loading: false,
   /* Stub data for testing display*/
-  code: 'DMP',
+  company_id: 'DMP',
   close_date: "2017-05-05T00:00:00+1000",
   close_price: 61.5,
   change_price: -0.19,
   volume: 139717,
   day_high_price: 62.11,
   day_low_price: 61.26,
-  change_in_percent: -0.308%
+  change_in_percent: '-0.308%',
 
 };
 
@@ -27,8 +27,9 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_PRICE_LOADED:
       return {
         ...state,
-        ...payload,
-        loading: false
+        ...payload.data[0],
+        loading: false,
+        prev_close_price: payload.data[1].close_price,
       };
   }
   return state;

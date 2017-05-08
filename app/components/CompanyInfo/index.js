@@ -16,26 +16,21 @@ export default class CompanyInfo extends LoadableComponent {
     super(props);
     const { cid, dispatch } = this.props;
     load_company_info(cid, dispatch);
-    load_company_price(cid, dispatch);
-    console.log('AFTER price',this);
   }
 
   render () {
-    const url = window.location.toString();
-    const appId=314227965674382;
-    const fb_share = (
-      <FacebookButton appId={appId} />
-    );
-    console.log(fb_share);
-    this.loaded_object = (<div>
-      <h1>
-      {this.props.name} <small>{this.props.company_id}</small>
-      </h1>
-      Close: {this.props.close} Volume: {this.props.volume}
-      Name: {this.props.name} Code: {this.props.company_id}
-      Information: {this.props.info}
-      {fb_share}
-    </div>);
+    const { name, cid, info, url } = this.props;
+    this.loaded_object = (
+      <div>
+        <div className='col-md-2'><img className='img-responsive' src={'https://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/052013/dominos_logo.png?itok=rfMA20SQ'} /></div>
+        <div className='col-md-10'>
+          <h1>
+          {name} <small>{cid}</small>
+          </h1>
+          <div>{info}</div>
+          <a className='white-text' href={url} target='_blank'>{url}</a>
+        </div>
+      </div>);
     return super.render();
   }
 }
