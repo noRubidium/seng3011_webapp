@@ -21,12 +21,12 @@ export default class CompanyPrice extends LoadableComponent {
         <tbody>
           <tr>
             <td rowSpan="2">
-              <div style={{'font-size':'36px', 'font-weight':'bold'}}>${this.props.close_price}</div>
-              <div style={{'font-size':'18px'}}>Change <span style={{color:this.props.change_price > 0.0 ? 'Green' : 'Red'}}>{this.props.change_price}({this.props.change_in_percent})</span></div>
-              <div style={{'font-size':'18px'}}>{this.props.close_date.slice(0,10)}</div>
+              <div className='stock-price'>${this.props.close_price}</div>
+              <div className='stock-price-change'>Change <span className={this.props.change_price > 0.0 ? 'green-color' : 'red-color'}>{this.props.change_price}({this.props.change_in_percent})</span></div>
+              <div className='stock-close-date'>{this.props.close_date.slice(0,10)}</div>
             </td>
             <td>
-              High <div style={{color:this.props.day_high_price > this.props.close_price ? 'Green' : 'Red'}}>${this.props.day_high_price}</div>
+              High <div className={this.props.day_high_price > this.props.close_price ? 'green-color' : 'red-color'}>${this.props.day_high_price}</div>
             </td>
             <td>
               Prev Close: <div>${this.props.prev_close_price}</div>
@@ -34,7 +34,7 @@ export default class CompanyPrice extends LoadableComponent {
           </tr>
           <tr>
             <td>
-              Low <div style={{color:this.props.day_low_price < this.props.close_price ? 'Red' : 'Green'}}>${this.props.day_low_price}</div>
+              Low <div className={this.props.day_low_price < this.props.close_price ? 'red-color' : 'green-color'}>${this.props.day_low_price}</div>
             </td>
             <td>
               Volume: <div>{this.props.volume}</div>
