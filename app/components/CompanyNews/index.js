@@ -20,20 +20,12 @@ export default class CompanyNews extends LoadableComponent {
   }
   render () {
     const { news } = this.props;
-    console.log("THIS IS NEWS:", news);
+    console.log('THIS IS NEWS:', news);
     this.loaded_object = (<div>
       Latest News
       <div className='news-container'>
       <div className='list-group' className='news-list'>
-        {
-          this.props.news.map((item) => {
-            return(
-              <NewsPanel
-                item={item}
-              />
-            );
-          })
-        }
+        { this.props.news.map((item) =>  <NewsPanel item={item} />) }
         </div>
       </div>
     </div>);

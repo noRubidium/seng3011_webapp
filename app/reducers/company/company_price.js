@@ -3,7 +3,7 @@ import { actionTypes } from 'actions/company';
 const default_state = {
   loading: false,
   /* Stub data for testing display*/
-  code: 'DMP',
+  company_id: 'DMP',
   close_date: "2017-05-05T00:00:00+1000",
   close_price: 61.5,
   change_price: -0.19,

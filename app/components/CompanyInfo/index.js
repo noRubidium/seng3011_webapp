@@ -43,7 +43,7 @@ export default class CompanyInfo extends LoadableComponent {
           {this.props.name} <small>{this.props.company_id}</small>
           </h1>
           <div>{this.props.info}</div>
-          <a class='white-text' href={this.props.url} target='_blank'>{this.props.url}</a>
+          <a className='white-text' href={this.props.url} target='_blank'>{this.props.url}</a>
         </div>
       </div>);
     return super.render();
