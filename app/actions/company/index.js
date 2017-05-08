@@ -70,7 +70,7 @@ export function load_company_info (company_code, dispatch) {
 }
 
 export function load_company_news (company_code, dispatch) {
-  async_action(
+  async_action_xml(
     {
       type: COMPANY_NEWS_LOADING,
       payload: { company_code },
