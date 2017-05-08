@@ -31,7 +31,6 @@ export const actionTypes = {
 const async_action_xml = (loading_action, loaded_action_type, dispatch, url) => {
   dispatch(loading_action);
   const x2js = new X2JS();
-  console.log(x2js);
   fetch(url)
     .then(response => response.text())
     .then(str => {
