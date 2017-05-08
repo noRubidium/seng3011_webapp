@@ -7,7 +7,7 @@ import { load_company_news } from 'actions/company';
 @connect((store) => {
   return store.company.company_news;
 })
-export default class CompanyInfo extends LoadableComponent {
+export default class CompanyNews extends LoadableComponent {
 
   constructor (props) {
     super(props);
