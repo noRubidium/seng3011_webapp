@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_price } from 'actions/company';
 
+import dateFormat from 'dateformat';
 
 @connect((store) => {
   return store.company.company_price;
@@ -14,7 +15,6 @@ export default class CompanyPrice extends LoadableComponent {
     super(props);
     const { code, dispatch } = this.props;
     load_company_price(code, dispatch);
-    console.log('heree',this);
   }
 
   render () {
@@ -23,23 +23,23 @@ export default class CompanyPrice extends LoadableComponent {
         <tbody>
           <tr>
             <td rowSpan="2">
-              {this.props.close_price}
-              {this.props.change_price} ({this.props.change_in_percent})
-              Close date {this.props.close_date}
+              <div style={{'font-size':'36px', 'font-weight':'bold'}}>${this.props.close_price}</div>
+              <div style={{'font-size':'18px'}}>Change <span style={{color:this.props.change_price > 0.0 ? 'Green' : 'Red'}}>{this.props.change_price}({this.props.change_in_percent})</span></div>
+              <div style={{'font-size':'18px'}}>{this.props.close_date.slice(0,10)}</div>
             </td>
             <td>
-              High: {this.props.day_high_price}
+              High <div style={{color:this.props.day_high_price > this.props.close_price ? 'Green' : 'Red'}}>${this.props.day_high_price}</div>
             </td>
             <td>
-            Prev Close: {this.props.prev_close_price}
+              Prev Close: <div>${this.props.prev_close_price}</div>
             </td>
           </tr>
           <tr>
             <td>
-              Low: {this.props.day_low_price}
+              Low <div style={{color:this.props.day_low_price < this.props.close_price ? 'Red' : 'Green'}}>${this.props.day_low_price}</div>
             </td>
             <td>
-              Volume: {this.props.volume}
+              Volume: <div>{this.props.volume}</div>
             </td>
           </tr>
         </tbody>
