@@ -16,10 +16,12 @@ export default class Company extends React.Component {
       <div style={{background:'white', padding: '20px'}}>
         <div className='row'>
           <CompanyInfo cid={company_id}/>
+        </div>
+        <div className='row'>
           <CompanyPrice cid={company_id}/>
         </div>
         <section className='row'>
-          <div className='col-md-4 col-sm-12 placeholder' style={{paddingLeft: '10px'}}> {/*need styling */}
+          <div className='col-md-4 col-sm-12 placeholder'> {/*need styling */}
             <CompanyNews cid={company_id}/>
           </div>
           <div className='col-md-8 col-sm-12 placeholder' style={{minHeight: '500px'}}>
