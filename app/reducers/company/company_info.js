@@ -25,7 +25,7 @@ export default (state=default_state, action) => {
         id: payload.company_code,
       };
     case actionTypes.COMPANY_DATA_LOADED:
-      console.log('PAYLOAD',payload);
+      
       return {
         ...state,
         ...payload,
