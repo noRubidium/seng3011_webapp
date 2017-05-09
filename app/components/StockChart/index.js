@@ -18,7 +18,7 @@ export default class StockChart extends React.Component{
     // 9 arrays, one for each state and one for total
     getDataForStates(retailData) {  //only one is given
       const dates = this.formatDates(retailData);
-      const stateArrays = retailData[0].regional_data.map(e => this.getDataArray(e.data, dates));
+      const stateArrays = retailData[this.props.currentCategoryIndex].regional_data.map(e => this.getDataArray(e.data, dates));
       return stateArrays;
     }
 
@@ -31,7 +31,7 @@ export default class StockChart extends React.Component{
 
     // Single array with the state names for the legend
     getStateNames(retailData) {
-      const states = retailData[0].regional_data.map(e => e.state === 'Total' ? 'AUS': e.state);
+      const states = retailData[this.props.currentCategoryIndex].regional_data.map(e => e.state === 'Total' ? 'AUS': e.state);
       return states;
     }
 
@@ -73,7 +73,7 @@ export default class StockChart extends React.Component{
 
     // Obtain the x-axis values (dates in milliseconds)
     formatDates(retailData) {
-      const firstRegion = retailData[0].regional_data[0].data;
+      const firstRegion = retailData[this.props.currentCategoryIndex].regional_data[0].data;
       const configCategories = firstRegion.map((e) => (new Date(e.date)).getTime());
       return configCategories;
     }
@@ -107,7 +107,7 @@ export default class StockChart extends React.Component{
 
 		    yAxis: [{
 		        title: {
-		            text: `${categories[0]} Retail Turnover (million AUD)`
+		            text: `${categories[this.props.currentCategoryIndex]} Retail Turnover (million AUD)`
 		        },
 		        height: 200,
 		        lineWidth: 2
