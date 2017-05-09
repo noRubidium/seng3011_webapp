@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Highcharts from 'highcharts';
 import ReactHighstock from 'react-highcharts/ReactHighstock.src';
 
 import LoadableComponent from 'components/LoadableComponent';
+
+// Highcharts exporting
+var HighchartsExporting = require('highcharts-exporting');
+HighchartsExporting(ReactHighstock.Highcharts);
 
 export default class StockChart extends React.Component{
 
@@ -89,6 +92,20 @@ export default class StockChart extends React.Component{
       const { company_name, categories } = this.props;
 
       const config = {
+
+        exporting: {
+          chartOptions: { // specific options for the exported image
+              plotOptions: {
+                  series: {
+                      dataLabels: {
+                          enabled: true
+                      }
+                  }
+              }
+          },
+          fallbackToExportServer: false
+        },
+
         legend: {
           enabled: true,
           align: 'right',
@@ -102,7 +119,7 @@ export default class StockChart extends React.Component{
         },
 
 		    rangeSelector: {
-		        selected: 1
+		        selected: 4
 		    },
 
 		    yAxis: [{
