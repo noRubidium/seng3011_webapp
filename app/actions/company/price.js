@@ -1,3 +1,5 @@
+import { async_action } from 'utils/asyncAction';
+
 const COMPANY_PRICE_LOADING  = 'COMPANY_PRICE_LOADING';
 const COMPANY_PRICE_LOADED   = 'COMPANY_PRICE_LOADED';
 const COMPANY_PRICE_FIALED   = 'COMPANY_PRICE_FIALED';
@@ -8,7 +10,7 @@ export const companyPriceActionTypes = {
   COMPANY_PRICE_FIALED,
 };
 
-export default function load_company_price (company_code, dispatch) {
+export function load_company_price (company_code, dispatch) {
   async_action(
     {
       type: COMPANY_PRICE_LOADING,
