@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactHighstock from 'react-highcharts/ReactHighstock.src';
-
+import Highcharts from 'highcharts';
 import LoadableComponent from 'components/LoadableComponent';
 
 // Highcharts exporting
