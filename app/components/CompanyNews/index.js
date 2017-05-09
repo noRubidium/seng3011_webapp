@@ -21,7 +21,7 @@ export default class CompanyNews extends LoadableComponent {
   render () {
     const { news } = this.props;
     this.loaded_object = (<div>
-      Latest News
+      <div className='latest-news-heading'>Latest News</div>
       <div className='news-container'>
       <div className='list-group' className='news-list'>
         { this.props.news ?

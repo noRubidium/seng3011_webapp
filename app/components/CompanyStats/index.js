@@ -28,9 +28,14 @@ export default class CompanyInfo extends LoadableComponent {
     }
     if (this.props.absData && this.props.financeData) {
       this.loaded_object = (<div>
-        <StockChart absData={this.props.absData} financeData={this.props.financeData}
-        company_name={this.props.info.name}
-        categories={this.props.info.categories}/>
+          <div className='charts-heading'>Charts</div>
+          <div className='panel panel-default'>
+            <div className='panel-body'>
+            <StockChart absData={this.props.absData} financeData={this.props.financeData}
+            company_name={this.props.info.name}
+            categories={this.props.info.categories}/>
+            </div>
+          </div>
         </div>);
     }
     return super.render();

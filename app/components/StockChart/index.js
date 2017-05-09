@@ -105,13 +105,9 @@ export default class StockChart extends React.Component{
 		        selected: 1
 		    },
 
-		    title: {
-		        text: `Stats for company: ${company_name}`
-		    },
-
 		    yAxis: [{
 		        title: {
-		            text: `${categories[0]} Reatail Turnover (million AUD)`
+		            text: `${categories[0]} Retail Turnover (million AUD)`
 		        },
 		        height: 200,
 		        lineWidth: 2

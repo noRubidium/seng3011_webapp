@@ -11,18 +11,22 @@ export default class CompanyPrice extends LoadableComponent {
 
   constructor (props) {
     super(props);
-    const { company_id, dispatch } = this.props;
-    load_company_price(company_id, dispatch);
+    const { cid, dispatch } = this.props;
+    load_company_price(cid, dispatch);
   }
 
   render () {
-    this.loaded_object = (<div>
+    this.loaded_object = (<div className='col-md-12'>
+      <div className='stock-price-info-heading'>Stock Price Information</div>
       <table className='table table-bordered company-price-table'>
         <tbody>
           <tr>
             <td rowSpan='2'>
               <div className='stock-price'>${this.props.close_price}</div>
-              <div className='stock-price-change'>Change: <span className={this.props.change_price > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}>{this.props.change_price} ({this.props.change_in_percent})</span></div>
+              <div className='stock-price-change'>
+                Change: <span className={this.props.change_price > 0.0 ? 'green-color glyphicon glyphicon-arrow-up' : 'red-color glyphicon glyphicon-arrow-down'} aria-hidden='true'></span>
+                <span className={this.props.change_price > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}> {this.props.change_price} ({this.props.change_in_percent})</span>
+              </div>
               <div className='stock-close-date'>Closing date: <span className='stock-close-date-value'>{this.props.close_date.slice(0,10)}</span></div>
             </td>
             <td>

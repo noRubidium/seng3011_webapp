@@ -8,6 +8,7 @@ const default_state = {
   company_id: 'DMP.AX',
   name: 'Domino\'s',
   info: 'Pizza Company',
+  alias: 'dominos',
   url: 'http://...',
   thumbnail: 'http://...',
   categories: [],
