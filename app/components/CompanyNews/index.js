@@ -14,7 +14,7 @@ export default class CompanyNews extends LoadableComponent {
 
   constructor (props) {
     super(props);
-    console.log(this);
+
     const { cid, dispatch } = this.props;
     load_company_news(cid, dispatch);
   }
