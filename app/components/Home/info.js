@@ -9,8 +9,8 @@ export default class HomeInfo extends React.Component {
   render () {
     return (
       <div>
-        <div className='home-title'> LG18A </div>
-        <div className='home-info-title'> Retail Specialist </div>
+        <div className='home-title'> RAP </div>
+        <div className='home-info-title'> Retail Analytics Platform </div>
       </div>
     );
   }

@@ -12,7 +12,7 @@ export default class Main extends React.Component {
                 {<nav className="navbar navbar-default" id="navbar-eleven51">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <Link className="navbar-brand" to='/'>ELEVEN51</Link>
+                            <Link className="navbar-brand" to='/'>RAP</Link>
                         </div>
                         {/*}<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
