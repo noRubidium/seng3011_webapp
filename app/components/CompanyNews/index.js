@@ -23,8 +23,8 @@ export default class CompanyNews extends LoadableComponent {
     this.loaded_object = (<div>
       <div className='latest-news-heading'>Latest News</div>
       <div className='news-container'>
-      <div className='list-group' className='news-list'>
-        { this.props.news.map((item, i) =>  <NewsPanel key={i} item={item} />) }
+        <div className='list-group' className='news-list'>
+          { this.props.news.map((item, i) =>  <NewsPanel key={i} item={item} />) }
         </div>
       </div>
     </div>);

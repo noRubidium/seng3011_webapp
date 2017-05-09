@@ -1,11 +1,10 @@
 .news-container {
-	height: 500px;
+	height: 530px;
 }
 
 .news-list {
 	height: 100%;
 	overflow: scroll;
-	padding-top: 10px;
 	margin-bottom: 10px;
 }
 
@@ -29,4 +28,5 @@
 .latest-news-heading {
 	font-weight: bold;
 	font-size: 16px;
+	padding-bottom: 10px;
 }
