@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import textToReactMarkup from 'react-markup-text';
 
 import LoadableComponent from 'components/LoadableComponent';
-import { load_company_news } from 'actions/company';
+import { load_company_news } from 'actions/company/news';
 
 import NewsPanel from 'components/CompanyNews/news_panel';
 
@@ -24,7 +24,7 @@ export default class CompanyNews extends LoadableComponent {
       Latest News
       <div className='news-container'>
       <div className='list-group' className='news-list'>
-        { this.props.news.map((item, i) =>  <NewsPanel key={i} item={item} />) }
+        { this.props.news ? this.props.news.map((item, i) =>  <NewsPanel key={i} item={item} />) : 'There is no news for this company'}
         </div>
       </div>
     </div>);

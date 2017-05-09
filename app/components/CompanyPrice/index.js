@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import LoadableComponent from 'components/LoadableComponent';
-import { load_company_price } from 'actions/company';
+import { load_company_price } from 'actions/company/price';
 
 @connect((store) => {
   return store.company.company_price;

@@ -31,6 +31,13 @@ export default (state=default_state, action) => {
         loading: false,
         prev_close_price: payload.data[1].close_price,
       };
+    case actionTypes.COMPANY_PRICE_FAILED:
+      return {
+        ...state,
+        ...payload.data[0],
+        loading: false,
+        error_msg: 'No up to date data for the stock',
+      };
   }
   return state;
 };

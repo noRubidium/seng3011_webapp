@@ -35,6 +35,14 @@ export default (state=default_state, action) => {
         /* a lot of updates */
         news: payload,
       };
+    case actionTypes.COMPANY_NEWS_FAILED:
+      return {
+        ...state,
+        loading: false,
+        /* a lot of updates */
+        error: true,
+        error_msg: `The relavant news for ${state.company_id}`,
+      };
   }
   return state;
 };
