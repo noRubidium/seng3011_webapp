@@ -7,3 +7,17 @@
 .charts-container {
   border-color: rgb(221,221,221);
 }
+
+.category-selection {
+  margin: 15px 15px 0 15px;
+}
+
+.category-dropdown {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.selected-category {
+  font-size: 15px;
+  font-weight: bold;
+}

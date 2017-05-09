@@ -5,6 +5,26 @@ import LoadableComponent from 'components/LoadableComponent';
 import { load_company_stats, load_abs_stats } from 'actions/company/stats';
 import StockChart from 'components/StockChart';
 
+
+class CategoryDropdown extends React.Component {
+  render() {
+    const { categories, changeCategoryIndex } = this.props;
+    const categoriesItems = categories.map((c, index) =>
+      <li><a href='#' onClick={(e) => changeCategoryIndex(e, index)} key={index}>
+        {c.split(/(?=[A-Z])/).join(' ')}
+      </a></li>);
+
+    return (<div className='dropdown category-dropdown'>
+      <button className='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown'>
+        Change category <span className='caret'></span>
+      </button>
+      <ul className='dropdown-menu'>
+        {categoriesItems}
+      </ul>
+    </div>)
+  }
+}
+
 @connect((store) => {
   return {
     ...store.company.company_stats,
@@ -22,7 +42,9 @@ export default class CompanyInfo extends LoadableComponent {
     this.changeCategoryIndex = this.changeCategoryIndex.bind(this);
   }
 
-  changeCategoryIndex(index) {
+  changeCategoryIndex(e, index) {
+    e.preventDefault();
+    console.log(index);
     this.setState({currentCategoryIndex: index});
   }
 
@@ -33,24 +55,23 @@ export default class CompanyInfo extends LoadableComponent {
       this.setState({abs_started: true});
       const { dispatch, cid } = this.props;
       load_company_stats(cid, dispatch);
-      load_abs_stats(this.props.info.categories, dispatch);
+      load_abs_stats(categories, dispatch);
     }
 
     if (this.props.absData && this.props.financeData) {
-      const tabs = categories.map((c, index) => <li><a href='#' onClick={this.changeCategoryIndex(index)}>{c}</a></li>);
+      const { currentCategoryIndex } = this.state;
+      const currentCategory = categories[currentCategoryIndex].split(/(?=[A-Z])/).join(' ');
 
       this.loaded_object = (<div>
-          <div className='charts-heading'>Charts</div>
+        <div className='charts-heading'>Charts</div>
           <div className='panel panel-default'>
-          <div className="dropdown">
-            <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Category
-              <span className="caret"></span>
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              {tabs}
-            </ul>
-          </div>
+            <div className='category-selection'>
+              <CategoryDropdown categories={categories}
+                changeCategoryIndex={this.changeCategoryIndex}/>
+              <span className='selected-category'>
+                Selected Category: <u>{currentCategory}</u>
+              </span>
+            </div>
             <div className='panel-body'>
             <StockChart absData={this.props.absData} financeData={this.props.financeData}
             company_name={this.props.info.name} currentCategoryIndex={this.state.currentCategoryIndex}
