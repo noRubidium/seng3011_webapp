@@ -41,7 +41,7 @@ export default (state=default_state, action) => {
         loading: false,
         /* a lot of updates */
         error: true,
-        error_msg: `The relavant news for ${state.company_id}`,
+        error_msg: `There is no relavant news for ${state.company_id}`,
       };
   }
   return state;
