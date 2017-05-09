@@ -6,6 +6,7 @@ const default_state = {
   company_id: 'DMP.AX',
   name: 'Domino\'s',
   info: 'Pizza Company',
+  alias: 'dominos',
   url: 'http://...',
   thumbnail: 'http://...',
   categories: [],
@@ -25,7 +26,7 @@ export default (state=default_state, action) => {
         id: payload.company_code,
       };
     case actionTypes.COMPANY_DATA_LOADED:
-      
+
       return {
         ...state,
         ...payload,

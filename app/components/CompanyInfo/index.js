@@ -22,7 +22,7 @@ export default class CompanyInfo extends LoadableComponent {
     const { name, cid, info, url } = this.props;
     this.loaded_object = (
       <div>
-        <div className='col-md-2'><img className='img-responsive' src={'https://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/052013/dominos_logo.png?itok=rfMA20SQ'} /></div>
+        <div className='col-md-2'><img className='img-responsive' src={`/static/images/logo/${this.props.alias}.jpg`} /></div>
         <div className='col-md-10'>
           <h1>
           {name} <small>{cid}</small>
