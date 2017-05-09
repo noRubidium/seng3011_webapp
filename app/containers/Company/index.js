@@ -13,11 +13,11 @@ export default class Company extends React.Component {
   render () {
     const { company_id } = this.props.match.params;
     return (
-      <div style={{background:'white', padding: '20px'}}>
+      <div className='company-container'>
         <div className='row'>
           <CompanyInfo cid={company_id}/>
         </div>
-        <div className='row'>
+        <div className='row company-price-section'>
           <CompanyPrice cid={company_id}/>
         </div>
         <section className='row'>
