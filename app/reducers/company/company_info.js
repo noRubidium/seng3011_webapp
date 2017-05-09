@@ -1,5 +1,7 @@
 import { actionTypes } from 'actions/company';
 
+console.log(actionTypes);
+
 const default_state = {
   loading: false,
   /* Stub data for testing display*/
@@ -26,11 +28,18 @@ export default (state=default_state, action) => {
         id: payload.company_code,
       };
     case actionTypes.COMPANY_DATA_LOADED:
-
       return {
         ...state,
         ...payload,
         loading: false
+      };
+    case actionTypes.COMPANY_DATA_FAILED:
+      return {
+        ...state,
+        ...payload,
+        loading: false,
+        error: true,
+        error_msg: 'There is no company data information',
       };
   }
   return state;

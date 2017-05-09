@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { FacebookButton, FacebookCount } from "react-social";
 
 import LoadableComponent from 'components/LoadableComponent';
-import { load_company_info } from 'actions/company';
-import { load_company_price } from 'actions/company';
+import { load_company_info } from 'actions/company/info';
+import { load_company_price } from 'actions/company/price';
 
 
 @connect((store) => {
