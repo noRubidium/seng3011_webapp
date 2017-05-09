@@ -39,6 +39,12 @@ export default (state=default_state, action) => {
         loading: state.loading - 1,
         absData: payload,
       }
+    case actionTypes.ABS_FAILED:
+    return {
+      ...state,
+      loading: state.loading - 1,
+      error_msg: 'There is error',
+    };
   }
   return state;
 };
