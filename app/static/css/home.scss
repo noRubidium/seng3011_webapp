@@ -1,5 +1,6 @@
 .home-info {
   color: #fff;
+
   .home-title {
     margin-top: 20px;
     font-size: 70px;
@@ -10,7 +11,7 @@
   .home-info-title {
     font-size: 30px;
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
   }
 }
 
@@ -18,6 +19,7 @@
   overflow: hidden;
   width: 1016px;
   margin: auto;
+  padding-top: 5px;
 }
 
 .company-tile {
@@ -30,15 +32,17 @@
   color: black;
   border-radius: 3px;
 
-  -webkit-box-shadow: 0px 0px 17px 3px rgba(0,0,0,0.56);
-  -moz-box-shadow: 0px 0px 17px 3px rgba(0,0,0,0.56);
-  box-shadow: 0px 0px 17px 3px rgba(0,0,0,0.56);
+  -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.4);
 
   .name {
     margin-top: 0px;
   }
 
   &:hover {
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
     filter: brightness(70%);
   }
 }
