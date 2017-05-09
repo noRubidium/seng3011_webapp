@@ -21,13 +21,13 @@ export default class CompanyInfo extends LoadableComponent {
   render () {
     const { name, cid, info, url } = this.props;
     this.loaded_object = (
-      <div>
-        <div className='col-md-2'><img className='img-responsive' src={`/static/images/logo/${this.props.alias}.jpg`} /></div>
+      <div className='col-md-12 company-info'>
+        <div className='col-md-2 thumbnail company-info-thumbnail'><img className='img-responsive' src={`/static/images/logo/${this.props.alias}.jpg`} /></div>
         <div className='col-md-10'>
-          <h1>
+          <h1 className='company-info-name'>
           {name} <small>{cid}</small>
           </h1>
-          <div>{info}</div>
+          <div className='company-info-details'>{info}</div>
           <span className="glyphicon glyphicon-globe" aria-hidden="true"></span> <a className='white-text' href={url} target='_blank'>{url}</a>
         </div>
       </div>);

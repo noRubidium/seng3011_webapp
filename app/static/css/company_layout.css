@@ -11,3 +11,23 @@
 .company-price-section {
   margin-top: 20px;
 }
+
+.lala {
+  border: 1px solid black;
+}
+
+.company-info {
+  margin-top: 10px;
+}
+
+.company-info-thumbnail {
+  margin-bottom: 0;
+}
+
+.company-info-name {
+  margin-top: 15px;
+}
+
+.company-info-details {
+  margin-bottom: 5px;
+}
