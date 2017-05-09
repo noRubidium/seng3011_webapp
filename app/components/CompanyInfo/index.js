@@ -28,7 +28,7 @@ export default class CompanyInfo extends LoadableComponent {
           {name} <small>{cid}</small>
           </h1>
           <div>{info}</div>
-          <a className='white-text' href={url} target='_blank'>{url}</a>
+          <span className="glyphicon glyphicon-globe" aria-hidden="true"></span> <a className='white-text' href={url} target='_blank'>{url}</a>
         </div>
       </div>);
     return super.render();

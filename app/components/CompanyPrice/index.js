@@ -23,7 +23,10 @@ export default class CompanyPrice extends LoadableComponent {
           <tr>
             <td rowSpan='2'>
               <div className='stock-price'>${this.props.close_price}</div>
-              <div className='stock-price-change'>Change: <span className={this.props.change_price > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}>{this.props.change_price} ({this.props.change_in_percent})</span></div>
+              <div className='stock-price-change'>
+                Change: <span className={this.props.change_price > 0.0 ? 'green-color glyphicon glyphicon-arrow-up' : 'red-color glyphicon glyphicon-arrow-down'} aria-hidden='true'></span>
+                <span className={this.props.change_price > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}> {this.props.change_price} ({this.props.change_in_percent})</span>
+              </div>
               <div className='stock-close-date'>Closing date: <span className='stock-close-date-value'>{this.props.close_date.slice(0,10)}</span></div>
             </td>
             <td>
