@@ -29,6 +29,7 @@ export default class CompanyInfo extends LoadableComponent {
           </h1>
           <div className='company-info-details'>{info}</div>
           <span className="glyphicon glyphicon-globe" aria-hidden="true"></span> <a className='white-text' href={url} target='_blank'>{url}</a>
+          <span style={{marginLeft: '15px'}} className="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> <a className='white-text' href={`http://www.asx.com.au/asx/statistics/announcements.do?by=asxCode&asxCode=${this.props.cid.slice(0,3)}&timeframe=D&period=M6`} target='_blank'>Company Announcements</a>
         </div>
       </div>);
     return super.render();
