@@ -33,6 +33,8 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: false,
+        loaded: true,
+        
         /* a lot of updates */
         news: payload,
       };

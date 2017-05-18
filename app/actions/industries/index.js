@@ -1,24 +1,24 @@
 // refer to the counter action
 import { async_action } from 'utils/asyncAction';
 
-const INDUSTRY_COMPANIES_LOADING     = 'INDUSTRY_COMPANIES_LOADING';
-const INDUSTRY_COMPANIES_LOADED      = 'INDUSTRY_COMPANIES_LOADED';
-const INDUSTRY_COMPANIES_FAILED      = 'INDUSTRY_COMPANIES_FAILED';
+const INDUSTRIES_LOADING     = 'INDUSTRIES_LOADING';
+const INDUSTRIES_LOADED      = 'INDUSTRIES_LOADED';
+const INDUSTRIES_FAILED      = 'INDUSTRIES_FAILED';
 
 export const actionTypes = {
-  INDUSTRY_LOADING,
-  INDUSTRY_LOADED,
-  INDUSTRY_FAILED
+  INDUSTRIES_LOADING,
+  INDUSTRIES_LOADED,
+  INDUSTRIES_FAILED
 };
 
 export function load_industries (dispatch) {
   async_action(
     {
-      type: INDUSTRY_LOADING,
+      type: INDUSTRIES_LOADING,
     },
-    INDUSTRY_LOADED,
+    INDUSTRIES_LOADED,
     dispatch,
     `url`,
-    INDUSTRY_FAILED
+    INDUSTRIES_FAILED
   );
 }

@@ -3,6 +3,7 @@ import { actionTypes } from 'actions/company_list';
 const default_state = {
   loading: false,
   error: false,
+  loaded: true,
   industry: 'Total',
   companies: []
 };
@@ -20,6 +21,7 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: false,
+        loaded: true,
         companies: payload.companies
       };
     case actionTypes.INDUSTRY_COMPANIES_FAILED:

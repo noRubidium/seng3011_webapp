@@ -2,6 +2,7 @@ import { actionTypes } from 'actions/news';
 
 const default_state = {
   loading: false,
+  loaded: false,
   error: false,
   /* Stub data for testing display*/
   url: 'http://...',
@@ -24,6 +25,7 @@ export default (state=default_state, action) => {
         ...state,
         ...payload,
         loading: false,
+        loaded: true,
       };
     case actionTypes.NEWS_FAILED:
       return {

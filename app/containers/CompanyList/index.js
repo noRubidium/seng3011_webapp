@@ -1,31 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import LoadableComponent from 'components/LoadableComponent';
 import CompanyListItem from 'components/CompanyListItem';
-
-export default class Company extends React.Component {
+import { load_companies } from 'actions/company_list';
+@connect((store) => {
+  return {
+    ...store.company_list,
+  };
+})
+export default class NewsFeed extends LoadableComponent {
   constructor (props) {
     super(props);
+    this.loaded_object = null;
+    const { dispatch } = this.props;
+    load_companies(dispatch, 'tmp');
   }
 
   render () {
-    const { company_id } = this.props.match.params;
-    return (
-      <div className='company-container'>
-        <div className='row'>
-          <CompanyInfo cid={company_id}/>
-        </div>
-        <div className='row company-price-section'>
-          <CompanyPrice cid={company_id}/>
-        </div>
-        <section className='row'>
-          <div className='col-md-4 col-sm-12 placeholder'> {/*need styling */}
-            <CompanyNews cid={company_id}/>
-          </div>
-          <div className='col-md-8 col-sm-12 placeholder' style={{minHeight: '500px'}}>
-            <CompanyStats cid={company_id}/>
-          </div>
-        </section>
-      </div>
-    );
+    const { loaded } = this.props;
+    console.log('PROP:', this.props);
+    if (loaded) {
+      this.loaded_object = (<div> ${company_list.companies.map((cmp, i) => (<CompanyListItem company={cmp} key={i}/>))}</div>);
+    }
+    return super.render();
   }
 }

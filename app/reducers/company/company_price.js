@@ -36,6 +36,7 @@ export default (state=default_state, action) => {
       return {
         ...state,
         ...payload.data[0],
+        loaded: true,
         loading: false,
         error_msg: 'No up to date data for the stock',
       };

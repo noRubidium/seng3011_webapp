@@ -13,13 +13,14 @@ export default class NewsFeed extends LoadableComponent {
   constructor (props) {
     super(props);
     this.loaded_object = null;
-    load_news_feed(cid, dispatch);
+    const { uid, dispatch } = this.props;
+    load_news_feed(uid, dispatch);
   }
 
   render () {
-    const { news_feed } = this.props;
+    const { loaded } = this.props;
 
-    if (!(news_feed.loading || news_feed.error)) {
+    if (loaded) {
 
       this.loaded_object = this.news_feed.map((i) =>(<div>
         Some news detail which get distributed...

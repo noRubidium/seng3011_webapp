@@ -1,31 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import CompanyListItem from 'components/CompanyListItem';
+import LoadableComponent from 'components/LoadableComponent';
+import { load_industries } from 'actions/industries';
 
-export default class Company extends React.Component {
+@connect((store) => {
+  return {
+    ...store.industries,
+  };
+})
+export default class Industries extends LoadableComponent {
   constructor (props) {
     super(props);
+    this.loaded_object = null;
+    const { dispatch } = this.props;
+    load_industries(dispatch);
   }
 
   render () {
-    const { company_id } = this.props.match.params;
-    return (
-      <div className='company-container'>
-        <div className='row'>
-          <CompanyInfo cid={company_id}/>
-        </div>
-        <div className='row company-price-section'>
-          <CompanyPrice cid={company_id}/>
-        </div>
-        <section className='row'>
-          <div className='col-md-4 col-sm-12 placeholder'> {/*need styling */}
-            <CompanyNews cid={company_id}/>
-          </div>
-          <div className='col-md-8 col-sm-12 placeholder' style={{minHeight: '500px'}}>
-            <CompanyStats cid={company_id}/>
-          </div>
-        </section>
-      </div>
-    );
+    const { loaded } = this.props;
+    console.log(this);
+    if (loaded) {
+
+      this.loaded_object = industries.industries.map((i) =>(<div>
+        Some industry detail which get distributed...
+        </div>));
+    }
+    return super.render();
   }
 }

@@ -17,6 +17,7 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: false,
+        loaded: true,
         companies: payload.companies
       };
   }

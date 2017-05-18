@@ -24,6 +24,7 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_STATS_LOADED:
       return {
         ...state,
+        loaded: state.loading == 0,
         loading: state.loading - 1,
         /* a lot of updates */
         financeData: payload,

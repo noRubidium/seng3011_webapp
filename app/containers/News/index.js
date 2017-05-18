@@ -13,13 +13,14 @@ export default class News extends LoadableComponent {
   constructor (props) {
     super(props);
     this.loaded_object = null;
-    load_company_stats(cid, dispatch);
+    const { dispatch, news_url } = this.props;
+    load_news(news_url, dispatch);
   }
 
   render () {
-    const { news } = this.props;
+    const { loaded } = this.props;
 
-    if (!(news.loading || news.error)) {
+    if (loaded) {
 
       this.loaded_object = (<div>
         Some news detail which get distributed...

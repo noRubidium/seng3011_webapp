@@ -30,7 +30,8 @@ export default (state=default_state, action) => {
       return {
         ...state,
         ...payload,
-        loading: false
+        loading: false,
+        loaded: true,
       };
     case actionTypes.COMPANY_DATA_FAILED:
       return {
