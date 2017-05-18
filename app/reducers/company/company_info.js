@@ -3,6 +3,7 @@ import { actionTypes } from 'actions/company';
 const default_state = {
   loading: false,
   error: false,
+  loaded: false,
   /* Stub data for testing display*/
   company_id: 'DMP.AX',
   name: 'Domino\'s',

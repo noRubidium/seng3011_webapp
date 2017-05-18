@@ -5,29 +5,28 @@ const default_state = {
   loaded: false,
   error: false,
   /* Stub data for testing display*/
-  url: 'http://...',
-  content: '',
-  reaction: '',
+  user: 'blah',
+  news: [],
   /* ... add more! */
 };
 
 export default (state=default_state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case actionTypes.NEWS_LOADING:
+    case actionTypes.NEWS_FEED_LOADING:
       return {
         ...state,
         loading: true,
-        url: payload,
+        user: payload,
       };
-    case actionTypes.NEWS_LOADED:
+    case actionTypes.NEWS_FEED_LOADED:
       return {
         ...state,
-        ...payload,
+        news: payload,
         loading: false,
         loaded: true,
       };
-    case actionTypes.NEWS_FAILED:
+    case actionTypes.NEWS_FEED_FAILED:
       return {
         ...state,
         loading: false,

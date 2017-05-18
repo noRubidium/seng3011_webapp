@@ -10,7 +10,7 @@ class CategoryDropdown extends React.Component {
   render() {
     const { categories, changeCategoryIndex } = this.props;
     const categoriesItems = categories.map((c, index) =>
-      <li><a href='#' onClick={(e) => changeCategoryIndex(e, index)} key={index}>
+      <li key={index}><a href='#' onClick={(e) => changeCategoryIndex(e, index)} >
         {c.split(/(?=[A-Z])/).join(' ')}
       </a></li>);
 
@@ -51,17 +51,16 @@ export default class CompanyInfo extends LoadableComponent {
   render () {
     const { categories } = this.props.info;
 
-    if (!this.state.abs_started && !this.props.info.loading) {
+    if (!this.state.abs_started && this.props.info.loaded) {
       this.setState({abs_started: true});
       const { dispatch, cid } = this.props;
       load_company_stats(cid, dispatch);
       load_abs_stats(categories, dispatch);
     }
 
-    if (this.props.absData && this.props.financeData) {
+    if (this.props.loaded) {
       const { currentCategoryIndex } = this.state;
       const currentCategory = categories[currentCategoryIndex].split(/(?=[A-Z])/).join(' ');
-
       this.loaded_object = (<div>
         <div className='charts-heading'>Charts</div>
           <div className='panel panel-default'>

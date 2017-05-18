@@ -3,6 +3,7 @@ import { actionTypes } from 'actions/company';
 const default_state = {
   loading: 0, // Use a counter since multiple loading
   error: false,
+  loaded: false,
   /* Stub data for testing display */
   company_id: 'DMP.AX',
   name: 'Domino\'s',
@@ -24,7 +25,7 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_STATS_LOADED:
       return {
         ...state,
-        loaded: state.loading == 0,
+        loaded: state.loading === 1,
         loading: state.loading - 1,
         /* a lot of updates */
         financeData: payload,
@@ -38,6 +39,7 @@ export default (state=default_state, action) => {
     case actionTypes.ABS_LOADED:
       return {
         ...state,
+        loaded: state.loading === 1,
         loading: state.loading - 1,
         absData: payload,
       }

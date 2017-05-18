@@ -5,8 +5,9 @@ import Error from 'components/Error';
 
 export default class LoadableComponent extends React.Component {
   render () {
+    console.log('LOADABLE', this);
     return this.props.loaded ?
-      <div>${this.loaded_object}</div>
+      <div>{this.loaded_object}</div>
       : (
         this.props.error?
           <Error message={this.props.error_msg}/>

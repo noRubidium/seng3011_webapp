@@ -8,7 +8,6 @@ export function async_action (loading_action, loaded_action_type, dispatch, url,
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       if (!data) {
         dispatch({
           type: load_failure_action_type,
