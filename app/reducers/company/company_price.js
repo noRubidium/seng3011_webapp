@@ -2,6 +2,7 @@ import { actionTypes } from 'actions/company';
 
 const default_state = {
   loading: false,
+  error: false,
   /* Stub data for testing display*/
   company_id: 'DMP',
   close_date: "2017-05-05T00:00:00+1000",

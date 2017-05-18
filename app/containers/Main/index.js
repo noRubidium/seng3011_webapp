@@ -2,8 +2,12 @@ import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 
 import Home from 'containers/Home';
-import Stats from 'containers/Stats';
 import Company from 'containers/Company';
+import CompanyList from 'containers/CompanyList';
+import Industries from 'containers/Industries';
+import Compare from 'containers/Compare';
+import News from 'containers/News';
+import NewsFeed from 'containers/NewsFeed';
 
 export default class Main extends React.Component {
     render(){
@@ -28,9 +32,13 @@ export default class Main extends React.Component {
                 </nav>}
                 <div className="container layout">
                   <Switch>
-                    <Route path="/stats" component={Stats}/>
-                    <Route path="/company/:company_id" component={Company}/>
                     <Route exact path="/" component={Home} />
+                    <Route path="/industries" component={Industries}/>
+                    <Route path="/industry/:industry_name" component={CompanyList}/>
+                    <Route path="/company/:company_id" component={Company}/>
+                    <Route path="/user/:uid" component={NewsFeed}/>
+                    <Route path="/news/:news_url" component={News}/>
+                    <Route path="/compare/:company_ids" component={Compare} />
                   </Switch>
                 </div>
             </div>

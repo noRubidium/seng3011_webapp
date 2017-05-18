@@ -2,6 +2,7 @@ import { actionTypes } from 'actions/company';
 
 const default_state = {
   loading: 0, // Use a counter since multiple loading
+  error: false,
   /* Stub data for testing display */
   company_id: 'DMP.AX',
   name: 'Domino\'s',
