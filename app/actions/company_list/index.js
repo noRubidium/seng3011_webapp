@@ -1,5 +1,5 @@
 // refer to the counter action
-import { async_action } from 'utils/asyncAction';
+import async_action from 'utils/asyncAction';
 
 const INDUSTRY_COMPANIES_LOADING     = 'INDUSTRY_COMPANIES_LOADING';
 const INDUSTRY_COMPANIES_LOADED      = 'INDUSTRY_COMPANIES_LOADED';

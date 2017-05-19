@@ -132,7 +132,7 @@ export default class StockChart extends React.Component{
 		        title: {
 		            text: 'Stock Price'
 		        },
-		        top: 300,
+		        top: 280,
 		        height: 100,
 		        offset: 0,
 		        lineWidth: 2
