@@ -15,9 +15,9 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { following } = this.props;
+    const { following, loaded } = this.props;
 
-    if (user.loaded) {
+    if (loaded) {
       this.loaded_object = (<div>
         Some news detail which get distributed...
         </div>);
