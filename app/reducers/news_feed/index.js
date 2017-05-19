@@ -1,44 +1,32 @@
-import { actionTypes } from 'actions/company';
+import { actionTypes } from 'actions/news';
 
 const default_state = {
   loading: false,
+  loaded: false,
   error: false,
   /* Stub data for testing display*/
-  company_id: 'DMP.AX',
-  data: '',
-  news: [
-    {
-      url: 'http://...',
-      keywords:['Good', 'Bad'],
-      content: '...',
-    }, // Facebook
-    {
-      url: 'http://...',
-      keywords:['Good', 'Bad'],
-      content: '...',
-    }, // twitter
-  ],
+  user: 'blah',
+  news: [],
+  /* ... add more! */
 };
 
 export default (state=default_state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case actionTypes.COMPANY_NEWS_LOADING:
+    case actionTypes.NEWS_FEED_LOADING:
       return {
         ...state,
         loading: true,
-        id: payload.company_code,
+        user: payload,
       };
-    case actionTypes.COMPANY_NEWS_LOADED:
+    case actionTypes.NEWS_FEED_LOADED:
       return {
         ...state,
+        news: payload,
         loading: false,
         loaded: true,
-        
-        /* a lot of updates */
-        news: payload,
       };
-    case actionTypes.COMPANY_NEWS_FAILED:
+    case actionTypes.NEWS_FEED_FAILED:
       return {
         ...state,
         loading: false,

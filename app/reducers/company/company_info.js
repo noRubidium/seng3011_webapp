@@ -1,9 +1,9 @@
 import { actionTypes } from 'actions/company';
 
-console.log(actionTypes);
-
 const default_state = {
   loading: false,
+  error: false,
+  loaded: false,
   /* Stub data for testing display*/
   company_id: 'DMP.AX',
   name: 'Domino\'s',
@@ -31,7 +31,8 @@ export default (state=default_state, action) => {
       return {
         ...state,
         ...payload,
-        loading: false
+        loading: false,
+        loaded: true,
       };
     case actionTypes.COMPANY_DATA_FAILED:
       return {

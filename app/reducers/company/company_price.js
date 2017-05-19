@@ -2,6 +2,8 @@ import { actionTypes } from 'actions/company';
 
 const default_state = {
   loading: false,
+  error: false,
+  loaded: false,
   /* Stub data for testing display*/
   company_id: 'DMP',
   close_date: "2017-05-05T00:00:00+1000",
@@ -29,12 +31,14 @@ export default (state=default_state, action) => {
         ...state,
         ...payload.data[0],
         loading: false,
+        loaded: true,
         prev_close_price: payload.data[1].close_price,
       };
     case actionTypes.COMPANY_PRICE_FAILED:
       return {
         ...state,
         ...payload.data[0],
+        error: true,
         loading: false,
         error_msg: 'No up to date data for the stock',
       };

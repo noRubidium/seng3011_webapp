@@ -16,6 +16,7 @@ export default class CompanyPrice extends LoadableComponent {
   }
 
   render () {
+    console.log('PRICE OBJ:', this);
     this.loaded_object = (<div className='col-md-12'>
       <div className='stock-price-info-heading'>Stock Price Information</div>
       <table className='table table-bordered company-price-table'>
