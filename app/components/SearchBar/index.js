@@ -3,8 +3,24 @@ import Autosuggest from 'react-autosuggest';
 
 import data from './data.json';
 import './main.css';
+import { withRouter } from 'react-router';
 
 const companies = data.data;
+
+const renderSuggestionsContainer = ({ containerProps, children }) => {
+  const { ref, ...restContainerProps } = containerProps;
+  const callRef = isolatedScroll => {
+    if (isolatedScroll !== null) {
+      ref(isolatedScroll.component);
+    }
+  };
+
+  return (
+    <IsolatedScroll ref={callRef} {...restContainerProps}>
+      {children}
+    </IsolatedScroll>
+  );
+}
 
 
 const escapeRegexCharacters = (str) => {
@@ -52,7 +68,9 @@ const renderSuggestion = (suggestion, { query }) => {
   );
 }
 
-export default class SearchBar extends React.Component {
+
+
+class SearchBar extends React.Component {
   constructor() {
     super();
 
@@ -80,6 +98,10 @@ export default class SearchBar extends React.Component {
     });
   };
 
+  onSuggestionSelected = (event, { suggestion }) => {
+    this.props.history.push(`/company/${suggestion.id}.AX`);
+  }
+
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
@@ -89,14 +111,19 @@ export default class SearchBar extends React.Component {
     };
 
     return (
-      <div><Autosuggest
+      <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        onSuggestionSelected={this.onSuggestionSelected}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-      /></div>
+        highlightFirstSuggestion={true}
+      />
     );
   }
 }
+
+const SearchBarRoute = withRouter(SearchBar);
+export default SearchBarRoute;
