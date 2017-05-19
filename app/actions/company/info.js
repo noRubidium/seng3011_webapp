@@ -1,4 +1,4 @@
-import { async_action } from 'utils/asyncAction';
+import async_action from 'utils/asyncAction';
 
 const COMPANY_DATA_LOADING = 'COMPANY_DATA_LOADING';
 const COMPANY_DATA_LOADED = 'COMPANY_DATA_LOADED';

@@ -6,6 +6,7 @@ import company_list from 'reducers/company_list';
 import news from 'reducers/news';
 import news_feed from 'reducers/news_feed';
 import home from 'reducers/home';
+import user from 'reducers/user';
 
 export default combineReducers({
   company,
@@ -13,5 +14,6 @@ export default combineReducers({
   industries,
   company_list,
   news,
-  news_feed
+  news_feed,
+  user
 });

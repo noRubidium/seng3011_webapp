@@ -1,4 +1,4 @@
-import { actionTypes } from 'actions/news';
+import { actionTypes } from 'actions/user/news_feed';
 
 const default_state = {
   loading: false,
@@ -27,11 +27,12 @@ export default (state=default_state, action) => {
         loaded: true,
       };
     case actionTypes.NEWS_FEED_FAILED:
+      
       return {
         ...state,
         loading: false,
-        /* a lot of updates */
         error: true,
+        /* a lot of updates */
         error_msg: `There is no relevant news for ${state.company_id}`,
       };
   }

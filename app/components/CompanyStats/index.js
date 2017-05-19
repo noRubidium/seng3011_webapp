@@ -44,7 +44,6 @@ export default class CompanyInfo extends LoadableComponent {
 
   changeCategoryIndex(e, index) {
     e.preventDefault();
-    console.log(index);
     this.setState({currentCategoryIndex: index});
   }
 
@@ -57,7 +56,6 @@ export default class CompanyInfo extends LoadableComponent {
       load_company_stats(cid, dispatch);
       load_abs_stats(categories, dispatch);
     }
-
     if (this.props.loaded) {
       const { currentCategoryIndex } = this.state;
       const currentCategory = categories[currentCategoryIndex].split(/(?=[A-Z])/).join(' ');

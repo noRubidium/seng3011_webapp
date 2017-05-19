@@ -2,7 +2,7 @@ import async_action from 'utils/asyncAction';
 
 const NEWS_FEED_LOADING   = 'NEWS_FEED_LOADING';
 const NEWS_FEED_LOADED    = 'NEWS_FEED_LOADED';
-const NEWS_FEED_FAILED    = 'NEWS_FAILED';
+const NEWS_FEED_FAILED    = 'NEWS_FEED_FAILED';
 
 export const actionTypes = {
   NEWS_FEED_LOADING,

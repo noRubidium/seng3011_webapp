@@ -24,6 +24,7 @@ export default (state=default_state, action) => {
         ...state,
         ...payload,
         loading: false,
+        loaded: true,
       };
     case actionTypes.NEWS_FAILED:
       return {
