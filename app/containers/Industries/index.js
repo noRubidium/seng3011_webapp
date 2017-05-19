@@ -19,7 +19,7 @@ export default class Industries extends LoadableComponent {
 
   render () {
     const { loaded } = this.props;
-    console.log(this);
+    
     if (loaded) {
 
       this.loaded_object = industries.industries.map((i) =>(<div>

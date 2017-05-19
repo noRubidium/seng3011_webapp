@@ -27,7 +27,7 @@ export default (state=default_state, action) => {
         loaded: true,
       };
     case actionTypes.NEWS_FEED_FAILED:
-      console.log('HAHA');
+      
       return {
         ...state,
         loading: false,

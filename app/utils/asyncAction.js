@@ -21,7 +21,7 @@ export default function async_action (loading_action, loaded_action_type, dispat
       });
     })
     .catch((e) => {
-      console.log(e);
+      
       dispatch({
         type: load_failure_action_type,
         payload: e,

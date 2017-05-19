@@ -12,7 +12,7 @@ export default function async_action_xml(loading_action, loaded_action_type, dis
     })
     .then(response => response.text())
     .then(str => {
-      console.log(data);
+      
       const data = (x2js.xml2js(str));
       if (!data) {
         throw Error('No data');
@@ -23,7 +23,7 @@ export default function async_action_xml(loading_action, loaded_action_type, dis
       });
     })
     .catch((e) => {
-      console.log(e);
+      
       dispatch({
         type: load_failure_action_type,
         payload: e,
