@@ -54,3 +54,17 @@
   font-weight: normal;
   font-size: 16px;
 }
+
+.remove-button {
+  margin-top: 5px;
+  float: right;
+}
+
+.add-company {
+  float: right;
+}
+
+.preferences-title {
+  display: inline-block;
+  margin-bottom: 20px;
+}
