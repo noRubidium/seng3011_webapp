@@ -6,6 +6,7 @@ import CompareButton from 'components/CompareButton';
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_info } from 'actions/company/info';
 import { load_company_price } from 'actions/company/price';
+import { getCmp } from 'utils/lookup';
 
 
 @connect((store) => {
@@ -19,14 +20,13 @@ export default class CompanyInfo extends LoadableComponent {
     load_company_info(cid, dispatch);
   }
 
-
-
   render () {
     const { cid } = this.props;
+    const c = getCmp(cid);
     this.loaded_object = (
       <div>
         <div className='col-md-6'>
-          <div className='company-title title'>{cid}</div>
+          <div className='company-title title'>{c} - ({cid})</div>
         </div>
         <div className='col-md-6'>
           <div className='buttons'>

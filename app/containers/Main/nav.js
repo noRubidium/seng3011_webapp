@@ -5,7 +5,6 @@ import Login from 'components/Login';
 import SearchBar from 'components/SearchBar';
 
 class Header extends React.Component {
-  // TODO: search stuff here
   render() {
     return(
       <header className='header'>
@@ -42,8 +41,8 @@ class SideBar extends React.Component {
 
   render() {
     const links = ['discover', 'feeds', 'preferences'];
-    const sideLinks = links.map(link =>
-      <li className={link + '-sidebar ' + (this.state.active === link ? 'active' : '')}>
+    const sideLinks = links.map((link, i) =>
+      <li className={link + '-sidebar ' + (this.state.active === link ? 'active' : '')} key={i}>
         <Link to={`/${link}`} onClick={() => this.changeActiveLink(link)}>
           <img src={`static/images/${link}.svg`}
           className={`${link}-icon`}/>{link}
