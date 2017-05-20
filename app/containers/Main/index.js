@@ -10,6 +10,8 @@ import Industries from 'containers/Industries';
 import Compare from 'containers/Compare';
 import News from 'containers/News';
 import NewsFeed from 'containers/NewsFeed';
+import Login from 'components/Login';
+
 
 export default class Main extends React.Component {
     render(){

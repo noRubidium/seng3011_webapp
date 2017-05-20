@@ -18,7 +18,8 @@ export default class FollowButton extends React.Component {
   }
 
   render () {
-    const { following, cid } = this.props;
+    const { following, cid, token } = this.props;
+    if (!token) return null;
     const followed = following.includes(cid);
     const handle = followed ? this.unfollow.bind(this) : this.follow.bind(this);
     const text = followed ? 'Unfollow': 'Follow';
