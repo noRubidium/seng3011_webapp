@@ -1,0 +1,32 @@
+.industry-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.stats-graph {
+  margin: 20px 0;
+}
+
+.stats-graph img {
+  height: 250px;
+}
+
+.industry-stats {
+  margin-bottom: 20px;
+}
+
+.industry-stats-title, .industry-related-companies-title {
+  font-size: 20px;
+}
+
+.tile {
+  width: 100%;
+	display: inline-block;
+	box-sizing: border-box;
+	background: #fff;
+	padding: 10px;
+	margin: 10px 0;
+  /*-webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.25);*/
+}
