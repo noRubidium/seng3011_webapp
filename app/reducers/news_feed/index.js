@@ -27,7 +27,7 @@ export default (state=default_state, action) => {
       const cmp_news = (a, b) => {
         return (new Date(a.date)).getTime() - (new Date(b.date)).getTime();
       };
-      const news = state.news.concat(payload.data).sort(cmp_news).slice(0,15);
+      const news = state.news.concat(payload.data).sort(cmp_news).slice(0,20);
       return {
         ...state,
         news: news,

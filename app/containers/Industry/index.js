@@ -6,7 +6,7 @@ import RelatedCompanies from 'components/RelatedCompanies';
 import IndustryInfo from 'components/Industry/info';
 import IndustryStatistics from 'components/Industry/stats';
 import IndustryChart from 'components/Industry/chart';
-import { load_companies } from 'actions/company_list';
+import { load_companies, load_abs_stats } from 'actions/company_list';
 
 
 const data = {
@@ -37,16 +37,18 @@ const data = {
     ...store.company_list,
   };
 })
-export default class NewsFeed extends LoadableComponent {
+export default class Industries extends LoadableComponent {
   constructor (props) {
     super(props);
     this.loaded_object = null;
     const { dispatch } = this.props;
-    load_companies(dispatch, 'tmp');
+    const industry = this.props.match.params.industry_name;
+    load_companies(dispatch, industry);
+    load_abs_stats(dispatch, industry);
   }
 
   render () {
-    const loaded = true;
+    const { loaded, companies, abs, industry:category } = this.props;
     const industry = data;
 
     if (loaded) {
@@ -54,9 +56,8 @@ export default class NewsFeed extends LoadableComponent {
         <div>
           <div className='row'>
             <div className='col-sm-8'>
-              <IndustryInfo title={industry.category} details={industry.details}/>
-              <IndustryChart />
-              <IndustryStatistics stats={industry.stats}/>
+              <IndustryInfo title={category} details={industry.details}/>
+              <IndustryChart industry={category}/>
             </div>
             <div className='col-sm-4'>
               <RelatedCompanies companies={industry.relatedcompanies}/>
