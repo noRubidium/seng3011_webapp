@@ -1,18 +1,11 @@
 import React from 'react';
 
-import ListItem from 'components/ListItem'
-
-export class IndustryPercentage extends React.Component {
+export default class Chart extends React.Component {
   render() {
-    const { content } = this.props
     return(
-      <div className={'list-item-second ' + (content > 0 ? 'green' : 'red')}>
-        {content}%
+      <div>
+        <img src='static/images/graph.png' className='stats-graph'></img>
       </div>
     );
   }
-}
-
-export default class IndustryListItem extends ListItem {
-
 }

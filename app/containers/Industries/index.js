@@ -25,6 +25,12 @@ const data = [
     content: 'Consists of units mainly engaged in providing food and beverage serving services for consumption on the premises, providing food services ready to be taken away for immediate consumption, and providing catering services at specified locations or events such as airline catering',
     change: '-0.43',
     id: 'cafes'
+  },
+  {
+    title: 'Clothing, Footwear, and Personal Accessory',
+    content: 'Consists of units mainly engaged in retailing clothing, clothing accessories, retailing boots, shoes, other footwear, new watches, jewellery, and other personal accessories',
+    change: '-2.36',
+    id: 'clothes'
   }
 ]
 
@@ -50,7 +56,7 @@ export default class Industries extends LoadableComponent {
     if (loaded) {
 
       this.loaded_object = industries.map((i) =>
-        <Link to={`/industries/${i.id}`}>
+        <Link to={`/industry/${i.id}`}>
         <IndustryItem title={i.title}
                       content={i.content}
                       secondComponent={<IndustryPercentage content={i.change}/>}

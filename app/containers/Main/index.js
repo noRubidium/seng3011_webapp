@@ -4,7 +4,7 @@ import { Link, Switch, Route } from 'react-router-dom';
 import Nav from 'containers/Main/nav';
 import Home from 'containers/Home';
 import Company from 'containers/Company';
-import CompanyList from 'containers/CompanyList';
+import Industry from 'containers/Industry';
 import Favourites from 'containers/Favourites';
 import Industries from 'containers/Industries';
 import Compare from 'containers/Compare';
@@ -21,7 +21,7 @@ export default class Main extends React.Component {
                     <Route exact path='/' component={Home} />
                     <Route path='/discover' component={Home} />
                     <Route path='/industries' component={Industries}/>
-                    <Route path='/industry/:industry_name' component={CompanyList}/>
+                    <Route path='/industry/:industry_name' component={Industry}/>
                     <Route path='/company/:company_id' component={Company}/>
                     <Route path='/feeds' component={NewsFeed}/>
                     <Route path='/preferences' component={Favourites}/>

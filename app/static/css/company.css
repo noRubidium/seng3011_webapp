@@ -1,15 +1,12 @@
-.company-title {
-  font-size: 24px;
-  margin-bottom: 10px;
+.company-title.title{
   width: 80%;
+  display: inline-block;
 }
 
-.stocks-graph {
-  margin: 20px 0;
-}
-
-.stocks-graph img {
-  width: 100%;
+.follow-button, .compare-button {
+  float: right;
+  margin-left: 10px;
+  display: inline-block;
 }
 
 .industry-stats {
