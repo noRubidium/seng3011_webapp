@@ -12,7 +12,9 @@
 
 .home-content {
   overflow: hidden;
-  width: 1016px;
+  width: 100%;
+  max-width: 1016px;
+  text-align: center;
   margin: auto;
   padding-top: 5px; }
 
