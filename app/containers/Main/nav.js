@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Login from 'components/Login';
 import SearchBar from 'components/SearchBar';
@@ -26,6 +27,10 @@ class Header extends React.Component {
   }
 }
 
+
+@connect((state) => {
+  return state.user;
+})
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +45,8 @@ class SideBar extends React.Component {
   }
 
   render() {
-    const links = ['discover', 'feeds', 'preferences'];
+    const base_links = [['discover', true], ['feeds', false], ['preferences', false]];
+    const links = base_links.filter((e) => e[1] || this.props.token).map((e) => e[0]);
     const sideLinks = links.map((link, i) =>
       <li className={link + '-sidebar ' + (this.state.active === link ? 'active' : '')} key={i}>
         <Link to={`/${link}`} onClick={() => this.changeActiveLink(link)}>

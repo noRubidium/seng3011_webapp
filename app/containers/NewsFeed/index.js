@@ -24,20 +24,20 @@ export default class NewsFeed extends LoadableComponent {
   render () {
     const { loading, loaded, news } = this.props;
     if (loaded) {
-      this.loaded_object = news.map((n) =>
-        <Link to={`/news/${btoa(n.url)}`}>
-        <NewsItem title={n.headline}
-                  content={n.summary}
-                  secondComponent={<Sentiment url={btoa(n.url)}
-                  analyse={loading === 0}/>}
-        />
+      this.loaded_object = news.map((n, i) =>
+        <Link to={`/news/${btoa(n.url)}`} key={i}>
+          <NewsItem title={n.headline}
+                    content={n.summary}
+                    secondComponent={<Sentiment url={btoa(n.url)}
+                    analyse={loading === 0}/>}
+          />
         </Link>
       );
     }
     return (
       <div>
         <div className='page-title'>News Feeds</div>
-        {this.loaded_object}
+        {super.render()}
       </div>
     )
   }
