@@ -42,6 +42,11 @@ export default class CompanyInfo extends LoadableComponent {
     this.changeCategoryIndex = this.changeCategoryIndex.bind(this);
   }
 
+  componentWillReceiveProps (nextProp) {
+    if (nextProp.cid !== this.props.cid) {
+      this.setState({abs_started: false});
+    }
+  }
   changeCategoryIndex(e, index) {
     e.preventDefault();
     this.setState({currentCategoryIndex: index});

@@ -38,7 +38,7 @@ export default class Company extends React.Component {
             <CompanyPrice cid={company_id}/>
             <div className='col-sm-12'>
               <div className='sub-title'> Stock Graph </div>
-              <IndustryChart />
+              <CompanyStats cid={company_id} />
             </div>
             {/*NEWS*/}
           </div>
