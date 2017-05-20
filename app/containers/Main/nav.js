@@ -32,25 +32,15 @@ class Header extends React.Component {
   return state.user;
 })
 class SideBar extends React.Component {
-  constructor(props) {
-    super(props);
-    const { path } = this.props;
-    this.state = {
-      active: path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : 'discover')
-    };
-    this.changeActiveLink = this.changeActiveLink.bind(this);
-  }
-
-  changeActiveLink(active) {
-    this.setState({ active });
-  }
-
+  
   render() {
+    const { path, token } = this.props;
+    const active = path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : 'discover');
     const base_links = [['discover', true], ['feeds', false], ['preferences', false]];
-    const links = base_links.filter((e) => e[1] || this.props.token).map((e) => e[0]);
+    const links = base_links.filter((e) => e[1] || token).map((e) => e[0]);
     const sideLinks = links.map((link, i) =>
-      <li className={link + '-sidebar ' + (this.state.active === link ? 'active' : '')} key={i}>
-        <Link to={`/${link}`} onClick={() => this.changeActiveLink(link)}>
+      <li className={link + '-sidebar ' + (active === link ? 'active' : '')} key={i}>
+        <Link to={`/${link}`}>
           <img src={`static/images/${link}.svg`}
           className={`${link}-icon`}/>{link}
         </Link>
