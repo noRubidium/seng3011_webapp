@@ -68,3 +68,25 @@
   display: inline-block;
   margin-bottom: 20px;
 }
+
+.compare-stats-panel {
+  padding: 0;
+}
+
+.compare-stats {
+  min-height: 200px;
+  padding: 15px;
+}
+
+.side-border {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.compare-stats-sub-title {
+  text-align: center;
+}
+
+.compare-popup-button {
+  margin-left: 10px;
+}
