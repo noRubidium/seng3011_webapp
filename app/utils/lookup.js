@@ -7,9 +7,6 @@ companies.map((e) => {
   goodCompanies[e.id] = e;
 });
 
-// console.log(goodCompanies);
-
 export const getCmp = (cid) => {
-  console.log(cid.substr(0, 3));
   return goodCompanies[cid.substr(0, 3)].name;
 };

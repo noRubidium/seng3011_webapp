@@ -14,19 +14,28 @@ export default class CompanyInfo extends LoadableComponent {
     this.loaded_object = null;
   }
 
-  componentWillReceiveProps (nextProp) {
-    if (!loaded) {
-      const { dispatch, cid } = this.props;
+  componentWillMount() {
+    const { loading, dispatch, cid } = this.props;
+    if (!loading) {
+      load_company_stats(cid, dispatch);
+    }
+  }
+
+  componentDidUpdate() {
+    const { loading, dispatch, cid } = this.props;
+    if (!loading) {
       load_company_stats(cid, dispatch);
     }
   }
 
   render () {
-    const { loaded } = this.props;
+    const { loaded, company_name } = this.props;
+    const categories = ['Food'];
+
     if (loaded) {
       this.loaded_object = (<div>
           <StockChart financeData={this.props.financeData}
-          company_name={this.props.info.name} currentCategoryIndex={this.state.currentCategoryIndex}
+          company_name={company_name} currentCategoryIndex={0}
           categories={categories}/>
         </div>);
     }
