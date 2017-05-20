@@ -34,8 +34,9 @@ class Header extends React.Component {
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
+    const { path } = this.props;
     this.state = {
-      active: 'discover'
+      active: path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : 'discover')
     };
     this.changeActiveLink = this.changeActiveLink.bind(this);
   }
@@ -74,7 +75,7 @@ export default class Nav extends React.Component {
         return(
             <div>
                 <Header/>
-                <SideBar/>
+                <SideBar path={this.props.path}/>
             </div>
         );
     }
