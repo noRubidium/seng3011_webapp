@@ -9,6 +9,8 @@ import Industries from 'containers/Industries';
 import Compare from 'containers/Compare';
 import News from 'containers/News';
 import NewsFeed from 'containers/NewsFeed';
+import Login from 'components/Login';
+
 
 export default class Main extends React.Component {
     render(){
@@ -19,6 +21,7 @@ export default class Main extends React.Component {
                         <div className="navbar-header">
                             <Link className="navbar-brand" to='/'>RAP</Link>
                         </div>
+                        <Login />
                         {/*}<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
                                 <li className={this.props.location && this.props.location.pathname == '/stats'?'active':''}>
