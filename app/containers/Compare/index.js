@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import CompareStats from 'components/Compare';
+import Chart from 'components/Industry/chart';
 import LoadableComponent from 'components/LoadableComponent';
 // import { load_compare } from 'actions/news';
 
@@ -16,14 +18,16 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { news } = this.props;
-
-    // if (!(news.loading || news.error)) {
-    //
-    //   this.loaded_object = (<div>
-    //     Some news detail which get distributed...
-    //     </div>);
-    // }
-    return super.render();
+    const loaded = true;
+    if (loaded) {
+      this.loaded_object = (
+        <div>
+          <div className='title'> Comparison for MYR, WES, WOW </div>
+          <center><Chart/></center>
+          <CompareStats/>
+        </div>
+      )
+    }
+    return this.loaded_object;
   }
 }

@@ -1,0 +1,17 @@
+.news-content {
+  line-height: 2;
+  text-align: justify;
+}
+
+.sentiment-emotion {
+  width: 300px;
+}
+
+.news-analysis img {
+  width: 90%;
+  height: auto;
+}
+
+.news-compare .compare-button {
+  float: none;
+}

@@ -50,7 +50,9 @@ class SideBar extends React.Component {
       <nav className='side-nav'>
 			<ul>
 				<li className='user'>
-					<img src='static/images/jess.svg' className='user-icon'/>
+					<div className='user-icon-container'>
+            <img src='static/images/jess.svg' className='user-icon'/>
+          </div>
 					<div className='user-detail'>
 						Jessica Theodosius<br/>
 						<a href='#0' className='login logout'>click to logout</a>
