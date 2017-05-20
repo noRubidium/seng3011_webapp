@@ -5,14 +5,14 @@ const lock = new Auth0Lock('mIfSPvMFfjb23JvgOeZU45qAkcNPEkXS', 'seng3011.au.auth
     theme: {
       // logo: 'logo/Sauce.png',
       primaryColor: '#446CB3',
-      title: "Log in",
-      name: "StockOverflow",
+      title: 'Log in',
+      name: 'StockOverflow',
     }
   });
 
-const user = localStorage.getItem("userInfo") ?
+const user = localStorage.getItem('userInfo') ?
   {
-    ...JSON.parse(localStorage.getItem("userInfo")),
+    ...JSON.parse(localStorage.getItem('userInfo')),
     lock,
   }:
   {
@@ -37,25 +37,25 @@ export default (state=default_state, action) => {
         ...state,
         following: state.following.filter((e) => e != payload),
       };
-      case "LOGIN": {
+      case actionTypes.LOGIN: {
         return {
           ...state,
           token: action.payload,
         }
       }
-      case "LOGGEDIN": {
+      case 'LOGGEDIN': {
         const user = {... state, token: action.payload};
-        localStorage.setItem("userInfo", JSON.stringify(user));
+        localStorage.setItem('userInfo', JSON.stringify(user));
         return user;
       }
-      case "LOGOUT": {
+      case 'LOGOUT': {
         const user = {...state, token: null};
-        localStorage.setItem("userInfo", JSON.stringify(user));
+        localStorage.setItem('userInfo', JSON.stringify(user));
         return user;
       }
-      case "LOAD_PROFILE_FINISH": {
+      case 'LOAD_PROFILE_FINISH': {
         const user = {...state, profile:action.payload};
-        localStorage.setItem("userInfo", JSON.stringify(user));
+        localStorage.setItem('userInfo', JSON.stringify(user));
         return user;
       }
   }
