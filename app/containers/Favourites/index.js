@@ -40,7 +40,7 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const loaded = this.props;
+    const loaded = true;
     const following = companies;
 
     if (loaded) {
