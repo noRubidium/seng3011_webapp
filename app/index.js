@@ -20,10 +20,11 @@ const cleanUp = () => {
 
 const access = (route) => {
   const { params } = route.match;
-  localStorage.setItem('access_token', params['accessToken']);
-  localStorage.setItem('id_token', params['idToken']);
-  store.dispatch({type: 'LOGGEDIN',payload: params.idToken});
-  store.dispatch(loadProfile(lock, params.idToken));
+  const { idToken, accessToken };
+  localStorage.setItem('access_token', accessToken);
+  localStorage.setItem('id_token', idToken);
+  store.dispatch({type: 'LOGGEDIN',payload: idToken});
+  store.dispatch(loadProfile(lock, idToken));
   return (<Redirect to='/'/>);
 }
 
@@ -37,7 +38,6 @@ const loadProf = () => {
 }
 
 
-//
 class App extends React.Component {
   render () {
     return (
