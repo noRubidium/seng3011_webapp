@@ -1,0 +1,19 @@
+.company-title.title{
+  width: 80%;
+  display: inline-block;
+}
+
+.follow-button, .compare-button {
+  float: right;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.company-stats-title, .related-companies-title, .company-news-title {
+  font-size: 20px;
+}
+
+.company-news-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

@@ -1,7 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import FavouriteCompanies from 'components/Favourites';
 import LoadableComponent from 'components/LoadableComponent';
+
+const companies = [
+  {
+    'company': 'MYR - Myer',
+    'instrumentId': 'MYR.AX'
+  },
+  {
+    'company': 'HVN - Harvey Norman',
+    'instrumentId': 'HVN.AX'
+  },
+  {
+    'company': 'WES - Wesfarmers',
+    'instrumentId': 'WES.AX'
+  },
+  {
+    'company': 'KGN - Kogan',
+    'instrumentId': 'KGN.AX'
+  },
+  {
+    'company': 'WOW - Woolworths',
+    'instrumentId': 'WOW.AX'
+  }
+]
 
 @connect((store) => {
   return {
@@ -15,13 +40,16 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { following, loaded } = this.props;
+    const loaded = true;
+    const following = companies;
 
     if (loaded) {
-      this.loaded_object = (<div>
-        Some news detail which get distributed...
-        </div>);
+      this.loaded_object = (
+        <div>
+          <FavouriteCompanies companies={following}/>
+        </div>
+      );
     }
-    return super.render();
+    return this.loaded_object;
   }
 }

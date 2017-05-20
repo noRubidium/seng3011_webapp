@@ -4,6 +4,24 @@ import CompanyInfo from 'components/CompanyInfo';
 import CompanyNews from 'components/CompanyNews';
 import CompanyStats from 'components/CompanyStats';
 import CompanyPrice from 'components/CompanyPrice';
+import Chart from 'components/industry/chart';
+
+import RelatedCompanies from 'components/RelatedCompanies';
+
+const relatedcompanies = [
+  {
+    'company': 'MYR - Myer',
+    'instrumentId': 'MYR.AX'
+  },
+  {
+    'company': 'HVN - Harvey Norman',
+    'instrumentId': 'HVN.AX'
+  },
+  {
+    'company': 'WES - Wesfarmers',
+    'instrumentId': 'WES.AX'
+  }
+]
 
 export default class Company extends React.Component {
   constructor (props) {
@@ -13,21 +31,21 @@ export default class Company extends React.Component {
   render () {
     const { company_id } = this.props.match.params;
     return (
-      <div className='company-container'>
+      <div>
         <div className='row'>
-          <CompanyInfo cid={company_id}/>
-        </div>
-        <div className='row company-price-section'>
-          <CompanyPrice cid={company_id}/>
-        </div>
-        <section className='row'>
-          <div className='col-md-4 col-sm-12 placeholder'> {/*need styling */}
-            <CompanyNews cid={company_id}/>
+          <div className='col-sm-8'>
+            <CompanyInfo cid={company_id}/>
+            <CompanyPrice cid={company_id}/>
+            <div className='col-sm-12'>
+              <div className='sub-title'> Stock Graph </div>
+              <Chart/>
+            </div>
+            {/*NEWS*/}
           </div>
-          <div className='col-md-8 col-sm-12 placeholder' style={{minHeight: '500px'}}>
-            <CompanyStats cid={company_id}/>
+          <div className='col-sm-4'>
+            <RelatedCompanies companies={relatedcompanies}/>
           </div>
-        </section>
+        </div>
       </div>
     );
   }
