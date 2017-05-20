@@ -7,7 +7,7 @@ import IndustryInfo from 'components/Industry/info';
 import IndustryStatistics from 'components/Industry/stats';
 import IndustryChart from 'components/Industry/chart';
 import { load_companies, load_abs_stats } from 'actions/company_list';
-
+import { getCmp } from 'utils/lookup';
 
 const data = {
   'category': 'Department Store',
@@ -52,15 +52,23 @@ export default class Industries extends LoadableComponent {
     const industry = data;
 
     if (loaded) {
+      const related_companies = companies.map((e) => {
+        return {
+          instrumentId: `${e}.AX`,
+          company: getCmp(e),
+        };
+      })
       this.loaded_object = (
         <div>
           <div className='row'>
             <div className='col-sm-8'>
               <IndustryInfo title={category} details={industry.details}/>
               <IndustryChart industry={category}/>
+              <IndustryStatistics stats={industry.stats}/>
+
             </div>
             <div className='col-sm-4'>
-              <RelatedCompanies companies={industry.relatedcompanies}/>
+              <RelatedCompanies companies={related_companies}/>
             </div>
           </div>
         </div>
