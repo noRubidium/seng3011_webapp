@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Chart extends React.Component {
+export default class IndustryChart extends React.Component {
   render() {
     return(
       <div>

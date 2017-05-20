@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import HomeInfo from 'components/Home/info';
 import HomeContent from 'components/Home/content';
+import SearchBar from 'components/SearchBar';
 
 export default class Home extends React.Component {
   render () {
@@ -11,10 +12,7 @@ export default class Home extends React.Component {
         <div className='stockoverflow'> StockOverflow </div>
         <div className='search-by-company'>
           <div className='input-group'>
-            <input type='text' className='form-control' placeholder='Search for a company'/>
-            <span className='input-group-btn'>
-              <button className='btn btn-default' type='button'>Go!</button>
-            </span>
+            <SearchBar />
           </div>
         </div>
         <div className='search-industries'>

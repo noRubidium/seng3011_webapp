@@ -1,23 +1,28 @@
 import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 
+import Login from 'components/Login';
+import SearchBar from 'components/SearchBar';
+
 class Header extends React.Component {
   // TODO: search stuff here
   render() {
     return(
       <header className='header'>
-    		<div className='logo'>
-    			<a href='#0'>
-    				<img src='static/images/logo.svg' className='logo-icon'/>StockOverflow
-    			</a>
-    		</div>
-    		<div className='search-bar'>
-    			<form action='#0'>
-    				<input type='search' placeholder='Search...'/>
-    				<a href='#0'><img src='static/images/search.svg' className='search-icon'/></a>
-    			</form>
-    		</div>
-    	</header>
+        <div className='logo'>
+          <Link to='/'>
+            <img src='static/images/logo.svg' className='logo-icon'/>
+            StockOverflow
+          </Link>
+        </div>
+        <div className='search-bar'>
+          <form action='#/'>
+            <input type='search' placeholder='Search for the company'/><a href='#/'>
+              <img src='static/images/search.svg' className='search-icon'/>
+            </a>
+          </form>
+        </div>
+      </header>
     )
   }
 }
@@ -48,15 +53,11 @@ class SideBar extends React.Component {
 
     return(
       <nav className='side-nav'>
-			<ul>
-				<li className='user'>
-					<img src='static/images/jess.svg' className='user-icon'/>
-					<div className='user-detail'>
-						Jessica Theodosius<br/>
-						<a href='#0' className='login logout'>click to logout</a>
-					</div>
-				</li>
-				{sideLinks}
+        <ul>
+          <li className='user'>
+            <Login />
+          </li>
+          {sideLinks}
       </ul>
 		</nav>
     )

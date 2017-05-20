@@ -5,7 +5,7 @@ import LoadableComponent from 'components/LoadableComponent';
 import RelatedCompanies from 'components/RelatedCompanies';
 import IndustryInfo from 'components/Industry/info';
 import IndustryStatistics from 'components/Industry/stats';
-import Chart from 'components/Industry/chart';
+import IndustryChart from 'components/Industry/chart';
 import { load_companies } from 'actions/company_list';
 
 
@@ -55,7 +55,7 @@ export default class NewsFeed extends LoadableComponent {
           <div className='row'>
             <div className='col-sm-8'>
               <IndustryInfo title={industry.category} details={industry.details}/>
-              <Chart/>
+              <IndustryChart />
               <IndustryStatistics stats={industry.stats}/>
             </div>
             <div className='col-sm-4'>
