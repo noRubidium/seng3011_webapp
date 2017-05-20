@@ -3,27 +3,17 @@ import { connect } from 'react-redux';
 
 import FollowButton from 'components/FollowButton';
 import CompareButton from 'components/CompareButton';
-import LoadableComponent from 'components/LoadableComponent';
 import { load_company_info } from 'actions/company/info';
 import { load_company_price } from 'actions/company/price';
 import { getCmp } from 'utils/lookup';
 
 
-@connect((store) => {
-  return store.company.company_info;
-})
-export default class CompanyInfo extends LoadableComponent {
-
-  constructor (props) {
-    super(props);
-    const { cid, dispatch } = this.props;
-    load_company_info(cid, dispatch);
-  }
+export default class CompanyInfo extends React.Component {
 
   render () {
     const { cid } = this.props;
     const c = getCmp(cid);
-    this.loaded_object = (
+    return (
       <div>
         <div className='col-md-6'>
           <div className='company-title title'>{c} - ({cid})</div>
@@ -35,6 +25,5 @@ export default class CompanyInfo extends LoadableComponent {
           </div>
         </div>
       </div>);
-    return super.render();
   }
 }
