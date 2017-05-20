@@ -49,7 +49,6 @@ export default class Industries extends LoadableComponent {
   }
 
   render () {
-    // const { loaded } = this.props;
     const loaded = true;
     const industries = data;
 

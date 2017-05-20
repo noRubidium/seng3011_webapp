@@ -6,7 +6,7 @@ import CompanyListItem from 'components/Favourites/listItem'
 export default class FavouriteCompanies extends React.Component {
   render() {
     const { companies } = this.props;
-    const list = companies.map(c =>
+    const list = companies.map((c) =>
       <div className='row'>
         <div className='col-sm-11'>
           <Link to={`/company/${c.instrumentId}`}>

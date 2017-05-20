@@ -8,7 +8,7 @@ export default class Home extends React.Component {
   render () {
     return (
       <div className='front-page'>
-				<div className='stockoverflow'> StockOverflow </div>
+        <div className='stockoverflow'> StockOverflow </div>
 				<div className='search-by-company'>
 					<div className='input-group'>
 			      <input type='text' className='form-control' placeholder='Search for a company'/>
