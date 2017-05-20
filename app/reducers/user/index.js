@@ -28,15 +28,19 @@ export default (state=default_state, action) => {
   const { type, payload } = action;
   switch (type) {
     case actionTypes.FOLLOW:
-      return {
+      const user1 = {
         ...state,
         following: state.following.filter((e) => e != payload).concat([payload]),
       };
+      localStorage.setItem('userInfo', JSON.stringify(user1));
+      return user1;
     case actionTypes.UNFOLLOW:
-      return {
+      const user2 = {
         ...state,
         following: state.following.filter((e) => e != payload),
       };
+      localStorage.setItem('userInfo', JSON.stringify(user2));
+      return user2;
       case actionTypes.LOGIN: {
         return {
           ...state,
@@ -44,19 +48,19 @@ export default (state=default_state, action) => {
         }
       }
       case 'LOGGEDIN': {
-        const user = {... state, token: action.payload};
-        localStorage.setItem('userInfo', JSON.stringify(user));
-        return user;
+        const user3 = {... state, token: action.payload};
+        localStorage.setItem('userInfo', JSON.stringify(user3));
+        return user3;
       }
       case 'LOGOUT': {
-        const user = {...state, token: null};
-        localStorage.setItem('userInfo', JSON.stringify(user));
-        return user;
+        const user4 = {...state, token: null};
+        localStorage.setItem('userInfo', JSON.stringify(user4));
+        return user4;
       }
       case 'LOAD_PROFILE_FINISH': {
-        const user = {...state, profile:action.payload};
-        localStorage.setItem('userInfo', JSON.stringify(user));
-        return user;
+        const user5 = {...state, profile:action.payload};
+        localStorage.setItem('userInfo', JSON.stringify(user5));
+        return user5;
       }
   }
   return state;

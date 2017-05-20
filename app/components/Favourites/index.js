@@ -14,7 +14,7 @@ export default class FavouriteCompanies extends React.Component {
       <div className='row' key={i}>
         <div className='col-sm-11'>
           <Link to={`/company/${c}`}>
-            <CompanyListItem title={getCmp(c)} content={''}/>
+            <CompanyListItem title={getCmp(c)} content={''} key={i}/>
           </Link>
         </div>
         <div className='col-sm-1'>

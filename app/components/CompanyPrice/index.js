@@ -11,12 +11,19 @@ export default class CompanyPrice extends LoadableComponent {
 
   constructor (props) {
     super(props);
+  }
+
+  componentWillMount () {
     const { cid, dispatch } = this.props;
-    load_company_price(cid, dispatch);
+    load_company_price(cid, dispatch, this.props);
+  }
+  
+  componentDidUpdate () {
+    const { cid, dispatch } = this.props;
+    load_company_price(cid, dispatch, this.props);
   }
 
   render () {
-
     this.loaded_object = (<div className='col-md-12'>
       <div className='sub-title'>Stock Price Information</div>
       <table className='table table-bordered company-price-table'>

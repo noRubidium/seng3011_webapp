@@ -18,28 +18,39 @@ const default_state = {
 
 
 export default (state=default_state, action) => {
-  const { type, payload } = action;
+  const { type, payload, url } = action;
   switch (type) {
     case actionTypes.COMPANY_PRICE_LOADING:
       return {
         ...state,
         loading: true,
+        loaded: false,
+        error: false,
         id: payload.company_code,
+        url: url,
       };
     case actionTypes.COMPANY_PRICE_LOADED:
+      if (url !== state.url) {
+        return;
+      }
       return {
         ...state,
         ...payload.data[0],
         loading: false,
         loaded: true,
+        error: false,
         prev_close_price: payload.data[1].close_price,
       };
     case actionTypes.COMPANY_PRICE_FAILED:
+      if (url !== state.url) {
+        return;
+      }
       return {
         ...state,
         ...payload.data[0],
         error: true,
         loading: false,
+        loaded: false,
         error_msg: 'No up to date data for the stock',
       };
   }
