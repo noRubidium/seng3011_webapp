@@ -20,7 +20,7 @@ const cleanUp = () => {
 
 const access = (route) => {
   const { params } = route.match;
-  const { idToken, accessToken };
+  const { idToken, accessToken } = params;
   localStorage.setItem('access_token', accessToken);
   localStorage.setItem('id_token', idToken);
   store.dispatch({type: 'LOGGEDIN',payload: idToken});
