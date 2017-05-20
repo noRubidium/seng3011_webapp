@@ -39,7 +39,7 @@ class SideBar extends React.Component {
     const links = ['discover', 'feeds', 'preferences'];
     const sideLinks = links.map(link =>
       <li className={link + '-sidebar ' + (this.state.active === link ? 'active' : '')}>
-        <Link to={link} onClick={() => this.changeActiveLink(link)}>
+        <Link to={`/${link}`} onClick={() => this.changeActiveLink(link)}>
           <img src={`static/images/${link}.svg`}
           className={`${link}-icon`}/>{link}
         </Link>

@@ -18,8 +18,8 @@ export default class NewsFeed extends LoadableComponent {
   }
 
   render () {
-    const { loaded } = this.props;
-    
+    const loaded = true;
+
     if (loaded) {
       this.loaded_object = (<div> ${company_list.companies.map((cmp, i) => (<CompanyListItem company={cmp} key={i}/>))}</div>);
     }

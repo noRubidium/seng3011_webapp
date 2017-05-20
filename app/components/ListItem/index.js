@@ -10,14 +10,8 @@ export default class ListItem extends React.Component {
     );
   }
 
-  getSecondColumn(content) {
-    return(
-      <div>{content}</div>
-    );
-  }
-
   render () {
-    const { title, content, column, second } = this.props;
+    const { title, content, secondComponent } = this.props;
 
     const oneColumn = (
       <div className='col-sm-12'>
@@ -27,11 +21,11 @@ export default class ListItem extends React.Component {
 
     const twoColumn = (
       <div>
-        <div className='col-sm-11'>
+        <div className='col-sm-10'>
           {this.getFirstColumn(title, content)}
         </div>
-        <div className='col-sm-1'>
-          {this.getSecondColumn(second)}
+        <div className='col-sm-2'>
+          {secondComponent}
         </div>
       </div>
     );
@@ -41,7 +35,7 @@ export default class ListItem extends React.Component {
 		    <div className='panel-body'>
           <div className='row'>
             {
-              column == 1 ? oneColumn : twoColumn
+              secondComponent ? twoColumn : oneColumn
             }
           </div>
 		    </div>

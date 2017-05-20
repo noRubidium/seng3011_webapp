@@ -7,11 +7,39 @@
   color: #000000;
 }
 
+.list-item-second {
+  font-size: 16px;
+  float: right;
+}
+
+.list-item-second.green {
+  color: #5cb85c;
+}
+
+.list-item-second.red {
+  color: #d9534f;
+}
+
 .list-item:hover {
   background-color: rgba(0,0,0,0.03)
 }
 
 .page-title {
   font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.list-item-sentiment {
+  height: 40px;
+  float: right;
+  margin-top: 3px;
+}
+
+.sentiment-strength {
+  margin-top: 5px;
+}
+
+.title {
+  font-size: 24px;
   margin-bottom: 10px;
 }
