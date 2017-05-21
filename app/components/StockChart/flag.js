@@ -27,9 +27,9 @@ export default class StockChartFlag extends React.Component{
     }
 
     formatFinanceData(financeData){
-      // console.log(financeData[1].date);
+      //
       const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]).sort();
-      // console.log(result);
+      //
       return result;
     }
 
@@ -46,7 +46,7 @@ export default class StockChartFlag extends React.Component{
           title: 'News'
         }
       }).sort(sort_news);
-      console.log(result);
+
       return result;
     }
 
@@ -83,7 +83,7 @@ export default class StockChartFlag extends React.Component{
 	        shape: 'squarepin'
   		}];
 
-      console.log(companySeries);
+
       return companySeries;
     }
 
@@ -122,7 +122,7 @@ export default class StockChartFlag extends React.Component{
         xAxis: {
           events: {
             afterSetExtremes: function(event){
-                console.log(updateRange);
+                
                 if (this.getExtremes().dataMin < event.min)
                     updateRange(event.min, event.max);
             }
@@ -135,7 +135,7 @@ export default class StockChartFlag extends React.Component{
               events: {
                 click: function (event) {
                   const url = "/#/news/" + this.url;
-                  console.log(url);
+
                   window.location.href = url;
                 }
               }
