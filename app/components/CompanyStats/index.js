@@ -38,7 +38,6 @@ export default class CompanyInfo extends LoadableComponent {
   render () {
     const { loaded, company_name } = this.props;
     const categories = ['Food'];
-    console.log('HERE',this.props);
     if (loaded) {
       this.other_child = <CompanyStatistics {...this.state}/>;
       this.chart = <StockChartFlag financeData={this.props.financeData}
@@ -55,7 +54,6 @@ export default class CompanyInfo extends LoadableComponent {
 
 class CompanyStatistics extends React.Component {
   render () {
-    console.log("MIN/MAX",this.props);
     const { min, max } = this.props;
     return (<div>min: {min}, max: {max}</div>);
   }
