@@ -15,15 +15,16 @@ export default class CompanyInfo extends React.Component {
     const c = getCmp(cid);
     return (
       <div>
-        <div className='col-md-6'>
-          <div className='company-title title'>{c} - ({cid})</div>
-        </div>
-        <div className='col-md-6'>
-          <div className='buttons'>
+          <div className='col-md-7 company-name'>
+            <div className='company-title title'>{c.toLowerCase()}</div>
+          </div>
+          <div className='col-md-5 buttons'>
             <CompareButton/>
             <FollowButton cid={cid}/>
           </div>
-        </div>
+          <div className='col-md-12'>
+            <div className='sub-title company-code'>{cid}</div>
+          </div>
       </div>);
   }
 }
