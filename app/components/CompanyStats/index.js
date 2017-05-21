@@ -39,6 +39,7 @@ export default class CompanyInfo extends LoadableComponent {
     const { loaded, company_name } = this.props;
     const categories = ['Food'];
     if (loaded) {
+      console.log('FIN:', this.props.financeData);
       this.other_child = <CompanyStatistics {...this.state}/>;
       this.chart = <StockChartFlag financeData={this.props.financeData}
       company_name={company_name} newsData={this.props.newsData} updateRange={this.updateRange.bind(this)}/>;
