@@ -71,6 +71,7 @@ export default class FeelingChart extends React.Component{
           chart: {
               type: 'bar',
               backgroundColor: null,
+              height: '250px',
               animation: {
                 duration: 1000
               }
@@ -81,7 +82,15 @@ export default class FeelingChart extends React.Component{
           },
 
           xAxis: {
-              categories: ['Anger', 'Joy', 'Sadness', 'Fear', 'Disgust']
+              categories: ['Anger', 'Joy', 'Sadness', 'Fear', 'Disgust'],
+              labels: {
+                style: {
+                  fontweight: 'bold',
+                  color: 'black',
+                  fontSize:'12px'
+                }
+              },
+              width: 20
           },
 
           yAxis: {
@@ -108,10 +117,12 @@ export default class FeelingChart extends React.Component{
               data: this.createGreyedSeries(emotionsData.emotion),
               enableMouseTracking: false,
               colors: ['#E6E6E6', '#E6E6E6', '#E6E6E6', '#E6E6E6', '#E6E6E6'],
+              pointWidth: 15
           }, {
               data: this.createRealSeries(emotionsData.emotion),
               colors: ['#FB6262', '#89C980', '#8087C9', '#A44C4C', '#AE80C9'],
-              dataLabels: false
+              dataLabels: false,
+              pointWidth: 15
           }]
 
         };
