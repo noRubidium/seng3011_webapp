@@ -1,6 +1,7 @@
 import csvjson from 'csvjson';
 
 import async_action from 'utils/asyncAction';
+import csv2json from 'utils/csv2json';
 
 const COMPANY_STATS_LOADING  = 'COMPANY_STATS_LOADING';
 const COMPANY_STATS_LOADED   = 'COMPANY_STATS_LOADED';
@@ -32,11 +33,7 @@ export function load_company_stats (company_id, dispatch, props) {
   fetch(url)
     .then(response => response.text())
     .then(data => {
-      const result = data.split('\n').filter((s) => (s.split(',').length === 7 && parseFloat(s.split(',')[5])))
-        .map((s) => {
-          const d = s.split(',');
-          return {'date': d[0], 'price': parseFloat(d[5])};
-        });
+      const result = csv2json(data);
 
       dispatch({
         type: COMPANY_STATS_LOADED,
