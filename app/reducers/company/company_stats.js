@@ -13,13 +13,14 @@ const default_state = {
 };
 
 export default (state=default_state, action) => {
-  const { type, payload } = action;
+  const { type, payload, url } = action;
   switch (type) {
     case actionTypes.COMPANY_STATS_LOADING:
       return {
         ...state,
         loading: state.loading + 1,
         id: payload.company_code,
+        url,
       };
     case actionTypes.COMPANY_STATS_LOADED:
       return {

@@ -17,14 +17,14 @@ export default class CompanyInfo extends LoadableComponent {
   componentWillMount() {
     const { loading, dispatch, cid } = this.props;
     if (!loading) {
-      load_company_stats(cid, dispatch);
+      load_company_stats(cid, dispatch, this.props);
     }
   }
 
   componentDidUpdate() {
     const { loading, dispatch, cid } = this.props;
     if (!loading) {
-      load_company_stats(cid, dispatch);
+      load_company_stats(cid, dispatch, this.props);
     }
   }
 
