@@ -102,7 +102,7 @@ export default class StockChartFlag extends React.Component{
       const financeData = this.getFinData();
       const formattedFinanceData = this.formatFinanceData(financeData);
       const formattedNewsData = this.formatNewsData(this.getNewsData());
-      console.log(formattedFinanceData);
+
 
       const { company_name, categories, xrange={}, updateRange=(e)=>e } = this.props;
 
