@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import CompareButton from 'components/CompareButton';
 import NewsArticle from 'components/News';
 import SentimentEmotion from 'components/News/sentimentEmotion';
-import Chart from 'components/Industry/chart';
+import CompareChart from 'components/CompareChart';
 import LoadableComponent from 'components/LoadableComponent';
 import { load_news } from 'actions/news';
-
-const data = {"emotion": {"anger": 0.143198, "joy": 0.526753, "sadness": 0.537889, "fear": 0.128797, "disgust": 0.080995}, "sentiment": {"score": 0.0322361, "label": "positive"}, "headline": "No price war, but Woolworths' soaring sales come at a cost", "text": "Share on twitter James Thomson by If you want a reminder that nothing comes for free, then look past the stunning sales growth figures at the top of Woolworths' third-quarter results announcement and down to the section called \"outlook\". That's the bit where chief executive Brad Banducci reminds investors that there is a bill to be paid for the impressive improvement \u2013 and it won't be cheap. \"As outlined at our H117 results, the second half of FY17 will continue to reflect the financial impact of higher costs in key areas,\" Banducci says, before rattling through a decent list. There are team incentives and team training. There's depreciation. There are higher costs in meat (particularly lamb) and fresh produce. And then the most important (and likely biggest) cost of all \u2013 Woolworths \"continued response to ongoing competition and promotional intensity\".\n\nLike-for-like-sales growth, which ran at a seven-year high of 4.3 per cent in the third quarter, adjusted for a later Easter, is impressive. But costs are rising, margins are under pressure, and Banducci is making it clear that profitability will be affected.\n\nGiven Coles chief executive John Durkan delivered another \"we will fight them on the beaches\" type of statement on discounting last week, making it clear he won't be backing down on price, there will be some investors wondering just how intense this battle will be. Discount picture 'unclear' Banducci told analysts on Tuesday that the discounting picture across the sector was unclear in the run-up to the end of the financial year. \"It would be fair to say that we did see some increased promotional activity from our key competitor in the third quarter, which we responded to,\" he said. \"There's a bit of uncertainty as to how that plays out in the last eight weeks of the financial year.\"\n\nBut so far, it doesn't seem there is an \"irrational\" price war breaking out. Coles and Woolworths are covering each others moves \u2013 Woolies chased Coles' fresh produce price cuts in the third quarter, for example \u2013 but we aren't seeing anything radical, like $1-a-litre milk. Banducci confirmed again on Tuesday that his goal is to be \"no more expensive\" than Coles \u2013 that is, importantly, not cheaper. He also said the number of promotions in-store had fallen by 9 per cent, which certainly doesn't scream \"irrational\".\n\nInvestor support Investors are likely to support the current approach from both retailers. And they're also likely to support investments in things like employee training and incentives, areas in which Banducci says Woolworths is in catch-up mode. But there will come a time \u2013 perhaps as soon as the 2018 financial year \u2013 when the market will start to demand cost cuts to help pay for this discounting. Stay tuned. Banducci also provided a clear message on Big W, which continues to struggle. Losses for the June half will be $115 million to $135 million, up from February's prediction of $88 million.", "summary": "Investor support Investors are likely to support the current approach from both retailers.\nAnd then the most important (and likely biggest) cost of all \u2013 Woolworths \"continued response to ongoing competition and promotional intensity\".\nLosses for the June half will be $115 million to $135 million, up from February's prediction of $88 million.\nAnd they're also likely to support investments in things like employee training and incentives, areas in which Banducci says Woolworths is in catch-up mode.\nColes and Woolworths are covering each others moves \u2013 Woolies chased Coles' fresh produce price cuts in the third quarter, for example \u2013 but we aren't seeing anything radical, like $1-a-litre milk.", "date": "2017-05-02T04:10:55+10:00", "involved_companies": ["WOW"]}
+import csv2json from 'utils/csv2json';
+import { getReturn } from 'utils/companyReturn';
 
 
 @connect((store) => {
@@ -22,15 +22,71 @@ export default class News extends LoadableComponent {
     this.loaded_object = null;
     const { dispatch } = this.props;
     const { news_url } = this.props.match.params;
+    this.state = {
+      started: false,
+      loading: 0,
+      finished: 0,
+      loaded: 0,
+      error: true,
+      data: [],
+    };
     load_news(news_url, dispatch);
   }
 
+  componentDidUpdate() {
+    this.loadCompareData();
+  }
+
+  loadCompareData() {
+    const { started } = this.state;
+    const companies = this.getCompanies();
+    if (started || companies.length === 0) {
+      return;
+    }
+    const { date: date_string } = this.props;
+    const date = new Date(date_string);
+    const days = 15;
+    const start = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+    const end = new Date(date.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+
+    this.setState({started: true, data: [], loading: companies.length});
+    companies.map((cid) => {
+      fetch(`http://api.kaiworship.xyz/cmp/${cid}/${start}/${end}`)
+      .then((response) => {
+        return response.ok ? response.text():null;
+      })
+      .then((d) => {
+        if (!d) {
+          this.setState({
+            error: true,
+            error_msg: `Company: ${cid} data not found`
+          });
+          return;
+        }
+        const result = csv2json(d);
+        const { finished, data, loading } = this.state;
+        console.log(finished, finished === companies.length - 1);
+        this.setState({
+          finished: finished + 1,
+          loading: loading - 1,
+          data: data.concat([getReturn(result, cid)])
+        });
+        if (finished === companies.length - 1) {
+          this.setState({loaded: true});
+        }
+      });
+    });
+  }
+
+  getCompanies () {
+    const { involved_companies=[] } = this.props;
+    return involved_companies.map((e) => `${e}.AX`);
+  }
+
   render () {
-    const loaded = true;
-    const news = data;
+    const { loaded, emotion, sentiment, headline, text, involved_companies } = this.props;
 
     if (loaded) {
-      const { emotion, sentiment, headline, text, involved_companies } = this.props;
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>
@@ -40,16 +96,15 @@ export default class News extends LoadableComponent {
             <SentimentEmotion emotion={emotion} sentiment={sentiment}/>
             <div className='news-analysis'>
               <div className='sub-title'>Impact Analysis</div>
-              <Chart/>
+              <CompareChart {...this.state}/>
             </div>
             <div className='news-compare'>
               <CompareButton text={'Compare with other company'} companies={involved_companies}/>
             </div>
           </div>
         </div>
-
       </div>);
     }
-    return this.loaded_object;
+    return super.render();
   }
 }
