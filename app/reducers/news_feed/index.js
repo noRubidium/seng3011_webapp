@@ -1,9 +1,9 @@
 import { actionTypes } from 'actions/user/news_feed';
 
 const default_state = {
-  loading: false,
-  loaded: false,
-  error: false,
+  loading: 0,
+  loaded: 0,
+  error: 0,
   /* Stub data for testing display*/
   user: 'blah',
   news: [],
@@ -13,27 +13,34 @@ const default_state = {
 export default (state=default_state, action) => {
   const { type, payload } = action;
   switch (type) {
+    case actionTypes.NEWS_FEED_START:
+      return {
+        ...state,
+        news: []
+      };
     case actionTypes.NEWS_FEED_LOADING:
       return {
         ...state,
-        loading: true,
-        user: payload,
+        loading: state.loading + 1,
       };
     case actionTypes.NEWS_FEED_LOADED:
+      const cmp_news = (a, b) => {
+        return (new Date(a.date)).getTime() - (new Date(b.date)).getTime();
+      };
+      const news = state.news.concat(payload.data).sort(cmp_news).slice(0,20);
       return {
         ...state,
-        news: payload,
-        loading: false,
-        loaded: true,
+        news: news,
+        loading: state.loading - 1,
+        loaded: state.loaded + 1,
       };
     case actionTypes.NEWS_FEED_FAILED:
-      
+
       return {
         ...state,
-        loading: false,
-        error: true,
-        /* a lot of updates */
-        error_msg: `There is no relevant news for ${state.company_id}`,
+        loading: state.loading - 1,
+        error: state.error + 1,
+        error_msg: `There is no correct data`,
       };
   }
   return state;

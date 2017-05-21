@@ -19,15 +19,19 @@ const default_state = {
 };
 
 export default (state=default_state, action) => {
-  const { type, payload } = action;
+  const { type, payload, url } = action;
   switch (type) {
     case actionTypes.COMPANY_DATA_LOADING:
       return {
         ...state,
         loading: true,
+        loading_url: url,
         id: payload.company_code,
       };
     case actionTypes.COMPANY_DATA_LOADED:
+      if (url !== state.loading_url) {
+        return state;
+      }
       return {
         ...state,
         ...payload,

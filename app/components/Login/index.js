@@ -17,7 +17,6 @@ export default class Login extends React.Component {
   logout(e){
     e.preventDefault();
     this.props.dispatch(logout());
-    // this.props.history.push('/')
   }
 
   render(){
@@ -25,16 +24,22 @@ export default class Login extends React.Component {
     if (token) {
         return (
           <div>
-            <div>Welcome, { profile['nickname'] }</div>
-            <img src={profile['picture']} />
-            <div><a href='#' onClick={this.logout.bind(this)}>LOGOUT</a></div>
+            <img src={profile['picture']} className='user-icon'/>
+            <div className='user-detail'>
+              { profile['nickname'] }<br/>
+              <a href='#0'  onClick={this.logout.bind(this)} className='login logout'>click to logout</a>
+            </div>
           </div>
         );
     }
     return (
-      <ul>
-        <li><a href='#' onClick={this.login.bind(this)}>LOGIN</a></li>
-      </ul>
+      <div>
+        <img src='static/images/jess.svg' className='user-icon'/>
+        <div className='user-detail'>
+          Not logged in yet<br/>
+          <a href='#'  onClick={this.login.bind(this)} className='login logout'>click to login</a>
+        </div>
+      </div>
     )
   }
 }

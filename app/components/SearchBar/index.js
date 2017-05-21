@@ -1,9 +1,9 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import { withRouter } from 'react-router';
 
 import data from './data.json';
 import './main.css';
-import { withRouter } from 'react-router';
 
 const companies = data.data;
 

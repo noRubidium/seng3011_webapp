@@ -10,7 +10,10 @@ export const companyPriceActionTypes = {
   COMPANY_PRICE_FIALED,
 };
 
-export function load_company_price (company_code, dispatch) {
+export function load_company_price (company_code, dispatch, props) {
+  if (props.url === `http://api.kaiworship.xyz/rapper/data.asx.com.au/data/1/share/${company_code.slice(0,3)}/prices%3Finterval=daily&count=2`) {
+    return;
+  }
   async_action(
     {
       type: COMPANY_PRICE_LOADING,

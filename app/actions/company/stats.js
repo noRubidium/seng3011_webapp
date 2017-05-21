@@ -5,30 +5,13 @@ import async_action from 'utils/asyncAction';
 const COMPANY_STATS_LOADING  = 'COMPANY_STATS_LOADING';
 const COMPANY_STATS_LOADED   = 'COMPANY_STATS_LOADED';
 const COMPANY_STATS_FAILED   = 'COMPANY_STATS_FAILED';
-const ABS_LOADING            = 'ABS_LOADING';
-const ABS_LOADED             = 'ABS_LOADED';
-const ABS_FAILED             = 'ABS_FAILED';
 
 export const companyStatsActionTypes = {
   COMPANY_STATS_LOADING,
   COMPANY_STATS_LOADED,
   COMPANY_STATS_FAILED,
-  ABS_LOADING,
-  ABS_LOADED,
-  ABS_FAILED,
 }
 
-export function load_abs_stats (category, dispatch) {
-  async_action(
-    {
-      type: ABS_LOADING,
-      payload: { category },
-    },
-    ABS_LOADED,
-    dispatch,
-    `http://api.kaiworship.xyz/v4/Retail/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
-  );
-}
 
 export function load_company_stats (company_id, dispatch) {
   dispatch({

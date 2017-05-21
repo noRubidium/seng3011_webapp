@@ -4,34 +4,10 @@ import { connect } from 'react-redux';
 
 import FavouriteCompanies from 'components/Favourites';
 import LoadableComponent from 'components/LoadableComponent';
-
-const companies = [
-  {
-    'company': 'MYR - Myer',
-    'instrumentId': 'MYR.AX'
-  },
-  {
-    'company': 'HVN - Harvey Norman',
-    'instrumentId': 'HVN.AX'
-  },
-  {
-    'company': 'WES - Wesfarmers',
-    'instrumentId': 'WES.AX'
-  },
-  {
-    'company': 'KGN - Kogan',
-    'instrumentId': 'KGN.AX'
-  },
-  {
-    'company': 'WOW - Woolworths',
-    'instrumentId': 'WOW.AX'
-  }
-]
+import { unfollow } from 'actions/user/follow';
 
 @connect((store) => {
-  return {
-    ...store.user,
-  };
+  return store.user;
 })
 export default class News extends LoadableComponent {
   constructor (props) {
@@ -39,17 +15,18 @@ export default class News extends LoadableComponent {
     this.loaded_object = null;
   }
 
-  render () {
-    const loaded = true;
-    const following = companies;
+  unfollow (cid) {
+    return () => this.props.dispatch(unfollow(cid));
+  }
 
-    if (loaded) {
-      this.loaded_object = (
-        <div>
-          <FavouriteCompanies companies={following}/>
-        </div>
-      );
-    }
-    return this.loaded_object;
+  render () {
+    // const loaded = true;
+    const { following } = this.props;
+
+    return (
+      <div>
+        <FavouriteCompanies companies={following} unfollow={this.unfollow.bind(this)}/>
+      </div>
+    );
   }
 }

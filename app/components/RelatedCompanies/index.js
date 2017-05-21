@@ -6,8 +6,8 @@ import CompanyListItem from 'components/RelatedCompanies/listItem'
 export default class RelatedCompanies extends React.Component {
   render() {
     const { companies } = this.props;
-    const list = companies.map(c =>
-      <Link to={`/company/${c.instrumentId}`}>
+    const list = companies.map((c, i) =>
+      <Link to={`/company/${c.instrumentId}`}  key={i}>
         <CompanyListItem title={c.company} content={''}/>
       </Link>
     );

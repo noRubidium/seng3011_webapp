@@ -4,9 +4,10 @@ import CompanyInfo from 'components/CompanyInfo';
 import CompanyNews from 'components/CompanyNews';
 import CompanyStats from 'components/CompanyStats';
 import CompanyPrice from 'components/CompanyPrice';
-import Chart from 'components/industry/chart';
+import IndustryChart from 'components/industry/chart';
 
 import RelatedCompanies from 'components/RelatedCompanies';
+import { getCmp } from 'utils/lookup';
 
 const relatedcompanies = [
   {
@@ -38,7 +39,7 @@ export default class Company extends React.Component {
             <CompanyPrice cid={company_id}/>
             <div className='col-sm-12'>
               <div className='sub-title'> Stock Graph </div>
-              <Chart/>
+              <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
             </div>
             {/*NEWS*/}
           </div>

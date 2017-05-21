@@ -20,7 +20,8 @@ export default class News extends LoadableComponent {
   constructor (props) {
     super(props);
     this.loaded_object = null;
-    const { dispatch, news_url } = this.props;
+    const { dispatch } = this.props;
+    const { news_url } = this.props.match.params;
     load_news(news_url, dispatch);
   }
 
@@ -29,20 +30,21 @@ export default class News extends LoadableComponent {
     const news = data;
 
     if (loaded) {
-
+      const { emotion, sentiment, headline, text, involved_companies } = this.props;
+      console.log('INVOLV', involved_companies);
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>
-            <NewsArticle title={news.headline} content={news.text}/>
+            <NewsArticle title={headline} content={text}/>
           </div>
           <div className='col-sm-5'>
-            <SentimentEmotion/>
+            <SentimentEmotion emotion={emotion} sentiment={sentiment}/>
             <div className='news-analysis'>
               <div className='sub-title'>Impact Analysis</div>
               <Chart/>
             </div>
             <div className='news-compare'>
-              <CompareButton text={'Compare with other company'}/>
+              <CompareButton text={'Compare with other company'} companies={involved_companies}/>
             </div>
           </div>
         </div>

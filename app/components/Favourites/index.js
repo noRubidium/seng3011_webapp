@@ -1,21 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import CompanyListItem from 'components/Favourites/listItem'
+import CompanyListItem from 'components/Favourites/listItem';
+import { getCmp } from 'utils/lookup';
+
 
 export default class FavouriteCompanies extends React.Component {
+
   render() {
-    const { companies } = this.props;
-    const list = companies.map((c) =>
-      <div className='row'>
+    const { companies, unfollow } = this.props;
+    const list = companies.map((c, i) =>
+      <div className='row' key={i}>
         <div className='col-sm-11'>
-          <Link to={`/company/${c.instrumentId}`}>
-            <CompanyListItem title={c.company} content={''}/>
+          <Link to={`/company/${c}`}>
+            <CompanyListItem title={getCmp(c)} content={''} key={i}/>
           </Link>
         </div>
         <div className='col-sm-1'>
           {/* need logic to remove */}
-          <button type='button' className='btn btn-danger remove-button'>
+          <button
+            type='button'
+            className='btn btn-danger remove-button'
+            onClick={unfollow(c)}
+            >
             <span className='glyphicon glyphicon-remove'></span>
           </button>
         </div>

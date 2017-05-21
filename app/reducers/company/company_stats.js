@@ -10,7 +10,6 @@ const default_state = {
   url: 'http://...',
   logo: 'http://...',
   financeData: null,
-  absData: null,
 };
 
 export default (state=default_state, action) => {
@@ -30,25 +29,6 @@ export default (state=default_state, action) => {
         /* a lot of updates */
         financeData: payload,
       };
-    case actionTypes.ABS_LOADING:
-      return {
-        ...state,
-        loading: state.loading + 1,
-        id: payload.company_code,
-      };
-    case actionTypes.ABS_LOADED:
-      return {
-        ...state,
-        loaded: state.loading === 1,
-        loading: state.loading - 1,
-        absData: payload,
-      }
-    case actionTypes.ABS_FAILED:
-    return {
-      ...state,
-      loading: state.loading - 1,
-      error_msg: 'There is error',
-    };
   }
   return state;
 };
