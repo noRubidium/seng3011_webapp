@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_stats } from 'actions/company/stats';
-import StockChart from 'components/StockChart';
+
+import StockChartFlag from 'components/StockChart/flag.js';
 
 @connect((store) => {
   return store.company.company_stats;
@@ -34,10 +35,8 @@ export default class CompanyInfo extends LoadableComponent {
 
     if (loaded) {
       this.loaded_object = (<div>
-          {/*<StockChart financeData={this.props.financeData}
-          company_name={company_name} currentCategoryIndex={0}
-          categories={categories}/>*/}
-          Here is the chart
+          {<StockChartFlag financeData={this.props.financeData}
+          company_name={company_name} newsData={this.props.newsData}/>}
         </div>);
     }
     return super.render();

@@ -25,7 +25,7 @@ export default (state=default_state, action) => {
       };
     case actionTypes.NEWS_FEED_LOADED:
       const cmp_news = (a, b) => {
-        return (new Date(a.date)).getTime() - (new Date(b.date)).getTime();
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
       };
       const news = state.news.concat(payload.data).sort(cmp_news).slice(0,20);
       return {
