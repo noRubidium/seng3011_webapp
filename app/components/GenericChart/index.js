@@ -67,7 +67,7 @@ export default class GenericChart extends React.Component{
       const dataArray = this.getDataForStates(data);
       const labels = this.getLabels(data);
 
-      console.log(dataArray, labels);
+      
 
       const config = {
         exporting: {

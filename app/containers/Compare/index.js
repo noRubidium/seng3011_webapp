@@ -51,7 +51,7 @@ export default class Compare extends React.Component {
         }
         const result = csv2json(d);
         const { finished, data, loading } = this.state;
-        console.log(finished, finished === companies.length - 1);
+
         this.setState({
           finished: finished + 1,
           loading: loading - 1,
