@@ -10,7 +10,7 @@ import data from './data.json';
 var HighchartsExporting = require('highcharts-exporting');
 HighchartsExporting(ReactHighstock.Highcharts);
 
-export default class FeelingChart extends React.Component{
+export default class SentimentChart extends React.Component{
     getData() {
       return this.props.data;
     }
