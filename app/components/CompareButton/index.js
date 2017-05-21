@@ -11,12 +11,12 @@ export default class CompareButton extends React.Component {
   }
 
   render () {
-    const { text = 'Compare', companies } = this.props;
-    
+    const { text = 'Compare', companies, related_companies } = this.props;
+
     return (
       <div>
-        <button href='#' className='btn btn-default compare-button' data-toggle="modal" data-target="#compare-popup"> {text} </button>
-        <ComparePopup companies={companies ? companies : []}/>
+        <button href='#' className='btn btn-primary compare-button' data-toggle="modal" data-target="#compare-popup"> {text} </button>
+        <ComparePopup related_companies={related_companies} companies={companies ? companies : []}/>
       </div>
     );
   }
