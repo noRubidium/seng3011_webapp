@@ -1,8 +1,23 @@
 import React from 'react';
+import getStandardDev from 'app/utils/statsUtil.js'
 
 export default class CompareStats extends React.Component {
   render () {
-    const { stddevs, returns, love } = this.props;
+    const { companies, minDate, maxDate, data } = this.props;
+
+    const volatilityStats = companies.map((c) =>
+        <StatCompareItem
+          company={c}
+          value={getStandardDev(data, minDate, maxDate)}
+        />
+    );
+
+    const returnStats = companies.map((c) =>
+        <StatCompareItem
+          company={c}
+          value={''}
+        />
+    );
 
     return (
       <div className='panel panel-default'>
@@ -10,13 +25,19 @@ export default class CompareStats extends React.Component {
           <div className='row'>
             <div className='col-sm-4 compare-stats'>
               <div className='compare-stats-sub-title sub-title'>
-                Risk Level
+                Volatility
+              </div>
+              <div>
+                {volatilityStats}
               </div>
               {}
             </div>
             <div className='col-sm-4 compare-stats side-border'>
               <div className='compare-stats-sub-title sub-title'>
-                Return level
+                Return
+              </div>
+              <div>
+                {returnStats}
               </div>
             </div>
             <div className='col-sm-4 compare-stats'>
