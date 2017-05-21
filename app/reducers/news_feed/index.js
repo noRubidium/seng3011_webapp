@@ -24,10 +24,17 @@ export default (state=default_state, action) => {
         loading: state.loading + 1,
       };
     case actionTypes.NEWS_FEED_LOADED:
+
       const cmp_news = (a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       };
-      const news = state.news.concat(payload.data).sort(cmp_news).slice(0,20);
+
+      const new_news = state.news.concat(payload.data).sort(cmp_news);
+
+      const news = new_news.filter(function (a) {
+        return !this[a.headline] && (this[a.headline] = true);
+      }, Object.create(null)).slice(0,20);
+
       return {
         ...state,
         news: news,

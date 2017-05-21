@@ -11,12 +11,12 @@ export default class Home extends React.Component {
       <div className='front-page'>
         <div className='stockoverflow'> StockOverflow </div>
         <div className='search-by-company'>
-          <div className='input-group'>
+          <div className='input-group search-bar'>
             <SearchBar />
           </div>
         </div>
         <div className='search-industries'>
-          Don't know what to find?&nbsp;
+          Don&apos;t know what to find?&nbsp;
           <Link to='/industries'>Click to search on industries</Link>
         </div>
       </div>

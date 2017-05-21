@@ -12,7 +12,7 @@ export default class CompareButton extends React.Component {
 
   render () {
     const { text = 'Compare', companies } = this.props;
-    console.log('CMP', companies);
+    
     return (
       <div>
         <button href='#' className='btn btn-default compare-button' data-toggle="modal" data-target="#compare-popup"> {text} </button>

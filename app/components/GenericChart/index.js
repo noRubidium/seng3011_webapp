@@ -122,7 +122,8 @@ export default class GenericChart extends React.Component{
             lineWidth: 2
         }],
         series:this.createConfigSeries(dataArray, labels)
+
       };
-        return (<ReactHighstock config={config} />);
+      return (<ReactHighstock config={config} />);
     }
 }
