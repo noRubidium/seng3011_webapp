@@ -23,7 +23,7 @@ export default class Login extends React.Component {
     const { token, profile } = this.props;
     if (token) {
         return (
-          <div>
+          <div className='user-icon-container'>
             <img src={profile['picture']} className='user-icon'/>
             <div className='user-detail'>
               { profile['nickname'] }<br/>

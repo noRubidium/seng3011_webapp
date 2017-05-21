@@ -15,13 +15,6 @@ class Header extends React.Component {
             StockOverflow
           </Link>
         </div>
-        <div className='search-bar'>
-          <form action='#/'>
-            <input type='search' placeholder='Search for the company'/><a href='#/'>
-              <img src='static/images/search.svg' className='search-icon'/>
-            </a>
-          </form>
-        </div>
       </header>
     )
   }
@@ -32,7 +25,7 @@ class Header extends React.Component {
   return state.user;
 })
 class SideBar extends React.Component {
-  
+
   render() {
     const { path, token } = this.props;
     const active = path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : 'discover');
