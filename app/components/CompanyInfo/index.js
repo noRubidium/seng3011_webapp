@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import data from 'components/SearchBar/data.json';
 import FollowButton from 'components/FollowButton';
 import CompareButton from 'components/CompareButton';
 import { load_company_info } from 'actions/company/info';
@@ -11,7 +12,8 @@ import { getCmp } from 'utils/lookup';
 export default class CompanyInfo extends React.Component {
 
   render () {
-    const { cid } = this.props;
+    const { cid, related_companies } = this.props;
+    const companies = data.data;
     const c = getCmp(cid);
     return (
       <div>
@@ -19,7 +21,7 @@ export default class CompanyInfo extends React.Component {
             <div className='company-title title'>{c.toLowerCase()}</div>
           </div>
           <div className='col-md-5 buttons'>
-            <CompareButton/>
+            <CompareButton companies={companies} related_companies={related_companies}/>
             <FollowButton cid={cid}/>
           </div>
           <div className='col-md-12'>

@@ -27,15 +27,28 @@ const relatedcompanies = [
 export default class Company extends React.Component {
   constructor (props) {
     super(props);
+    this.state = {
+      related_companies: []
+    };
   }
 
   render () {
     const { company_id } = this.props.match.params;
+    const url = `http://api.kaiworship.xyz/mapping/rel/${company_id.slice(0,3)}`
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) return;
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({ related_companies: data.related_companies });
+      });
+
     return (
       <div>
         <div className='row'>
           <div className='col-sm-8'>
-            <CompanyInfo cid={company_id}/>
+            <CompanyInfo cid={company_id} related_companies={this.state.related_companies}/>
             <CompanyPrice cid={company_id}/>
             <div className='col-sm-12'>
               <div className='sub-title'> Stock Graph </div>
@@ -44,7 +57,7 @@ export default class Company extends React.Component {
             {/*NEWS*/}
           </div>
           <div className='col-sm-4'>
-            <RelatedCompanies companies={relatedcompanies}/>
+            <RelatedCompanies companies={this.state.related_companies}/>
           </div>
         </div>
       </div>

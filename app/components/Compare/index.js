@@ -15,7 +15,7 @@ export default class CompareStats extends React.Component {
             <div className='col-sm-4 compare-stats'>
               <div className='compare-stats-sub-title sub-title'>Stats #3</div>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     )
