@@ -94,7 +94,7 @@ export default class GenericChart extends React.Component{
               width: 1,
               color: lineColor,
               dashStyle: 'dash'
-          }]
+          }],
         },
 
 
@@ -114,14 +114,15 @@ export default class GenericChart extends React.Component{
         yAxis: [{
           plotLines: [{
               value: 0,
-              width: 3,
+              width: 1,
               color: lineColor,
-              dashStyle: 'dash'
+              dashStyle: 'dash',
+              zIndex: 3
           }],
-            title: {
-                text: 'Retail Turnover (million AUD)'
-            },
-            lineWidth: 2
+          title: {
+              text: 'Retail Turnover (million AUD)'
+          },
+          lineWidth: 2
         }],
         series:this.createConfigSeries(dataArray, labels)
 
