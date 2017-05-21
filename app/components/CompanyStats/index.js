@@ -34,9 +34,10 @@ export default class CompanyInfo extends LoadableComponent {
 
     if (loaded) {
       this.loaded_object = (<div>
-          <StockChart financeData={this.props.financeData}
+          {/*<StockChart financeData={this.props.financeData}
           company_name={company_name} currentCategoryIndex={0}
-          categories={categories}/>
+          categories={categories}/>*/}
+          Here is the chart
         </div>);
     }
     return super.render();
