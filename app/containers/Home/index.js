@@ -16,7 +16,7 @@ export default class Home extends React.Component {
           </div>
         </div>
         <div className='search-industries'>
-          Don''t know what to find?&nbsp;
+          Don&apos;t know what to find?&nbsp;
           <Link to='/industries'>Click to search on industries</Link>
         </div>
       </div>
