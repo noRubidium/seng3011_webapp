@@ -11,10 +11,6 @@ HighchartsExporting(ReactHighstock.Highcharts);
 
 export default class StockChartFlag extends React.Component{
 
-    getData() {
-      return this.props.absData;
-    }
-
     getNewsData() {
       return newsdata;
     }
@@ -23,19 +19,6 @@ export default class StockChartFlag extends React.Component{
       return this.props.financeData;
     }
 
-    // 9 arrays, one for each state and one for total
-    getDataForStates(retailData) {  //only one is given
-      const dates = this.formatDates(retailData);
-      const stateArrays = retailData[this.props.currentCategoryIndex].regional_data.map(e => this.getDataArray(e.data, dates));
-      return stateArrays;
-    }
-
-    // For the state array given, create a 2D array
-    // date in milliseconds -> datapoint
-    getDataArray(stateArray, dates) {
-      const dataPointArray = stateArray.map((e, i) => [dates[i], e.turnover]);
-      return dataPointArray;
-    }
 
     // Single array with the state names for the legend
     getStateNames(retailData) {
@@ -65,7 +48,7 @@ export default class StockChartFlag extends React.Component{
     }
 
     // Obtain the full series to plot on the chart
-    createConfigSeries(dataArray, formattedNewsData, formattedFinanceData) {
+    createConfigSeries(formattedNewsData, formattedFinanceData) {
       // set the allowed units for data grouping
       const groupingUnits = [[
         'week',                         // unit name
@@ -110,9 +93,6 @@ export default class StockChartFlag extends React.Component{
 
     //Create the div which the chart will be rendered to.
     render () {
-      const retailData = this.getData().MonthlyRetailData;
-      const dataArray = this.getDataForStates(retailData);
-      const stateNames = this.getStateNames(retailData);
       const financeData = this.getFinData();
       const formattedFinanceData = this.formatFinanceData(financeData);
       const formattedNewsData = this.formatNewsData(this.getNewsData());
@@ -165,7 +145,7 @@ export default class StockChartFlag extends React.Component{
 		        lineWidth: 2
 		    }],
 
-        series:this.createConfigSeries(dataArray, formattedNewsData, formattedFinanceData)
+        series:this.createConfigSeries( formattedNewsData, formattedFinanceData)
       };
         return (<ReactHighstock config={config} />);
     }
