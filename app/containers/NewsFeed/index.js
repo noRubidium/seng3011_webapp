@@ -22,19 +22,28 @@ export default class NewsFeed extends LoadableComponent {
   }
 
   render () {
-    const { loading, loaded, news } = this.props;
+    const { loading, loaded, news, following } = this.props;
+    console.log('WHAAT',this);
     if (loaded) {
-      
-      this.loaded_object = news.map((n, i) =>
-        <Link to={`/news/${btoa(n.url)}`} key={i}>
-          <NewsItem title={n.headline}
-                    content={n.summary}
-                    secondComponent={<Sentiment url={btoa(n.url)}
-                    analyse={loading === 0}/>}
-          />
-        </Link>
-      );
+
+      if(following.length == 0){
+        this.loaded_object = (
+          <div>
+            You have no <Link to='/discover'> favourited companies</Link>, please favourite a company to build your news feed!
+          </div>);
+      } else {
+        this.loaded_object = news.map((n, i) =>
+          <Link to={`/news/${btoa(n.url)}`} key={i}>
+            <NewsItem title={n.headline}
+                      content={n.summary}
+                      secondComponent={<Sentiment url={btoa(n.url)}
+                      analyse={loading === 0}/>}
+            />
+          </Link>
+        );
+      }
     }
+
     return (
       <div>
         <div className='page-title'>News Feeds</div>
