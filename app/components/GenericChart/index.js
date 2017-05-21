@@ -99,15 +99,15 @@ export default class GenericChart extends React.Component{
             selected: 8
         },
 
-        yAxis: [{
-            title: {
-                text: 'Retail Turnover (million AUD)'
-            },
-            height: 300,
-            lineWidth: 2
-        }],
-        series:this.createConfigSeries(dataArray, labels)
+		    yAxis: [{
+		        title: {
+		            text: 'Retail Turnover (million AUD)'
+		        },
+		        height: 300,
+		        lineWidth: 2
+		    }],
+        series: this.createConfigSeries(dataArray, labels)
       };
-        return (<ReactHighstock config={config} />);
+      return (<ReactHighstock config={config} />);
     }
 }

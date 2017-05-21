@@ -31,7 +31,7 @@ export default class FavouriteCompanies extends React.Component {
     );
     return(
       <div>
-        <div className='title preferences-title'> Preferences </div>
+        <div className='page-title preferences-title'> Preferences </div>
         <Link to='/discover'>
           <button type='button' className='btn btn-success add-company'>
             <span className='glyphicon glyphicon-plus'></span> Add a company

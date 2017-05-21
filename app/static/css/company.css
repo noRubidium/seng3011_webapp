@@ -9,11 +9,26 @@
   display: inline-block;
 }
 
+.buttons {
+  padding-left: 0;
+}
+
 .company-stats-title, .related-companies-title, .company-news-title {
   font-size: 20px;
 }
 
 .company-news-title {
   margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.company-name {
+  text-transform: capitalize;
+  padding-right: 0;
+}
+
+.company-code {
+  color: #858585;
+  margin-top: -10px;
   margin-bottom: 10px;
 }

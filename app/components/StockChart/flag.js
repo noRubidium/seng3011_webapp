@@ -27,23 +27,26 @@ export default class StockChartFlag extends React.Component{
     }
 
     formatFinanceData(financeData){
-      // console.log(financeData[1].date);
-      const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]);
-      // console.log(result);
+      //
+      const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]).sort();
+      //
       return result;
     }
 
     formatNewsData(newsData){
       newsData = newsData.data;
 
+      const sort_news = (a, b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      }
       const result = newsData.map((e) => {
         return {
           url: window.btoa(e.url),
           x: (new Date(e.date)).getTime(),
           title: 'News'
         }
-      });
-      console.log(result);
+      }).sort(sort_news);
+
       return result;
     }
 
@@ -80,17 +83,20 @@ export default class StockChartFlag extends React.Component{
 	        shape: 'squarepin'
   		}];
 
-      console.log(companySeries);
+
       return companySeries;
     }
 
     // Obtain the x-axis values (dates in milliseconds)
     formatDates(retailData) {
       const firstRegion = retailData[this.props.currentCategoryIndex].regional_data[0].data;
-      const configCategories = firstRegion.map((e) => (new Date(e.date)).getTime());
+      const configCategories = firstRegion.map((e) => (new Date(e.date)).getTime()).sort();
       return configCategories;
     }
 
+    shouldComponentUpdate (nextProps, nextState) {
+      return nextProps.financeData !== this.props.financeData || nextProps.newsData !== this.props.newsData || nextProps.company_name !== this.props.company_name;
+    }
     //Create the div which the chart will be rendered to.
     render () {
       const financeData = this.getFinData();
@@ -98,55 +104,64 @@ export default class StockChartFlag extends React.Component{
       const formattedNewsData = this.formatNewsData(this.getNewsData());
 
 
-      const { company_name, categories } = this.props;
+      const { company_name, categories, xrange={}, updateRange=(e)=>e } = this.props;
 
       const config = {
-
         exporting: {
           chartOptions: { // specific options for the exported image
-              plotOptions: {
-                  series: {
-                      dataLabels: {
-                          enabled: true
-                      }
-                  }
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true
+                }
               }
+            }
           },
           fallbackToExportServer: false
         },
-
+        xAxis: {
+          events: {
+            afterSetExtremes: function(event){
+                
+                if (this.getExtremes().dataMin < event.min)
+                    updateRange(event.min, event.max);
+            }
+          },
+          ...xrange,
+        },
         plotOptions: {
           flags: {
             point: {
               events: {
                 click: function (event) {
                   const url = "/#/news/" + this.url;
-                  console.log(url);
+
                   window.location.href = url;
                 }
               }
             }
-          }
-    },
+          },
+        },
 
         chart: {
           height: '500px',
           zoomType: 'x'
         },
 
-		    rangeSelector: {
-		        selected: 4
-		    },
+        rangeSelector: {
+            selected: 4
+        },
 
-		    yAxis: [{
-		        title: {
-		            text: 'Stock Price (AUD)'
-		        },
-		        lineWidth: 2
-		    }],
+        yAxis: [{
+            title: {
+                text: 'Stock Price (AUD)'
+            },
+            lineWidth: 2
+        }],
 
         series:this.createConfigSeries( formattedNewsData, formattedFinanceData)
       };
-        return (<ReactHighstock config={config} />);
+      this.render_obj = (<ReactHighstock config={config} />);
+      return this.render_obj;
     }
 }
