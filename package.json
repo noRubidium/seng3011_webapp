@@ -36,6 +36,7 @@
     "highcharts-exporting": "^0.1.2",
     "history": "^4.6.1",
     "jquery": "^3.2.1",
+    "moment": "^2.18.1",
     "react": "^15.5.4",
     "react-autosuggest": "^9.0.1",
     "react-dom": "^15.5.4",
