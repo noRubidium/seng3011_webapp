@@ -31,7 +31,7 @@ export default class News extends LoadableComponent {
 
     if (loaded) {
       const { emotion, sentiment, headline, text, involved_companies } = this.props;
-      console.log('INVOLV', involved_companies);
+      
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>

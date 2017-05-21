@@ -30,7 +30,6 @@ const escapeRegexCharacters = (str) => {
 const getSuggestions = (value) => {
   const escapedValue = escapeRegexCharacters(value.trim())
   const loseMatchRegex = escapedValue.replace(new RegExp('.', 'g'), (match) => `${match}[^-()&\\s]*?\\s?`);
-  // console.log()
   if (escapedValue === '') {
     return [];
   }
