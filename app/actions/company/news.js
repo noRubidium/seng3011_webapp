@@ -1,4 +1,4 @@
-import async_action_xml from 'utils/asyncActionXML';
+import async_action from 'utils/asyncAction';
 
 const COMPANY_NEWS_LOADING   = 'COMPANY_NEWS_LOADING';
 const COMPANY_NEWS_LOADED    = 'COMPANY_NEWS_LOADED';
@@ -11,13 +11,13 @@ export const companyNewsActionTypes = {
 };
 
 export function load_company_news (company_code, dispatch) {
-  async_action_xml(
+  async_action(
     {
       type: COMPANY_NEWS_LOADING,
       payload: { company_code },
     },
     COMPANY_NEWS_LOADED,
     dispatch,
-   `http://api.kaiworship.xyz/rapper/feeds.finance.yahoo.com/rss/2.0/headline%3Fs=${company_code}&region=AU&lang=en-US`
+   `http://api.kaiworship.xyz/news/cmp/${company_code.substr(0, 3)}`
   );
 }

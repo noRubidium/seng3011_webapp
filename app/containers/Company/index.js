@@ -41,10 +41,10 @@ export default class Company extends React.Component {
               <div className='sub-title'> Stock Graph </div>
               <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
             </div>
-            {/*NEWS*/}
           </div>
           <div className='col-sm-4'>
             <RelatedCompanies companies={relatedcompanies}/>
+            <CompanyNews cid={company_id}/>
           </div>
         </div>
       </div>
