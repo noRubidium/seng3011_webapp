@@ -6,45 +6,43 @@ import LoadableComponent from 'components/LoadableComponent';
 
 // Highcharts exporting
 var HighchartsExporting = require('highcharts-exporting');
-HighchartsExporting(ReactHighstock.Highcharts);
 
-export default class StockChart extends React.Component{
+HighchartsExporting(ReactHighstock.Highcharts);
+// data: [{'label': sth, values: [{value:sth, date:sth}]}]
+export default class GenericChart extends React.Component{
 
     getData() {
-      return this.props.absData;
-    }
-
-    getFinData() {
-      return this.props.financeData;
+      return this.props.data;
     }
 
     // 9 arrays, one for each state and one for total
-    getDataForStates(retailData) {  //only one is given
-      const dates = this.formatDates(retailData);
-      const stateArrays = retailData[this.props.currentCategoryIndex].regional_data.map(e => this.getDataArray(e.data, dates));
+    getDataForStates(data) {  //only one is given
+      const stateArrays = data.map(e => this.getDataArray(e.values));
       return stateArrays;
     }
 
     // For the state array given, create a 2D array
     // date in milliseconds -> datapoint
-    getDataArray(stateArray, dates) {
-      const dataPointArray = stateArray.map((e, i) => [dates[i], e.turnover]);
+    getDataArray(stateArray) {
+      const dataPointArray = stateArray.map((e) =>
+        [(new Date(e.date)).getTime(), e.value]
+      );
       return dataPointArray;
     }
 
     // Single array with the state names for the legend
-    getStateNames(retailData) {
-      const states = retailData[this.props.currentCategoryIndex].regional_data.map(e => e.state === 'Total' ? 'AUS': e.state);
-      return states;
+    getLabels(data) {
+      const labels = data.map((e) => e.label);
+      return labels;
     }
 
-    formatFinanceData(financeData){
-      const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]);
-      return result;
-    }
+    // formatFinanceData(financeData){
+    //   const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]);
+    //   return result;
+    // }
 
     // Obtain the full series to plot on the chart
-    createConfigSeries(dataArray, stateNames, formattedFinanceData) {
+    createConfigSeries(dataArray, labels) {
       // set the allowed units for data grouping
       const groupingUnits = [[
         'week',                         // unit name
@@ -54,40 +52,31 @@ export default class StockChart extends React.Component{
         [1, 2, 3, 4, 6]
       ]];
 
-      const stateSeries = stateNames.map((e, i) => {
-        return {type: 'line', dataGrouping: { units: groupingUnits },
-                name: e, data: dataArray[i],
-                visible: e === 'AUS'};
-      });
-
-      const companySeries = [{
+      const beautifulData = labels.map((e, i) => {
+        return {
           type: 'line',
-          name: 'Stock',
-          data: formattedFinanceData,
-          yAxis: 1,
           dataGrouping: {
             units: groupingUnits
-          }
-        }];
-
-      const series = stateSeries.concat(companySeries);
-      return series;
+          },
+          name: e,
+          data: dataArray[i]
+        };
+      });
+      return beautifulData;
     }
 
     // Obtain the x-axis values (dates in milliseconds)
-    formatDates(retailData) {
-      const firstRegion = retailData[this.props.currentCategoryIndex].regional_data[0].data;
-      const configCategories = firstRegion.map((e) => (new Date(e.date)).getTime());
-      return configCategories;
-    }
+    // formatDates(data) {
+    //   const firstRegion = data[0].values;
+    //   const configTimes = firstRegion.map((e) => (new Date(e.date)).getTime());
+    //   return configTimes;
+    // }
 
     //Create the div which the chart will be rendered to.
     render () {
-      const retailData = this.getData().MonthlyRetailData;
-      const dataArray = this.getDataForStates(retailData);
-      const stateNames = this.getStateNames(retailData);
-      const financeData = this.getFinData();
-      const formattedFinanceData = this.formatFinanceData(financeData);
+      const data = this.getData();
+      const dataArray = this.getDataForStates(data);
+      const labels = this.getLabels(data);
 
       const { company_name, categories } = this.props;
 
@@ -114,31 +103,22 @@ export default class StockChart extends React.Component{
           y: 100,
         },
         chart: {
-          height: '500px',
+          height: 500,
           zoomType: 'x'
         },
 
 		    rangeSelector: {
-		        selected: 4
+		        selected: 8
 		    },
 
 		    yAxis: [{
 		        title: {
 		            text: 'Retail Turnover (million AUD)'
 		        },
-		        height: 200,
-		        lineWidth: 2
-		    }, {
-		        title: {
-		            text: 'Stock Price'
-		        },
-		        top: 280,
-		        height: 100,
-		        offset: 0,
+		        height: 300,
 		        lineWidth: 2
 		    }],
-
-        series:this.createConfigSeries(dataArray, stateNames, formattedFinanceData)
+        series:this.createConfigSeries(dataArray, labels)
       };
         return (<ReactHighstock config={config} />);
     }

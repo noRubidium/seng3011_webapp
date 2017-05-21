@@ -13,17 +13,21 @@ export const companyStatsActionTypes = {
 }
 
 
-export function load_company_stats (company_id, dispatch) {
+export function load_company_stats (company_id, dispatch, props) {
+  const url = `http://api.kaiworship.xyz/cmp/${company_id}`;
+  if (props.url === url) {
+    return;
+  }
   dispatch({
     type: COMPANY_STATS_LOADING,
     payload: { company_id },
+    url,
   });
 
   // get date
   const today = new Date();
 
   let financeData = [];
-  const url = `http://api.kaiworship.xyz/cmp/${company_id}`;
   // shit have to load it ourselves
   fetch(url)
     .then(response => response.text())
@@ -36,7 +40,8 @@ export function load_company_stats (company_id, dispatch) {
 
       dispatch({
         type: COMPANY_STATS_LOADED,
-        payload: result
+        payload: result,
+        url,
       });
     });
 }
