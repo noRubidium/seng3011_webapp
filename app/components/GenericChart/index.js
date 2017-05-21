@@ -100,10 +100,6 @@ export default class GenericChart extends React.Component{
 
         legend: {
           enabled: true,
-          align: 'right',
-          layout: 'vertical',
-          verticalAlign: 'top',
-          y: 100,
         },
         chart: {
           backgroundColor: null,
@@ -116,6 +112,12 @@ export default class GenericChart extends React.Component{
         },
 
         yAxis: [{
+          plotLines: [{
+              value: 0,
+              width: 3,
+              color: lineColor,
+              dashStyle: 'dash'
+          }],
             title: {
                 text: 'Retail Turnover (million AUD)'
             },
