@@ -72,8 +72,6 @@ export default class GenericChart extends React.Component{
         lineColor = 'black';
       }
 
-      console.log(dataArray, labels);
-
       const config = {
         exporting: {
           chartOptions: { // specific options for the exported image
