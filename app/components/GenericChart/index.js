@@ -36,11 +36,6 @@ export default class GenericChart extends React.Component{
       return labels;
     }
 
-    // formatFinanceData(financeData){
-    //   const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]);
-    //   return result;
-    // }
-
     // Obtain the full series to plot on the chart
     createConfigSeries(dataArray, labels) {
       // set the allowed units for data grouping
@@ -65,12 +60,6 @@ export default class GenericChart extends React.Component{
       return beautifulData;
     }
 
-    // Obtain the x-axis values (dates in milliseconds)
-    // formatDates(data) {
-    //   const firstRegion = data[0].values;
-    //   const configTimes = firstRegion.map((e) => (new Date(e.date)).getTime());
-    //   return configTimes;
-    // }
 
     //Create the div which the chart will be rendered to.
     render () {
@@ -78,10 +67,9 @@ export default class GenericChart extends React.Component{
       const dataArray = this.getDataForStates(data);
       const labels = this.getLabels(data);
 
-      const { company_name, categories } = this.props;
+      console.log(dataArray, labels);
 
       const config = {
-
         exporting: {
           chartOptions: { // specific options for the exported image
               plotOptions: {
@@ -107,17 +95,17 @@ export default class GenericChart extends React.Component{
           zoomType: 'x'
         },
 
-		    rangeSelector: {
-		        selected: 8
-		    },
+        rangeSelector: {
+            selected: 8
+        },
 
-		    yAxis: [{
-		        title: {
-		            text: 'Retail Turnover (million AUD)'
-		        },
-		        height: 300,
-		        lineWidth: 2
-		    }],
+        yAxis: [{
+            title: {
+                text: 'Retail Turnover (million AUD)'
+            },
+            height: 300,
+            lineWidth: 2
+        }],
         series:this.createConfigSeries(dataArray, labels)
       };
         return (<ReactHighstock config={config} />);
