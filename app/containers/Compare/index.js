@@ -5,6 +5,7 @@ import CompareStats from 'components/Compare';
 import CompareChart from 'components/CompareChart';
 import LoadableComponent from 'components/LoadableComponent';
 import csv2json from 'utils/csv2json';
+import { getReturn } from 'utils/companyReturn';
 
 
 @connect((store) => {
@@ -54,7 +55,7 @@ export default class Compare extends React.Component {
         this.setState({
           finished: finished + 1,
           loading: loading - 1,
-          data: data.concat([{label: cid, values: result}])
+          data: data.concat([getReturn(result, cid)])
         });
         if (finished === companies.length - 1) {
           this.setState({loaded: true});
