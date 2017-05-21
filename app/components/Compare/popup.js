@@ -16,15 +16,10 @@ class PopupContent extends React.Component {
 	}
 
   render () {
-    const options = [
-      { value: 'MYR.AX', label: 'MYR' },
-      { value: 'DMP.AX', label: 'DMP' },
-      { value: 'WOW.AX', label: 'WOW' },
-      { value: 'WES.AX', label: 'WES' }
-    ];
-
-    const { parent } = this.props;
-
+    const { companies, parent } = this.props;
+    const options = companies ? companies.map((e)=>{
+      return {label: e, value: `${e}.AX`};
+    }) : [];
     return (
       <Select multi
             simpleValue
@@ -64,7 +59,7 @@ export default class ComparePopup extends React.Component {
             <h4 className='modal-title'>Compare</h4>
           </div>
           <div className='modal-body'>
-            <PopupContent parent={this}/>
+            <PopupContent parent={this} companies={this.props.companies}/>
           </div>
           <div className='modal-footer'>
             <button type='button' className='btn btn-default' data-dismiss='modal'>Close</button>
