@@ -1,6 +1,5 @@
 import React from 'react';
 import { getStandardDev } from 'utils/statsUtil';
-import Math from 'math';
 
 export default class CompareStats extends React.Component {
   render () {
