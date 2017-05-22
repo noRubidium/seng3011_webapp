@@ -1,5 +1,5 @@
 import React from 'react';
-import getStandardDev from 'app/utils/statsUtil.js'
+// import getStandardDev from 'app/utils/statsUtil.js'
 
 export default class CompareStats extends React.Component {
   render () {
@@ -8,7 +8,7 @@ export default class CompareStats extends React.Component {
     const volatilityStats = companies.map((c) =>
         <StatCompareItem
           company={c}
-          value={getStandardDev(data, minDate, maxDate)}
+          value={4}
         />
     );
 
