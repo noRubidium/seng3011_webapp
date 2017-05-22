@@ -22,7 +22,7 @@ export default class Compare extends React.Component {
       loading: companies.length,
       finished: 0,
       loaded: 0,
-      error: true,
+      error: false,
       data: [],
       minDate: '2014-01-01',
       maxDate: new Date(),

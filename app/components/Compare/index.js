@@ -1,34 +1,25 @@
 import React from 'react';
 import { getStandardDev, getMean } from 'utils/statsUtil';
+import StatCompareItem from './statItem';
 
+const toCompanyStatsItems = (data, min, max, f) => {
+  return data
+  .map((d) => {
+    return {label: d.label, value: f(d.values, min, max)};
+  })
+  .sort((a, b) => a.value - b.value)
+  .map((d) =>
+    <StatCompareItem company={d.label} value={d.value.toFixed(2)}/>
+  );
+}
 export default class CompareStats extends React.Component {
   render () {
     const { companies, minDate, maxDate, data } = this.props;
     const min = new Date(minDate);
     const max = new Date(maxDate);
-    const volatilityStats = data
-    .map((d) => {
-      return {label: d.label, value: getStandardDev(d.values, min, max)};
-    })
-    .sort((a, b) => a.value - b.value)
-    .map(d =>
-      <div className='stat-item'>
-        <span className='stat-item-company'>{d.label}</span>
-        <span className='stat-item-value'>{d.value.toFixed(2)}</span>
-      </div>
-    );
+    const volatilityStats = toCompanyStatsItems(data, min, max, getStandardDev);
 
-    const returnStats = data
-    .map((d) => {
-      return {label: d.label, value: getMean(d.values, min, max)};
-    })
-    .sort((a, b) => a.value - b.value)
-    .map((d) =>
-      <div className='stat-item'>
-        <span className='stat-item-company'>{d.label}</span>
-        <span className='stat-item-value'>{d.value.toFixed(2)}</span>
-      </div>
-    );
+    const returnStats = toCompanyStatsItems(data, min, max, getMean);
 
     return (
       <div>
