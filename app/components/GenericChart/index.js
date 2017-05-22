@@ -66,8 +66,11 @@ export default class GenericChart extends React.Component{
       const data = this.getData();
       const dataArray = this.getDataForStates(data);
       const labels = this.getLabels(data);
-
-      
+      const date = (new Date(this.props.date)).getTime();
+      var lineColor = null;
+      if(date){
+        lineColor = 'black';
+      }
 
       const config = {
         exporting: {
@@ -83,14 +86,21 @@ export default class GenericChart extends React.Component{
           fallbackToExportServer: false
         },
 
+        xAxis: {
+          plotLines: [{
+              value: date,
+              width: 1,
+              color: lineColor,
+              dashStyle: 'dash'
+          }],
+        },
+
+
         legend: {
           enabled: true,
-          align: 'right',
-          layout: 'vertical',
-          verticalAlign: 'top',
-          y: 100,
         },
         chart: {
+          backgroundColor: null,
           height: 500,
           zoomType: 'x'
         },
@@ -99,14 +109,21 @@ export default class GenericChart extends React.Component{
             selected: 8
         },
 
-		    yAxis: [{
-		        title: {
-		            text: 'Retail Turnover (million AUD)'
-		        },
-		        height: 300,
-		        lineWidth: 2
-		    }],
-        series: this.createConfigSeries(dataArray, labels)
+        yAxis: [{
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: lineColor,
+              dashStyle: 'dash',
+              zIndex: 3
+          }],
+          title: {
+              text: 'Retail Turnover (million AUD)'
+          },
+          lineWidth: 2
+        }],
+        series:this.createConfigSeries(dataArray, labels)
+
       };
       return (<ReactHighstock config={config} />);
     }
