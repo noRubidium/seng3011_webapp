@@ -24,7 +24,7 @@ export default class NewsFeed extends LoadableComponent {
   render () {
     const { loading, loaded, news } = this.props;
     if (loaded) {
-      
+
       this.loaded_object = news.map((n, i) =>
         <Link to={`/news/${btoa(n.url)}`} key={i}>
           <NewsItem title={n.headline}

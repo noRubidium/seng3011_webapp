@@ -23,8 +23,9 @@ export default class FollowButton extends React.Component {
     const followed = following.includes(cid);
     const handle = followed ? this.unfollow.bind(this) : this.follow.bind(this);
     const text = followed ? 'Unfollow': 'Follow';
+    const color = followed ? 'btn-danger': 'btn-success';
     const follow_button = (
-      <button onClick={handle} href='#' className='btn btn-default follow-button'>{ text }</button>
+      <button onClick={handle} href='#' className={`btn ${color} follow-button`}>{ text }</button>
     )
     return follow_button;
   }

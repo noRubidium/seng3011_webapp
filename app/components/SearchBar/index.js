@@ -3,7 +3,6 @@ import Autosuggest from 'react-autosuggest';
 import { withRouter } from 'react-router';
 
 import data from './data.json';
-import './main.css';
 
 const companies = data.data;
 
@@ -29,8 +28,7 @@ const escapeRegexCharacters = (str) => {
 
 const getSuggestions = (value) => {
   const escapedValue = escapeRegexCharacters(value.trim())
-  const loseMatchRegex = escapedValue.replace(new RegExp('.', 'g'), (match) => `${match}[^-()&\\s]*?\\s?[^-()&\\s]*?`);
-  // console.log()
+  const loseMatchRegex = escapedValue.replace(new RegExp('.', 'g'), (match) => `${match}[^-()&\\s]*?\\s?`);
   if (escapedValue === '') {
     return [];
   }

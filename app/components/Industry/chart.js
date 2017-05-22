@@ -33,13 +33,13 @@ export default class IndustryChart extends LoadableComponent {
       });
       return {label: e.state, values: vs};
     })
-    console.log(b);
+    
     return b;
   }
   render () {
     const { loaded, data, industry } = this.props;
     if (loaded) {
-      // console.log('Curr');
+      // 
       // const categories = data.MonthlyRetailData.map((e) => e.category);
       // const { currentCategoryIndex } = this.state;
       // const currentCategory = industry.split(/(?=[A-Z])/).join(' ');
