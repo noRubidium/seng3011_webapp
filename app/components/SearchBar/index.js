@@ -3,7 +3,6 @@ import Autosuggest from 'react-autosuggest';
 import { withRouter } from 'react-router';
 
 import data from './data.json';
-import './main.css';
 
 const companies = data.data;
 
