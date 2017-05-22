@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import Nav from 'containers/Main/nav';
 import Home from 'containers/Home';
@@ -20,7 +20,7 @@ export default class Main extends React.Component {
                 <Nav path={this.props.location.pathname}/>
                 <div className='content'>
                   <Switch>
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/' render={() => <Redirect  to='/discover'/>}/>
                     <Route path='/discover' component={Home} />
                     <Route path='/industries' component={Industries}/>
                     <Route path='/industry/:industry_name' component={Industry}/>
