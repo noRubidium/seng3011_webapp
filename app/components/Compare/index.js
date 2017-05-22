@@ -2,12 +2,12 @@ import React from 'react';
 import { getStandardDev, getMean } from 'utils/statsUtil';
 import StatCompareItem from './statItem';
 
-const toCompanyStatsItems = (data, min, max, f) => {
+const toCompanyStatsItems = (data, min, max, f, cFun=(e)=>e) => {
   return data
   .map((d) => {
     return {label: d.label, value: f(d.values, min, max)};
   })
-  .sort((a, b) => a.value - b.value)
+  .sort((a, b) => cFun(a.value) - cFun(b.value))
   .map((d) =>
     <StatCompareItem company={d.label} value={d.value.toFixed(2)}/>
   );
@@ -19,7 +19,7 @@ export default class CompareStats extends React.Component {
     const max = new Date(maxDate);
     const volatilityStats = toCompanyStatsItems(data, min, max, getStandardDev);
 
-    const returnStats = toCompanyStatsItems(data, min, max, getMean);
+    const returnStats = toCompanyStatsItems(data, min, max, getMean, (e)=>(-e));
 
     return (
       <div>
