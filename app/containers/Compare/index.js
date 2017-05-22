@@ -24,6 +24,9 @@ export default class Compare extends React.Component {
       loaded: 0,
       error: true,
       data: [],
+      minDate: '2016-01-01',
+      maxDate: '2017-01-01',
+      companies: companies
     };
     this.loadCompareData();
   }
@@ -83,7 +86,7 @@ export default class Compare extends React.Component {
         <center>
           <CompareChart {...props}/>
         </center>
-        <CompareStats {...props}/>
+          <CompareStats {...props}/>
       </div>
     );
   }
