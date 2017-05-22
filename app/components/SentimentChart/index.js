@@ -42,7 +42,8 @@ export default class SentimentChart extends React.Component{
     //Create the div which the chart will be rendered to.
     render () {
         // const emotionsData = this.props.emotionsData;
-        const emotionsData = data;
+        const emotionsData = {emotion: this.getData()};
+        console.log('THIS', emotionsData, this);
 
         const config = {
           plotOptions: {

@@ -7,7 +7,10 @@ import { load_company_stats } from 'actions/company/stats';
 import StockChartFlag from 'components/StockChart/flag.js';
 
 @connect((store) => {
-  return store.company.company_stats;
+  return {
+    ...store.company.company_stats,
+    news: store.company.company_news,
+  };
 })
 export default class CompanyInfo extends LoadableComponent {
   constructor (props) {
@@ -37,11 +40,10 @@ export default class CompanyInfo extends LoadableComponent {
   }
   render () {
     const { loaded, company_name } = this.props;
-    const categories = ['Food'];
     if (loaded) {
       this.other_child = <CompanyStatistics {...this.state}/>;
       this.chart = <StockChartFlag financeData={this.props.financeData}
-      company_name={company_name} newsData={this.props.newsData} updateRange={this.updateRange.bind(this)}/>;
+      company_name={company_name} newsData={this.props.news.news} updateRange={this.updateRange.bind(this)}/>;
       this.loaded_object = (<div>
         {this.chart}
         {this.other_child}

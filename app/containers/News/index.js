@@ -84,7 +84,7 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { loaded, emotion, sentiment, headline, text, involved_companies } = this.props;
+    const { loading, error, loaded, emotion={}, sentiment, headline, text, involved_companies } = this.props;
 
     if (loaded) {
       const { emotion, sentiment, headline, text, involved_companies } = this.props;
@@ -94,7 +94,7 @@ export default class News extends LoadableComponent {
             <NewsArticle title={headline} content={text}/>
           </div>
           <div className='col-sm-5'>
-            <SentimentEmotion emotion={emotion} sentiment={sentiment}/>
+            <SentimentEmotion emotion={emotion} loading={loading} error={error} loaded={loaded}/>
             <div className='news-analysis'>
               <div className='sub-title'>Impact Analysis</div>
               <CompareChart {...this.state}/>
