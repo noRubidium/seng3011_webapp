@@ -68,7 +68,7 @@ export default class Industries extends LoadableComponent {
 
             </div>
             <div className='col-sm-4'>
-              <RelatedCompanies companies={related_companies}/>
+              <RelatedCompanies companies={related_companies.map((e) => e.instrumentId)}/>
             </div>
           </div>
         </div>
