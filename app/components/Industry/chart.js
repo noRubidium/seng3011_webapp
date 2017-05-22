@@ -26,20 +26,22 @@ export default class IndustryChart extends LoadableComponent {
   }
 
   beautifyData (data) {
-    const init = data.MonthlyRetailData[0].regional_data;
+    const dataUsed = data.MonthlyRetailData || data.MonthlyCommodityExportData;
+    const type = data.MonthlyRetailData ? 'turnover' : 'value';
+    const init = dataUsed[0].regional_data;
     const b = init.map((e) => {
       const vs = e.data.map((d) => {
-        return {date: d.date, value:d.turnover};
+        return {date: d.date, value:d[type]};
       });
       return {label: e.state, values: vs};
     })
-    
+
     return b;
   }
   render () {
     const { loaded, data, industry } = this.props;
     if (loaded) {
-      // 
+      //
       // const categories = data.MonthlyRetailData.map((e) => e.category);
       // const { currentCategoryIndex } = this.state;
       // const currentCategory = industry.split(/(?=[A-Z])/).join(' ');

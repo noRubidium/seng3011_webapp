@@ -4,11 +4,11 @@ import { getStandardDev } from 'utils/statsUtil';
 export default class CompareStats extends React.Component {
   render () {
     const { companies, minDate, maxDate, data } = this.props;
-
+    
     const volatilityStats = companies.map(c =>
       <div className='stat-item'>
         <span className='stat-item-company'>{c}</span>
-        <span className='stat-item-value'>{getStandardDev(data, minDate, maxDate)}</span>
+        <span className='stat-item-value'>{'volatility'}</span>
       </div>
     );
 
