@@ -11,7 +11,7 @@ export default class SentimentEmotion extends LoadableComponent {
   render() {
     this.loaded_object = null;
     const { loaded, emotion } = this.props;
-    console.log(this);
+    
     if (loaded) {
       this.loaded_object = (<div>
         <div className='sub-title'>Sentiment Analysis</div>

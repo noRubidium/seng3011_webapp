@@ -11,7 +11,7 @@ export default class RelatedCompanies extends React.Component {
       if (!c) {
         return null;
       }
-      console.log('C', c);
+      
       return (
         <Link to={`/company/${c}`}  key={i}>
           <CompanyListItem title={getCmp(c)} content={''}/>

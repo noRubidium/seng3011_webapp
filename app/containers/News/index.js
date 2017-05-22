@@ -88,7 +88,7 @@ export default class News extends LoadableComponent {
     const { loading, error, loaded, emotion={}, sentiment, headline, text, involved_companies } = this.props;
 
     if (loaded) {
-      console.log(involved_companies);
+      
       const companies = involved_companies.map((e) => {
         return {id: e, name: getCmp(e)};
       });

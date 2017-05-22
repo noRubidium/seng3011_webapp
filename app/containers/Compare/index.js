@@ -33,7 +33,7 @@ export default class Compare extends React.Component {
 
 
   updateRange (minDate, maxDate) {
-    console.log('MIN, MAX:', minDate, maxDate);
+
     if (minDate !== this.state.minDate || maxDate !== this.state.maxDate) {
       this.setState({minDate, maxDate});
     }
