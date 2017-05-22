@@ -12,9 +12,9 @@ export default class CompareChart extends LoadableComponent {
   }
 
   render () {
-    const { loaded, data } = this.props;
+    const { loaded, data, updateRange=(e)=>e } = this.props;
     if (loaded) {
-      this.loaded_object = (<GenericChart data={data} date={data[0].values[10].date}/>);
+      this.loaded_object = (<GenericChart data={data} date={data[0].values[10].date} updateRange={updateRange}/>);
     }
     return super.render();
   }

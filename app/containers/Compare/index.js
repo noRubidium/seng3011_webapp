@@ -24,11 +24,19 @@ export default class Compare extends React.Component {
       loaded: 0,
       error: true,
       data: [],
-      minDate: '2016-01-01',
-      maxDate: '2017-01-01',
+      minDate: '2014-01-01',
+      maxDate: new Date(),
       companies: companies
     };
     this.loadCompareData();
+  }
+
+
+  updateRange (minDate, maxDate) {
+    console.log('MIN, MAX:', minDate, maxDate);
+    if (minDate !== this.state.minDate || maxDate !== this.state.maxDate) {
+      this.setState({minDate, maxDate});
+    }
   }
 
   loadCompareData() {
@@ -41,7 +49,7 @@ export default class Compare extends React.Component {
     this.setState({started: true, data: []});
 
     companies.map((cid) => {
-      fetch(`http://api.kaiworship.xyz/cmp/${cid}/2010-01-01/2018-01-01`)
+      fetch(`http://api.kaiworship.xyz/cmp/${cid}/2014-01-01/2018-01-01`)
       .then((response) => {
         return response.ok ? response.text():null;
       })
@@ -84,7 +92,7 @@ export default class Compare extends React.Component {
           Comparison for {companies.join(', ')}
         </div>
         <center>
-          <CompareChart {...props}/>
+          <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>
         </center>
           <CompareStats {...props}/>
       </div>

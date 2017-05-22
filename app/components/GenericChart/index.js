@@ -60,7 +60,10 @@ export default class GenericChart extends React.Component{
       return beautifulData;
     }
 
-
+    shouldComponentUpdate (nextProps, nextState) {
+      const shouldUpdate = nextProps.data !== this.props.data;
+      return shouldUpdate;
+    }
     //Create the div which the chart will be rendered to.
     render () {
       const data = this.getData();
@@ -68,6 +71,7 @@ export default class GenericChart extends React.Component{
       const labels = this.getLabels(data);
       const date = (new Date(this.props.date)).getTime();
       var lineColor = null;
+      const { updateRange=(e)=>e } = this.props;
       if(date){
         lineColor = 'black';
       }
@@ -93,8 +97,13 @@ export default class GenericChart extends React.Component{
               color: lineColor,
               dashStyle: 'dash'
           }],
+          events: {
+            afterSetExtremes: function(event){
+                if (this.getExtremes().dataMin < event.min)
+                    updateRange(event.min, event.max);
+            }
+          },
         },
-
 
         legend: {
           enabled: true,
