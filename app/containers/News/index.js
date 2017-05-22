@@ -8,6 +8,7 @@ import CompareChart from 'components/CompareChart';
 import LoadableComponent from 'components/LoadableComponent';
 import { load_news } from 'actions/news';
 import csv2json from 'utils/csv2json';
+import { getCmp } from 'utils/lookup';
 import { getReturn } from 'utils/companyReturn';
 
 
@@ -87,7 +88,10 @@ export default class News extends LoadableComponent {
     const { loading, error, loaded, emotion={}, sentiment, headline, text, involved_companies } = this.props;
 
     if (loaded) {
-      const { emotion, sentiment, headline, text, involved_companies } = this.props;
+      console.log(involved_companies);
+      const companies = involved_companies.map((e) => {
+        return {id: e, name: getCmp(e)};
+      });
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>
@@ -100,7 +104,8 @@ export default class News extends LoadableComponent {
               <CompareChart {...this.state}/>
             </div>
             <div className='news-compare'>
-              <CompareButton text={'Compare with other company'} companies={involved_companies}/>
+              <CompareButton text={'Compare with other company'} companies={companies}
+              related_companies={involved_companies}/>
             </div>
           </div>
         </div>

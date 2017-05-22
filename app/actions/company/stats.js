@@ -15,7 +15,7 @@ export const companyStatsActionTypes = {
 
 
 export function load_company_stats (company_id, dispatch, props) {
-  const url = `http://api.kaiworship.xyz/cmp/${company_id}`;
+  const url = `http://api.kaiworship.xyz/cmp/${company_id}/2010-01-01/2018-01-01`;
   if (props.url === url) {
     return;
   }

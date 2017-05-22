@@ -36,8 +36,9 @@ export default class Compare extends React.Component {
     }
     const companies = this.getCompanies();
     this.setState({started: true, data: []});
+
     companies.map((cid) => {
-      fetch(`http://api.kaiworship.xyz/cmp/${cid}`)
+      fetch(`http://api.kaiworship.xyz/cmp/${cid}/2010-01-01/2018-01-01`)
       .then((response) => {
         return response.ok ? response.text():null;
       })

@@ -4,7 +4,6 @@ import CompanyInfo from 'components/CompanyInfo';
 import CompanyNews from 'components/CompanyNews';
 import CompanyStats from 'components/CompanyStats';
 import CompanyPrice from 'components/CompanyPrice';
-import IndustryChart from 'components/industry/chart';
 
 import RelatedCompanies from 'components/RelatedCompanies';
 import { getCmp } from 'utils/lookup';
@@ -46,7 +45,7 @@ export default class Company extends React.Component {
         })
         .then((data) => {
           if (this.state.curr_cmp === company_id) {
-            this.setState({ related_companies: data.related_companies });
+            this.setState({ related_companies: data.related_companies.map((e) => `${e}.AX`) });
           }
         });
     }
