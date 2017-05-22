@@ -34,16 +34,13 @@ export default class StockChartFlag extends React.Component{
     }
 
     formatNewsData(newsData=[]){
-      const sort_news = (a, b) => {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
-      }
       const result = newsData.map((e) => {
         return {
           url: window.btoa(e.url),
           x: (new Date(e.date)).getTime(),
           title: 'News'
         }
-      }).sort(sort_news);
+      }).sort((a, b)=>(a.x - b.x));
 
       return result;
     }
@@ -72,7 +69,7 @@ export default class StockChartFlag extends React.Component{
           name: 'Flags on series',
           data: formattedNewsData,
           onSeries: 'Stock',
-          shape: 'squarepin'
+          shape: 'squarepin',
       }];
 
 
@@ -106,7 +103,7 @@ export default class StockChartFlag extends React.Component{
                 dataLabels: {
                   enabled: true
                 }
-              }
+              },
             }
           },
           fallbackToExportServer: false
@@ -130,8 +127,10 @@ export default class StockChartFlag extends React.Component{
 
                   window.location.href = url;
                 }
-              }
-            }
+              },
+            },
+            className: 'news-flag',
+            cursor: 'pointer',
           },
         },
 

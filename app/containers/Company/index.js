@@ -28,21 +28,40 @@ export default class Company extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      related_companies: []
+      started: false,
+      curr_cmp: '',
+      related_companies: [],
     };
+  }
+
+  loadRelated () {
+    const { company_id } = this.props.match.params;
+    if (this.state.curr_cmp !== company_id) {
+      this.setState({started: true, curr_cmp: company_id});
+      const url = `http://api.kaiworship.xyz/mapping/rel/${company_id.slice(0,3)}`
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) return;
+          return response.json();
+        })
+        .then((data) => {
+          if (this.state.curr_cmp === company_id) {
+            this.setState({ related_companies: data.related_companies });
+          }
+        });
+    }
+  }
+
+  componentWillMount () {
+    this.loadRelated();
+  }
+
+  componentDidUpdate () {
+    this.loadRelated();
   }
 
   render () {
     const { company_id } = this.props.match.params;
-    const url = `http://api.kaiworship.xyz/mapping/rel/${company_id.slice(0,3)}`
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) return;
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({ related_companies: data.related_companies });
-      });
 
     return (
       <div>
