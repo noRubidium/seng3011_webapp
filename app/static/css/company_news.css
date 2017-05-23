@@ -4,7 +4,6 @@
 
 .news-list {
 	height: 100%;
-	overflow: scroll;
 	margin-bottom: 10px;
 }
 
@@ -23,10 +22,4 @@
 	color:  #000000;
 	font-size: 12px;
 	margin-top: 10px;
-}
-
-.latest-news-heading {
-	font-weight: bold;
-	font-size: 16px;
-	padding-bottom: 10px;
 }
