@@ -28,3 +28,12 @@ p {
     -moz-hyphens: auto;
          hyphens: auto;
 }
+
+.involved-company-label:hover {
+  /*background-color: #2bacd4;*/
+  cursor: pointer;
+}
+
+.involved-company-label a {
+  text-decoration: none;
+}
