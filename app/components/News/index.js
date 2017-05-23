@@ -8,15 +8,14 @@ export default class NewsArticle extends React.Component {
     const splitted = date_string.split('T');
     const date = splitted[0];
     const time_string = splitted[1];
-    console.log('ts',splitted);
     const time_regex = new RegExp('(.*)([-\+].*)');
     const match = time_regex.exec(time_string);
-    console.log('match',match);
     const time = match[1];
     const timezone = match[2];
     return (
       <div>
-        {date} {time} GMT{timezone}
+        <span className='news-date'>{date} </span>
+        <span className='news-time'>{time} GMT{timezone}</span>
       </div>
     )
   }
@@ -27,7 +26,7 @@ export default class NewsArticle extends React.Component {
     return (
       <div>
         <div className='title'>{title}</div>
-        <div className='news-date'>{this.prettifyDate(date)}</div>
+        <div className='news-date-container'>{this.prettifyDate(date)}</div>
         <div className='news-image'>
           <img src={image} style={{'width': '100%'}}></img>
         </div>
