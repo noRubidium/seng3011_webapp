@@ -5,19 +5,9 @@ import ListItem from 'components/ListItem'
 export default class NewsArticle extends React.Component {
 
   prettifyDate(date_string) {
-    const splitted = date_string.split('T');
-    const date = splitted[0];
-    const time_string = splitted[1];
-    const time_regex = new RegExp('(.*)([-\+].*)');
-    const match = time_regex.exec(time_string);
-    const time = match[1];
-    const timezone = match[2];
-    return (
-      <div>
-        <span className='news-date'>{date} </span>
-        <span className='news-time'>{time} GMT{timezone}</span>
-      </div>
-    )
+    const d = new Date(date_string)
+    const toDisplay = d.toString();
+    return toDisplay;
   }
 
   render() {
