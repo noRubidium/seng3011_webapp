@@ -60,22 +60,49 @@ export default class Company extends React.Component {
               </div>
               <CompanyPrice cid={company_id}/>
             </div>
+          </div>
+          <div className='col-sm-4 white-bg-container'>
+            <RelatedCompanies companies={this.state.related_companies}
+                              onCompanyPage={true}/>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-sm-12 white-bg-container'>
             <div className='white-bg'>
               <div className='sub-title'> Stock Graph
                 <InfoButton text={'Clinton please change this!'}/>
               </div>
               <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
             </div>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-sm-12 white-bg-container'>
             <div className='white-bg'>
               <div className='sub-title'> Latest News
                 <InfoButton text={'Clinton please change this!'}/>
               </div>
               <CompanyNews cid={company_id}/>
             </div>
+<<<<<<< HEAD
           </div>
           <div className='col-sm-4 white-bg-container'>
             <RelatedCompanies companies={this.state.related_companies}
                               onCompanyPage={true}/>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-sm-12'>
+            <div className='sub-title'> Stock Graph </div>
+            <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-sm-12'>
+            <div className='sub-title latest-news-title'> Latest News </div>
+            <CompanyNews cid={company_id}/>
+=======
+>>>>>>> f0486c0f721a3fa4aed94c0139e0938c8a54cb97
           </div>
         </div>
       </div>
