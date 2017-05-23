@@ -85,10 +85,9 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { loading, error, loaded, emotion={}, sentiment, headline, date, image, url, text, involved_companies } = this.props;
+    const { loading, error, loaded, emotion={}, sentiment={}, headline, date, image, url, text, involved_companies } = this.props;
 
     if (loaded) {
-
       const companies = involved_companies.map((e) => {
         return {id: e, name: getCmp(e)};
       });
@@ -106,7 +105,7 @@ export default class News extends LoadableComponent {
                           url={url}/>
           </div>
           <div className='col-sm-5 white-bg-container'>
-            <SentimentEmotion emotion={emotion} loading={loading} error={error} loaded={loaded}/>
+            <SentimentEmotion emotion={emotion} sentiment={sentiment} loading={loading} error={error} loaded={loaded}/>
             <div className='news-analysis white-bg'>
               <div className='sub-title'>Impact Analysis</div>
               <CompareChart {...this.state} date={date}/>

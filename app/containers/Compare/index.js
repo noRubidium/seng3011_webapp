@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import CompareStats from 'components/Compare';
 import CompareChart from 'components/CompareChart';
 import LoadableComponent from 'components/LoadableComponent';
 import csv2json from 'utils/csv2json';
 import { getReturn } from 'utils/companyReturn';
+import { getCmp } from 'utils/lookup';
 
 
 @connect((store) => {
@@ -105,10 +106,17 @@ export default class Compare extends React.Component {
     if (companies.length === 1) {
       return (<Redirect to={`/company/${companies[0]}`} />);
     }
+
+    const link_companies = companies.map((v, i) => {
+      return <Link to={`/company/${v}`} key={i}>{(v)},</Link>;
+    });
+
     return (
       <div>
         <div className='title'>
-          Comparison for {companies.join(', ')}
+          <div className='news-no-preferences'>
+            Comparison for {link_companies}
+          </div>
           <p>
             <input  type='date' onChange={this.setDate.bind(this)} value={this.state.startDate.toISOString().split('T')[0]}  max='2017-06-01' min='2000-01-01'
              locale="en-gb"/>
@@ -117,6 +125,7 @@ export default class Compare extends React.Component {
         <center>
           <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>
         </center>
+        { link_companies }
           <CompareStats {...props}/>
       </div>
     );

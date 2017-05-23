@@ -19,7 +19,8 @@ export default class NewsArticle extends React.Component {
                     </span>)
     return (
       <div className='white-bg'>
-        <div className='title'>{title}</div>
+        <div className='title'><a href={url} target='_blank' className="afr-link">{title}</a></div>
+      <div>
         <div className='involved-companies-labels'>{companies}</div>
         <div className='news-date-container'>{this.prettifyDate(date)}</div>
         <div className='news-content'>
