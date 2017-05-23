@@ -22,10 +22,14 @@ export default class RelatedCompanies extends React.Component {
         </Link>
       );
     });
+    const { onCompanyPage } = this.props;
+
     return(
-      <div>
+      <div className='white-bg related-companies-div'>
         <div className='sub-title'> Related Companies </div>
-        {list}
+          <div className={onCompanyPage ? 'pre-scrollable related-companies-list' : ''}>
+            {list}
+          </div>
       </div>
     );
   }

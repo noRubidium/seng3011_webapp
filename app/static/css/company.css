@@ -1,16 +1,15 @@
-.company-title.title{
-  width: 80%;
+.company-name {
   display: inline-block;
-}
-
-.follow-button, .compare-button {
-  float: right;
-  margin-left: 10px;
-  display: inline-block;
+  width: 65%;
 }
 
 .buttons {
-  padding-left: 0;
+  display: inline-block;
+  float: right;
+}
+
+.buttons button {
+  margin-left: 10px;
 }
 
 .company-stats-title, .related-companies-title, .company-news-title {
@@ -31,4 +30,8 @@
   color: #858585;
   margin-top: -10px;
   margin-bottom: 10px;
+}
+
+.related-companies-list {
+  height: 230px;
 }

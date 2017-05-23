@@ -40,13 +40,13 @@ export default class Industries extends LoadableComponent {
       this.loaded_object = (
         <div>
           <div className='row'>
-            <div className='col-sm-8'>
+            <div className='col-sm-8 white-bg-container'>
               <IndustryInfo title={industry.title} details={industry.content}/>
               <IndustryChart industry={category}/>
               {/*<IndustryStatistics stats={industry.stats}/>*/}
 
             </div>
-            <div className='col-sm-4'>
+            <div className='col-sm-4 white-bg-container'>
               <RelatedCompanies companies={related_companies.map((e) => e.instrumentId)}/>
             </div>
           </div>
