@@ -14,6 +14,11 @@ export const actionTypes = {
 
 export function load_news_feed (following, dispatch) {
   dispatch ({type: NEWS_FEED_START});
+
+  if(following.length == 0){
+    dispatch({type: NEWS_FEED_LOADED, payload:[]});
+  }
+  
   following.map((cid) => {
     async_action(
       {
