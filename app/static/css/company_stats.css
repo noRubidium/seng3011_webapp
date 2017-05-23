@@ -28,7 +28,14 @@
   width:40px;
   margin:0 auto;
   border-style: solid;
-  border-width: thin;
+  border-width: medium;
+  border-color: grey;
+  border-radius: 8px;
+}
+
+.foreground-bar {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .positive-bar {
@@ -37,8 +44,16 @@
   width:40px;
   margin:0 auto;
   border-style: solid;
-  border-width: thin;
+  border-width: medium;
+  border-color: grey;
   border-bottom: thin solid;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.positive-foreground-bar {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .negative-bar {
@@ -47,8 +62,17 @@
   width:40px;
   margin:0 auto;
   border-style: solid;
-  border-width: thin;
+  border-width: medium;
+  border-color: grey;
   border-top: thin solid;
+  border-top-color: grey;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.negative-background-bar {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .bar-chart-title {

@@ -113,7 +113,6 @@ class CompanyStatistics extends React.Component {
       <div className='row'>
 
         <div className='col-md-6'>
-
           <div className='bar-chart-title'>Volatility</div>
           <div className='row'>
             <div className='background-bar'>
@@ -129,19 +128,16 @@ class CompanyStatistics extends React.Component {
           <div className='bar-chart-title'>Growth Rate</div>
           <div className='row'>
             <div className='positive-bar'>
-              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m)}}>
-
-              </div>
+              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m)}}></div>
             </div>
             <div className='negative-bar'>
-              <div className='negative-foreground-bar' style={{'background-color': 'red', 'height':this.getNegativeHeight(m)}}>
-
-              </div>
+              <div className='negative-foreground-bar' style={{'background-color': 'red', 'height':this.getNegativeHeight(m)}}></div>
             </div>
           </div>
-        <div className='stock-stat-value'>$ {m.toFixed(2) || 0}</div>
-        <div className='stock-stat-blurb'>growth per share per day</div>
+          <div className='stock-stat-value'>$ {m.toFixed(2) || 0}</div>
+          <div className='stock-stat-blurb'>Growth per share per day</div>
         </div>
+
       </div>
     </div>);
   }
