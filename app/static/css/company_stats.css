@@ -93,3 +93,15 @@
 .stock-stat-blurb {
   text-align: center;
 }
+
+.date-range-title {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.stock-stats-date-range {
+  text-align: center;
+  padding-bottom: 25px;
+}

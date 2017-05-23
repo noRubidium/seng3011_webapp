@@ -108,8 +108,8 @@ class CompanyStatistics extends React.Component {
     const [m, b] = findTrend(data, minDate, maxDate);
     const stdDev = getStandardDev(data, minDate, maxDate);
     return (<div>
-      <p>Current date range:</p>
-      <p className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</p>
+      <div className='date-range-title'>Current date range:</div>
+      <div className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</div>
       <div className='row'>
 
         <div className='col-md-6'>
