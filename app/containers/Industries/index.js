@@ -39,7 +39,8 @@ export default class Industries extends LoadableComponent {
     }
     return (
       <div>
-        <div className='page-title'>Industries</div>
+        <div className='page-title industries-page-title'>Industries</div>
+        <div className='prev-growth-rate'>previous year growth rate</div>
         {this.loaded_object}
       </div>
     )

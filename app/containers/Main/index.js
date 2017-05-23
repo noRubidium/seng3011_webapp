@@ -30,7 +30,7 @@ export default class Main extends React.Component {
                     <Route path='/preferences' component={Favourites}/>
                     <Route path='/news/:news_url' component={News}/>
                     <Route path='/compare/:company_ids/:start?' component={Compare} />
-                    <Route path='/training' component={Training} />
+                    <Route path='/learning-centre' component={Training} />
                   </Switch>
                 </div>
             </div>

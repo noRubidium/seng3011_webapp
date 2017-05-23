@@ -10,15 +10,15 @@ export default class SentimentEmotion extends LoadableComponent {
   }
   render() {
     this.loaded_object = null;
-    const { loaded, emotion ,sentiment} = this.props;
 
+    const { loaded, sentiment, emotion } = this.props;
     if (loaded) {
 
       const { label, score } = sentiment;
       const positive = label === 'positive';
       const style = `label label-${positive ? 'success':'danger'}`
 
-      this.loaded_object = (<div>
+      this.loaded_object = (<div className='white-bg'>
         <div className='sub-title'>Sentiment Analysis</div>
           <div>
               <span className={style}>

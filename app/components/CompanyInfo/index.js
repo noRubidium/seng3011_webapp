@@ -16,17 +16,17 @@ export default class CompanyInfo extends React.Component {
     const companies = data.data;
     const c = getCmp(cid);
     return (
-      <div>
-          <div className='col-md-7 company-name'>
-            <div className='company-title title'>{c.toLowerCase()}</div>
-          </div>
-          <div className='col-md-5 buttons'>
-            <CompareButton companies={companies} related_companies={related_companies} default_state={[cid]}/>
-            <FollowButton cid={cid}/>
-          </div>
-          <div className='col-md-12'>
-            <div className='sub-title company-code'>{cid}</div>
-          </div>
+      <div className='white-bg' style={{overflow: 'auto'}}>
+        <div className='company-name'>
+          <div className='company-title title'>{c.toLowerCase()}</div>
+        </div>
+        <div className='buttons'>
+          <FollowButton cid={cid}/>
+          <CompareButton companies={companies} related_companies={related_companies} default_state={[cid]}/>
+        </div>
+        <div>
+          <div className='sub-title company-code'>{cid}</div>
+        </div>
       </div>);
   }
 }
