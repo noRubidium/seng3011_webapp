@@ -20,6 +20,8 @@
   color: grey;
   text-decoration: none;
   cursor: pointer;
+  font-size: 'large';
+  margin-top: 60;
 }
 
 .news-no-preferences a:hover {
