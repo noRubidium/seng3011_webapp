@@ -21,6 +21,20 @@ export default class NewsFeed extends LoadableComponent {
     load_news_feed(following, dispatch);
   }
 
+  prettifyDate(date_string) {
+    const d = new Date(date_string);
+    return d.toDateString();
+  }
+
+  createContent(date, summary) {
+    return (
+      <div>
+        <div className='news-list-item-date'>{this.prettifyDate(date)}</div>
+        <div className='news-list-item-summary'>{summary}</div>
+      </div>
+    )
+  }
+
   render () {
     const { loading, loaded, news } = this.props;
     if (loaded) {
@@ -28,7 +42,7 @@ export default class NewsFeed extends LoadableComponent {
       this.loaded_object = news.map((n, i) =>
         <Link to={`/news/${btoa(n.url)}`} key={i}>
           <NewsItem title={n.headline}
-                    content={n.summary}
+                    content={this.createContent(n.date,n.summary)}
                     secondComponent={<Sentiment url={btoa(n.url)}
                     analyse={loading === 0}/>}
           />
