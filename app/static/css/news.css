@@ -15,3 +15,13 @@
 .news-compare .compare-button {
   float: none;
 }
+
+.news-no-preferences a {
+  color: grey;
+  text-decoration: none;
+
+}
+
+.news-no-preferences a:hover {
+  color: black;
+}
