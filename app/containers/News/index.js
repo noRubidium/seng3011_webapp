@@ -28,7 +28,7 @@ export default class News extends LoadableComponent {
       loading: 0,
       finished: 0,
       loaded: 0,
-      error: true,
+      error: false,
       data: [],
     };
     load_news(news_url, dispatch);
