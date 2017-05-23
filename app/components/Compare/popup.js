@@ -8,7 +8,7 @@ class PopupContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: []
+      value: this.props.default_state || [],
     };
     this.addValue = this.addValue.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -67,7 +67,7 @@ export default class ComparePopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: []
+      value: this.props.default_state || [],
     };
     this.compare = this.compare.bind(this);
   }

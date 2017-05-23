@@ -85,13 +85,16 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { loading, error, loaded, emotion={}, sentiment, headline, text, involved_companies } = this.props;
+    const { loading, error, loaded, emotion={}, sentiment, headline, text, involved_companies, date } = this.props;
 
     if (loaded) {
-      
+
       const companies = involved_companies.map((e) => {
         return {id: e, name: getCmp(e)};
       });
+      if (date.getDay > 4) {
+        date.setDate(date.getDate() - 2);
+      }
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>
@@ -101,7 +104,7 @@ export default class News extends LoadableComponent {
             <SentimentEmotion emotion={emotion} loading={loading} error={error} loaded={loaded}/>
             <div className='news-analysis'>
               <div className='sub-title'>Impact Analysis</div>
-              <CompareChart {...this.state}/>
+              <CompareChart {...this.state} date={date}/>
             </div>
             <div className='news-compare'>
               <CompareButton text={'Compare with other company'} companies={companies}

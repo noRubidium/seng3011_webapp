@@ -27,6 +27,9 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: true,
+        loaded: false,
+        news: [],
+        error: false,
         id: payload.company_code,
       };
     case actionTypes.COMPANY_NEWS_LOADED:

@@ -71,7 +71,7 @@ export default class GenericChart extends React.Component{
       const labels = this.getLabels(data);
       const date = (new Date(this.props.date)).getTime();
       var lineColor = null;
-      const { updateRange=(e)=>e } = this.props;
+      const { updateRange=(e)=>e, yText='Retail Turnover (million AUD)' } = this.props;
       if(date){
         lineColor = 'black';
       }
@@ -127,7 +127,7 @@ export default class GenericChart extends React.Component{
               zIndex: 3
           }],
           title: {
-              text: 'Retail Turnover (million AUD)'
+              text: yText
           },
           lineWidth: 2
         }],
