@@ -7,7 +7,7 @@ import CompanyPrice from 'components/CompanyPrice';
 
 import RelatedCompanies from 'components/RelatedCompanies';
 import { getCmp } from 'utils/lookup';
-
+import InfoButton from 'components/InfoButton';
 
 
 export default class Company extends React.Component {
@@ -55,15 +55,21 @@ export default class Company extends React.Component {
           <div className='col-sm-8 white-bg-container'>
             <CompanyInfo cid={company_id} related_companies={this.state.related_companies}/>
             <div className='white-bg'>
-              <div className='sub-title'> Stock Price Information</div>
+              <div className='sub-title'> Stock Price Information
+                <InfoButton text={'Clinton please change this!'}/>
+              </div>
               <CompanyPrice cid={company_id}/>
             </div>
             <div className='white-bg'>
-              <div className='sub-title'> Stock Graph </div>
+              <div className='sub-title'> Stock Graph
+                <InfoButton text={'Clinton please change this!'}/>
+              </div>
               <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
             </div>
             <div className='white-bg'>
-              <div className='sub-title latest-news-title'> Latest News </div>
+              <div className='sub-title'> Latest News
+                <InfoButton text={'Clinton please change this!'}/>
+              </div>
               <CompanyNews cid={company_id}/>
             </div>
           </div>

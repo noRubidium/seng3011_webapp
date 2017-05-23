@@ -48,9 +48,7 @@ export default class IndustryChart extends LoadableComponent {
       // const categories = data.MonthlyRetailData.map((e) => e.category);
       // const { currentCategoryIndex } = this.state;
       // const currentCategory = industry.split(/(?=[A-Z])/).join(' ');
-      this.loaded_object = (<div className='white-bg'>
-        <GenericChart data={this.beautifyData(data)} yText={yText}/>
-      </div>);
+      this.loaded_object = (<GenericChart data={this.beautifyData(data)} yText={yText}/>);
     }
     return super.render();
   }

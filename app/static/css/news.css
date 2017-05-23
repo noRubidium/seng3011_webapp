@@ -31,9 +31,6 @@
 }
 
 p {
-  -ms-word-break: break-all;
-      word-break: break-all;
-
  -webkit-hyphens: auto;
     -moz-hyphens: auto;
          hyphens: auto;
@@ -48,6 +45,16 @@ p {
   text-decoration: none;
 }
 
+.news-link {
+  text-align: right;
+}
+
 .news-link a {
   color: black;
+  text-decoration: underline;
+}
+
+.news-compare {
+  text-align: center;
+  margin-top: 10px;
 }

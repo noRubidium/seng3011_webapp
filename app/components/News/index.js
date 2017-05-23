@@ -18,7 +18,7 @@ export default class NewsArticle extends React.Component {
                       <a href={'/#/company/' + c + '.AX'}>{c}</a>
                     </span>)
     return (
-      <div>
+      <div className='white-bg'>
         <div className='title'>{title}</div>
         <div className='involved-companies-labels'>{companies}</div>
         <div className='news-date-container'>{this.prettifyDate(date)}</div>
@@ -27,7 +27,7 @@ export default class NewsArticle extends React.Component {
           {paras}
         </div>
         <div className='news-link'>
-          <a href={url} target='_blank'>Visit source article</a>
+          <a href={url} target='_blank'>visit source article</a>
         </div>
       </div>
     );

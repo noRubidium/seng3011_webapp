@@ -161,3 +161,11 @@
   padding: 10px 15px;
   border: 1px #e5e5e5 solid;
 }
+
+.info-button {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-top: -3px;
+  margin-left: 5px;
+}

@@ -97,7 +97,7 @@ export default class News extends LoadableComponent {
       }
       this.loaded_object = (<div>
         <div className='row'>
-          <div className='col-sm-7'>
+          <div className='col-sm-7 white-bg-container'>
             <NewsArticle  title={headline}
                           date={date}
                           involved_companies={involved_companies}
@@ -105,15 +105,15 @@ export default class News extends LoadableComponent {
                           content={text}
                           url={url}/>
           </div>
-          <div className='col-sm-5'>
+          <div className='col-sm-5 white-bg-container'>
             <SentimentEmotion emotion={emotion} loading={loading} error={error} loaded={loaded}/>
-            <div className='news-analysis'>
+            <div className='news-analysis white-bg'>
               <div className='sub-title'>Impact Analysis</div>
               <CompareChart {...this.state} date={date}/>
-            </div>
-            <div className='news-compare'>
-              <CompareButton text={'Compare involved companies'} companies={companies}
-              related_companies={involved_companies}/>
+              <div className='news-compare'>
+                <CompareButton text={'Compare involved companies'} companies={companies}
+                related_companies={involved_companies}/>
+              </div>
             </div>
           </div>
         </div>
