@@ -15,3 +15,16 @@
 .news-compare .compare-button {
   float: none;
 }
+
+.news-date-container {
+  font-size: smaller;
+}
+
+p {
+  -ms-word-break: break-all;
+      word-break: break-all;
+
+ -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+         hyphens: auto;
+}

@@ -6,7 +6,7 @@ export default class NewsArticle extends React.Component {
 
   prettifyDate(date_string) {
     const d = new Date(date_string)
-    const toDisplay = d.toString();
+    const toDisplay = d.toString().split(' GMT')[0];
     return toDisplay;
   }
 
@@ -17,10 +17,8 @@ export default class NewsArticle extends React.Component {
       <div>
         <div className='title'>{title}</div>
         <div className='news-date-container'>{this.prettifyDate(date)}</div>
-        <div className='news-image'>
-          <img src={image} style={{'width': '100%'}}></img>
-        </div>
         <div className='news-content'>
+          <img src={image} style={{'width': '50%', margin: '1em', float: 'right'}}></img>
           {paras}
         </div>
         <div className='news-link'>
