@@ -160,6 +160,7 @@
   margin: 5px 5px 10px;
   padding: 10px 15px;
   border: 1px #e5e5e5 solid;
+  border-radius: 4px;
 }
 
 .info-button {
