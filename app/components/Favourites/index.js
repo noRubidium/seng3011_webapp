@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import EmptyState from 'components/EmptyState';
 import CompanyListItem from 'components/Favourites/listItem';
 import { getCmp } from 'utils/lookup';
 
@@ -37,7 +38,7 @@ export default class FavouriteCompanies extends React.Component {
             <span className='glyphicon glyphicon-plus'></span> Add a company
           </button>
         </Link>
-        {list}
+        {companies.length === 0 ? <EmptyState /> : list}
       </div>
     );
   }

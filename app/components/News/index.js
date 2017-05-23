@@ -18,16 +18,18 @@ export default class NewsArticle extends React.Component {
                       <a href={'/#/company/' + c + '.AX'}>{c}</a>
                     </span>)
     return (
-      <div>
-        <div className='title'>{title}</div>
-        <div className='involved-companies-labels'>{companies}</div>
-        <div className='news-date-container'>{this.prettifyDate(date)}</div>
-        <div className='news-content'>
-          <img src={image} style={{'width': '50%', margin: '1em', float: 'right'}}></img>
-          {paras}
-        </div>
-        <div className='news-link'>
-          <a href={url} target='_blank'>Visit source article</a>
+      <div className='white-bg'>
+        <div className='title'><a href={url} target='_blank' className="afr-link">{title}</a></div>
+        <div>
+          <div className='involved-companies-labels'>{companies}</div>
+          <div className='news-date-container'>{this.prettifyDate(date)}</div>
+          <div className='news-content'>
+            <img src={image} style={{'width': '50%', margin: '1em', float: 'right'}}></img>
+            {paras}
+          </div>
+          <div className='news-link'>
+            <a href={url} target='_blank'>visit source article</a>
+          </div>
         </div>
       </div>
     );

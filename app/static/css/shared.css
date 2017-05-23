@@ -152,4 +152,45 @@
 .no-padding {
   padding-left: 0;
   padding-right: 0;
+.industries-page-title {
+  display: inline-block;
+}
+
+.prev-growth-rate {
+  display: inline-block;
+  margin-top: 20px;
+  float: right;
+}
+
+.white-bg-container {
+  padding: 0;
+}
+
+.white-bg {
+  background-color: white;
+  margin: 5px 5px 10px;
+  padding: 10px 15px;
+  border: 1px #e5e5e5 solid;
+  border-radius: 4px;
+}
+
+.info-button {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-top: -3px;
+  margin-left: 5px;
+}
+
+.learning-centre-text {
+  margin-bottom: 15px;
+}
+
+.learning-centre p {
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.learning-centre .sub-title {
+  cursor: pointer;
 }

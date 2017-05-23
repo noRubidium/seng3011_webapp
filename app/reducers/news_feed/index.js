@@ -16,8 +16,11 @@ export default (state=default_state, action) => {
     case actionTypes.NEWS_FEED_START:
       return {
         ...state,
-        news: [],
+        loading: 0,
         loaded: 0,
+        error: 0,
+        news: []
+
       };
     case actionTypes.NEWS_FEED_LOADING:
       return {
@@ -26,6 +29,13 @@ export default (state=default_state, action) => {
       };
     case actionTypes.NEWS_FEED_LOADED:
 
+      if(payload.length == 0){
+        return {
+          ...state,
+          loading: state.loading - 1,
+          loaded: state.loaded + 1,
+        }
+      }
       const cmp_news = (a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       };

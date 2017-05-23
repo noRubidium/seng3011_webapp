@@ -7,7 +7,6 @@ import newsdata from './newsdata.json';
 
 // Highcharts exporting
 var HighchartsExporting = require('highcharts-exporting');
-HighchartsExporting(ReactHighstock.Highcharts);
 
 export default class StockChartFlag extends React.Component{
 
@@ -38,8 +37,9 @@ export default class StockChartFlag extends React.Component{
         return {
           url: window.btoa(e.url),
           x: (new Date(e.date)).getTime(),
-          title: 'News',
+          title: 'N',
           className: 'news-points',
+          text: 'Click to see news item'
         }
       }).sort((a, b)=>(a.x - b.x));
 
@@ -70,7 +70,7 @@ export default class StockChartFlag extends React.Component{
           name: 'Flags on series',
           data: formattedNewsData,
           onSeries: 'Stock',
-          shape: 'squarepin',
+          shape: 'circlepin',
       }];
 
 
@@ -90,6 +90,7 @@ export default class StockChartFlag extends React.Component{
     }
     //Create the div which the chart will be rendered to.
     render () {
+      HighchartsExporting(ReactHighstock.Highcharts);
       const financeData = this.getFinData();
       const formattedFinanceData = this.formatFinanceData(financeData);
       const formattedNewsData = this.formatNewsData(this.getNewsData());
