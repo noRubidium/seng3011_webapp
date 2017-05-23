@@ -127,3 +127,16 @@
   top: 3px;
   margin-left: 10px;
 }
+
+.involved-companies-labels {
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.involved-companies-labels .label {
+  margin-right: 5px;
+}
+
+.news-date-container {
+  margin-bottom: 5px;
+}

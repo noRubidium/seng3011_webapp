@@ -28,7 +28,7 @@ export default class News extends LoadableComponent {
       loading: 0,
       finished: 0,
       loaded: 0,
-      error: true,
+      error: false,
       data: [],
     };
     load_news(news_url, dispatch);
@@ -98,7 +98,12 @@ export default class News extends LoadableComponent {
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>
-            <NewsArticle title={headline} date={date} image={image} content={text} url={url}/>
+            <NewsArticle  title={headline}
+                          date={date}
+                          involved_companies={involved_companies}
+                          image={image}
+                          content={text}
+                          url={url}/>
           </div>
           <div className='col-sm-5'>
             <SentimentEmotion emotion={emotion} loading={loading} error={error} loaded={loaded}/>

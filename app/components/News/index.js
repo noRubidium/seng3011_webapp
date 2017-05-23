@@ -11,11 +11,14 @@ export default class NewsArticle extends React.Component {
   }
 
   render() {
-    const { title, date, image, content, url } = this.props;
+    const { title, date, image, content, url, involved_companies } = this.props;
     const paras = content.split('\n').map((e) => <p>{e}</p>);
+    const companies = involved_companies.map((c) =>
+                    <span className='label label-info'>{c}</span>)
     return (
       <div>
         <div className='title'>{title}</div>
+        <div className='involved-companies-labels'>{companies}</div>
         <div className='news-date-container'>{this.prettifyDate(date)}</div>
         <div className='news-content'>
           <img src={image} style={{'width': '50%', margin: '1em', float: 'right'}}></img>
