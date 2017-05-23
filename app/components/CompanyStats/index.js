@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import LoadableComponent from 'components/LoadableComponent';
 import { load_company_stats } from 'actions/company/stats';
-import { getStandardDev, getMean } from 'utils/statsUtil';
+import { getStandardDev, getMean, findTrend } from 'utils/statsUtil';
 
 import StockChartFlag from 'components/StockChart/flag.js';
 
@@ -75,11 +75,11 @@ class CompanyStatistics extends React.Component {
     const { min, max, data } = this.props;
     const minDate = new Date(min);
     const maxDate = new Date(max);
-    console.log('DATES: ', min, max, minDate, maxDate);
 
     return (<div>
       Current date range: {minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}
-      <p>standard Dev: {getStandardDev(data, minDate, maxDate)}</p>
+      <p>Volatility Score: {getStandardDev(data, minDate, maxDate).toFixed(2)}</p>
+      <p>Growth Rate: $ {findTrend(data, minDate, maxDate)[0].toFixed(2) || 0} per share everyday </p>
     </div>);
   }
 }
