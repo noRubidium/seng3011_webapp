@@ -8,20 +8,7 @@ import CompanyPrice from 'components/CompanyPrice';
 import RelatedCompanies from 'components/RelatedCompanies';
 import { getCmp } from 'utils/lookup';
 
-const relatedcompanies = [
-  {
-    'company': 'MYR - Myer',
-    'instrumentId': 'MYR.AX'
-  },
-  {
-    'company': 'HVN - Harvey Norman',
-    'instrumentId': 'HVN.AX'
-  },
-  {
-    'company': 'WES - Wesfarmers',
-    'instrumentId': 'WES.AX'
-  }
-]
+
 
 export default class Company extends React.Component {
   constructor (props) {

@@ -43,7 +43,6 @@ export default (state=default_state, action) => {
         loaded: state.loaded + 1,
       };
     case actionTypes.NEWS_FEED_FAILED:
-
       return {
         ...state,
         loading: state.loading - 1,
