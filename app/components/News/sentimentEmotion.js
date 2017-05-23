@@ -11,6 +11,7 @@ export default class SentimentEmotion extends LoadableComponent {
   render() {
     this.loaded_object = null;
 
+    const { loaded, sentiment, emotion } = this.props;
     if (loaded) {
 
       const { label, score } = sentiment;
