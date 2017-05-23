@@ -6,9 +6,9 @@ const filterDates = (data, min, max) => {
     return new Date(v.date) >= min && new Date(v.date) <= max;
   }).map((e) => e.value);
 }
-export const getStandardDev = (data, min, max) => {
+export const getStandardDev = (data, min, max, m=0, b=0) => {
   const set_range = filterDates(data, min, max);
-  return standardDeviation(set_range);
+  return standardDeviation(set_range, m, b);
 }
 
 export const sum = (array) => {
@@ -25,15 +25,20 @@ const mean = (data) => {
   return (sum(data) / data.length);
 }
 
-export const variance = (array) => {
+export const variance = (array, m, b) => {
+  if (m || b) {
+    return mean(array.map((num, i) => {
+      return Math.pow(num - (m * i + b), 2);
+    }));
+  }
   const meanV = mean(array);
   return mean(array.map(function(num) {
     return Math.pow(num - meanV, 2);
   }));
 }
 
-export const standardDeviation = (array) => {
-  return Math.sqrt(variance(array));
+export const standardDeviation = (array, m, b) => {
+  return Math.sqrt(variance(array, m, b));
 }
 
 
