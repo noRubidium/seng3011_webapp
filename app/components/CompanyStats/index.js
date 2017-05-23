@@ -75,10 +75,11 @@ class CompanyStatistics extends React.Component {
     const { min, max, data } = this.props;
     const minDate = new Date(min);
     const maxDate = new Date(max);
-
+    const [m, b] = findTrend(data, minDate, maxDate);
+    const stdDev = getStandardDev(data, minDate, maxDate);
     return (<div>
       Current date range: {minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}
-      <p>Volatility Score: {getStandardDev(data, minDate, maxDate).toFixed(2)}</p>
+      <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
       <p>Growth Rate: $ {findTrend(data, minDate, maxDate)[0].toFixed(2) || 0} per share everyday </p>
     </div>);
   }
