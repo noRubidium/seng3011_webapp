@@ -45,7 +45,7 @@ export default class Company extends React.Component {
         })
         .then((data) => {
           if (this.state.curr_cmp === company_id) {
-            this.setState({ related_companies: data.related_companies.map((e) => `${e}.AX`) });
+            this.setState({ related_companies: data.related_companies });
           }
         });
     }

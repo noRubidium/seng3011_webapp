@@ -21,7 +21,7 @@ export default class CompanyInfo extends React.Component {
             <div className='company-title title'>{c.toLowerCase()}</div>
           </div>
           <div className='col-md-5 buttons'>
-            <CompareButton companies={companies} related_companies={related_companies}/>
+            <CompareButton companies={companies} related_companies={related_companies} default_state={[cid]}/>
             <FollowButton cid={cid}/>
           </div>
           <div className='col-md-12'>

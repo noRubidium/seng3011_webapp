@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import CompareStats from 'components/Compare';
 import CompareChart from 'components/CompareChart';
@@ -17,18 +18,29 @@ export default class Compare extends React.Component {
     this.loaded_object = null;
 
     const companies = this.getCompanies();
+    if (companies.length === 1) {
+      return;
+    }
     this.state = {
       started: false,
       loading: companies.length,
       finished: 0,
       loaded: 0,
-      error: true,
+      error: false,
       data: [],
-      minDate: '2016-01-01',
-      maxDate: '2017-01-01',
+      minDate: '2014-01-01',
+      maxDate: new Date(),
       companies: companies
     };
     this.loadCompareData();
+  }
+
+
+  updateRange (minDate, maxDate) {
+
+    if (minDate !== this.state.minDate || maxDate !== this.state.maxDate) {
+      this.setState({minDate, maxDate});
+    }
   }
 
   loadCompareData() {
@@ -41,7 +53,7 @@ export default class Compare extends React.Component {
     this.setState({started: true, data: []});
 
     companies.map((cid) => {
-      fetch(`http://api.kaiworship.xyz/cmp/${cid}/2010-01-01/2018-01-01`)
+      fetch(`http://api.kaiworship.xyz/cmp/${cid}/2014-01-01/2018-01-01`)
       .then((response) => {
         return response.ok ? response.text():null;
       })
@@ -78,13 +90,19 @@ export default class Compare extends React.Component {
       ...this.state,
     };
     const companies = this.getCompanies();
+    if (companies.length === 0) {
+      return (<Redirect to='/'/>);
+    }
+    if (companies.length === 1) {
+      return (<Redirect to={`/company/${companies[0]}`} />);
+    }
     return (
       <div>
         <div className='title'>
           Comparison for {companies.join(', ')}
         </div>
         <center>
-          <CompareChart {...props}/>
+          <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>
         </center>
           <CompareStats {...props}/>
       </div>

@@ -38,7 +38,8 @@ export default class StockChartFlag extends React.Component{
         return {
           url: window.btoa(e.url),
           x: (new Date(e.date)).getTime(),
-          title: 'News'
+          title: 'News',
+          className: 'news-points',
         }
       }).sort((a, b)=>(a.x - b.x));
 
