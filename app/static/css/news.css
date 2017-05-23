@@ -28,3 +28,7 @@ p {
     -moz-hyphens: auto;
          hyphens: auto;
 }
+
+.news-link a {
+  color: black;
+}
