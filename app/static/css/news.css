@@ -16,6 +16,16 @@
   float: none;
 }
 
+.news-no-preferences a {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.news-no-preferences a:hover {
+  color: black;
+}
+
 .news-date-container {
   font-size: smaller;
 }

@@ -41,7 +41,7 @@ export default class NewsFeed extends LoadableComponent {
       
       if(following.length == 0){
         this.loaded_object = (
-          <div>
+          <div className='news-no-preferences'>
             You have no <Link to='/discover'> favourited companies</Link>, please favourite a company to build your news feed!
           </div>);
       } else {
