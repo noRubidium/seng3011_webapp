@@ -17,7 +17,7 @@ const data = [
       title: 'Department Store',
       content: 'Consists of units engaged in retailing a wide variety of goods, other than food or groceries. Including clothing, furniture, kitchenware, textile goods, electronic appliances and perfumes.',
       change: '-5.49',
-      id: 'DepartmentStore',
+      id: 'DepartmentStores',
       type: 'Retail'
     },
     {

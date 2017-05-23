@@ -9,7 +9,8 @@ companies.map((e) => {
 });
 
 export const getCmp = (cid) => {
-  return goodCompanies[cid.substr(0, 3)].name;
+  const obj = goodCompanies[cid.substr(0, 3)];
+  return obj ? obj.name : '';
 };
 
 export const getType = (id) => {
