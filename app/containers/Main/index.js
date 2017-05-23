@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import Nav from 'containers/Main/nav';
 import Home from 'containers/Home';
@@ -10,6 +10,7 @@ import Industries from 'containers/Industries';
 import Compare from 'containers/Compare';
 import News from 'containers/News';
 import NewsFeed from 'containers/NewsFeed';
+import Training from 'containers/Training';
 import Login from 'components/Login';
 
 
@@ -20,7 +21,7 @@ export default class Main extends React.Component {
                 <Nav path={this.props.location.pathname}/>
                 <div className='content'>
                   <Switch>
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/' render={() => <Redirect  to='/discover'/>}/>
                     <Route path='/discover' component={Home} />
                     <Route path='/industries' component={Industries}/>
                     <Route path='/industry/:industry_name' component={Industry}/>
@@ -28,7 +29,8 @@ export default class Main extends React.Component {
                     <Route path='/feeds' component={NewsFeed}/>
                     <Route path='/preferences' component={Favourites}/>
                     <Route path='/news/:news_url' component={News}/>
-                    <Route path='/compare/:company_ids' component={Compare} />
+                    <Route path='/compare/:company_ids/:start?' component={Compare} />
+                    <Route path='/training' component={Training} />
                   </Switch>
                 </div>
             </div>

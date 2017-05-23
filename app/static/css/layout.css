@@ -73,23 +73,20 @@ input {
   padding: 30px 60px;
 }
 
-.discover-sidebar, .feeds-sidebar, .preferences-sidebar {
+.sidebar {
   text-transform: capitalize;
 }
 
-.discover-icon, .feeds-icon, .preferences-icon{
+.icon {
   height: 14px;
   position: relative;
   bottom: 2px;
   margin-right: 7px;
 }
 
-.user-icon-container {
-  float: left;
-}
-
 .user-icon {
   height: 50px;
+  float: left;
 }
 
 .user-detail {
@@ -105,6 +102,17 @@ input {
 
 .login:hover, .logout:hover {
   color: #ffffff;
+  opacity: 0.7;
+}
+
+.login:link, .logout:link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.login:visited, .logout:visited {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* HEADER */
@@ -132,6 +140,16 @@ input {
 
 .header .logo a {
   color: #858585;
+  opacity: 0.7;
+}
+
+.header .logo a:link {
+  text-decoration: none;
+}
+
+.header .logo a:hover {
+  opacity: 1;
+  text-decoration: none;
 }
 
 .header .search-bar {

@@ -12,7 +12,7 @@ HighchartsExporting(ReactHighstock.Highcharts);
 export default class StockChartFlag extends React.Component{
 
     getNewsData() {
-      return newsdata;
+      return this.props.newsData;
     }
 
     getFinData() {
@@ -28,24 +28,20 @@ export default class StockChartFlag extends React.Component{
 
     formatFinanceData(financeData){
       //
-      const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]).sort();
+      const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.value]).sort();
       //
       return result;
     }
 
-    formatNewsData(newsData){
-      newsData = newsData.data;
-
-      const sort_news = (a, b) => {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
-      }
+    formatNewsData(newsData=[]){
       const result = newsData.map((e) => {
         return {
           url: window.btoa(e.url),
           x: (new Date(e.date)).getTime(),
-          title: 'News'
+          title: 'News',
+          className: 'news-points',
         }
-      }).sort(sort_news);
+      }).sort((a, b)=>(a.x - b.x));
 
       return result;
     }
@@ -61,12 +57,6 @@ export default class StockChartFlag extends React.Component{
         [1, 2, 3, 4, 6]
       ]];
 
-      // const stateSeries = stateNames.map((e, i) => {
-      //   return {type: 'line', dataGrouping: { units: groupingUnits },
-      //           name: e, data: dataArray[i],
-      //           visible: e === 'AUS'};
-      // });
-
       const companySeries = [{
           type: 'line',
           id: 'Stock',
@@ -76,12 +66,12 @@ export default class StockChartFlag extends React.Component{
             units: groupingUnits
           }
         },{
-	        type: 'flags',
-	        name: 'Flags on series',
-	        data: formattedNewsData,
+          type: 'flags',
+          name: 'Flags on series',
+          data: formattedNewsData,
           onSeries: 'Stock',
-	        shape: 'squarepin'
-  		}];
+          shape: 'squarepin',
+      }];
 
 
       return companySeries;
@@ -95,14 +85,14 @@ export default class StockChartFlag extends React.Component{
     }
 
     shouldComponentUpdate (nextProps, nextState) {
-      return nextProps.financeData !== this.props.financeData || nextProps.newsData !== this.props.newsData || nextProps.company_name !== this.props.company_name;
+      const shouldUpdate = nextProps.financeData !== this.props.financeData || nextProps.newsData !== this.props.newsData || nextProps.company_name !== this.props.company_name;
+      return shouldUpdate;
     }
     //Create the div which the chart will be rendered to.
     render () {
       const financeData = this.getFinData();
       const formattedFinanceData = this.formatFinanceData(financeData);
       const formattedNewsData = this.formatNewsData(this.getNewsData());
-
 
       const { company_name, categories, xrange={}, updateRange=(e)=>e } = this.props;
 
@@ -114,7 +104,7 @@ export default class StockChartFlag extends React.Component{
                 dataLabels: {
                   enabled: true
                 }
-              }
+              },
             }
           },
           fallbackToExportServer: false
@@ -122,7 +112,7 @@ export default class StockChartFlag extends React.Component{
         xAxis: {
           events: {
             afterSetExtremes: function(event){
-                
+
                 if (this.getExtremes().dataMin < event.min)
                     updateRange(event.min, event.max);
             }
@@ -138,8 +128,10 @@ export default class StockChartFlag extends React.Component{
 
                   window.location.href = url;
                 }
-              }
-            }
+              },
+            },
+            className: 'news-flag',
+            cursor: 'pointer',
           },
         },
 

@@ -7,30 +7,9 @@ import IndustryInfo from 'components/Industry/info';
 import IndustryStatistics from 'components/Industry/stats';
 import IndustryChart from 'components/Industry/chart';
 import { load_companies, load_abs_stats } from 'actions/company_list';
-import { getCmp } from 'utils/lookup';
+import { getCmp, getType } from 'utils/lookup';
+import industries from 'components/Industry/data';
 
-const data = {
-  'category': 'Department Store',
-  'details': 'Consists of units engaged in retailing a wide variety of goods, other than food or groceries. Including clothing, furniture, kitchenware, textile goods, electronic appliances, perfumes.',
-  'stats': {
-    'sd': 2.13,
-    'trend': 'increase'
-  },
-  'relatedcompanies': [
-    {
-      'company': 'MYR - Myer',
-      'instrumentId': 'MYR.AX'
-    },
-    {
-      'company': 'HVN - Harvey Norman',
-      'instrumentId': 'HVN.AX'
-    },
-    {
-      'company': 'WES - Wesfarmers',
-      'instrumentId': 'WES.AX'
-    }
-  ]
-}
 
 @connect((store) => {
   return {
@@ -44,14 +23,14 @@ export default class Industries extends LoadableComponent {
     const { dispatch } = this.props;
     const industry = this.props.match.params.industry_name;
     load_companies(dispatch, industry);
-    load_abs_stats(dispatch, industry);
+    load_abs_stats(dispatch, industry, getType(industry));
   }
 
   render () {
     const { loaded, companies, abs, industry:category } = this.props;
-    const industry = data;
 
     if (loaded) {
+      const industry = industries.filter((i) => i.id === category)[0];
       const related_companies = companies.map((e) => {
         return {
           instrumentId: `${e}.AX`,
@@ -62,13 +41,13 @@ export default class Industries extends LoadableComponent {
         <div>
           <div className='row'>
             <div className='col-sm-8'>
-              <IndustryInfo title={category} details={industry.details}/>
+              <IndustryInfo title={industry.title} details={industry.content}/>
               <IndustryChart industry={category}/>
-              <IndustryStatistics stats={industry.stats}/>
+              {/*<IndustryStatistics stats={industry.stats}/>*/}
 
             </div>
             <div className='col-sm-4'>
-              <RelatedCompanies companies={related_companies}/>
+              <RelatedCompanies companies={related_companies.map((e) => e.instrumentId)}/>
             </div>
           </div>
         </div>

@@ -18,15 +18,16 @@ export default (state=default_state, action) => {
     case actionTypes.COMPANY_STATS_LOADING:
       return {
         ...state,
-        loading: state.loading + 1,
+        loading: true,
+        loaded: false,
         id: payload.company_code,
         url,
       };
     case actionTypes.COMPANY_STATS_LOADED:
       return {
         ...state,
-        loaded: state.loading === 1,
-        loading: state.loading - 1,
+        loaded: true,
+        loading: false,
         /* a lot of updates */
         financeData: payload,
       };

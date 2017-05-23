@@ -36,11 +36,6 @@ export default class GenericChart extends React.Component{
       return labels;
     }
 
-    // formatFinanceData(financeData){
-    //   const result = financeData.map((e) => [(new Date(e.date)).getTime(),e.price]);
-    //   return result;
-    // }
-
     // Obtain the full series to plot on the chart
     createConfigSeries(dataArray, labels) {
       // set the allowed units for data grouping
@@ -65,23 +60,23 @@ export default class GenericChart extends React.Component{
       return beautifulData;
     }
 
-    // Obtain the x-axis values (dates in milliseconds)
-    // formatDates(data) {
-    //   const firstRegion = data[0].values;
-    //   const configTimes = firstRegion.map((e) => (new Date(e.date)).getTime());
-    //   return configTimes;
-    // }
-
+    shouldComponentUpdate (nextProps, nextState) {
+      const shouldUpdate = nextProps.data !== this.props.data;
+      return shouldUpdate;
+    }
     //Create the div which the chart will be rendered to.
     render () {
       const data = this.getData();
       const dataArray = this.getDataForStates(data);
       const labels = this.getLabels(data);
-
-      const { company_name, categories } = this.props;
+      const date = (new Date(this.props.date)).getTime();
+      var lineColor = null;
+      const { updateRange=(e)=>e, yText='Retail Turnover (million AUD)' } = this.props;
+      if(date){
+        lineColor = 'black';
+      }
 
       const config = {
-
         exporting: {
           chartOptions: { // specific options for the exported image
               plotOptions: {
@@ -95,31 +90,50 @@ export default class GenericChart extends React.Component{
           fallbackToExportServer: false
         },
 
+        xAxis: {
+          plotLines: [{
+              value: date,
+              width: 1,
+              color: lineColor,
+              dashStyle: 'dash'
+          }],
+          events: {
+            afterSetExtremes: function(event){
+                if (this.getExtremes().dataMin < event.min)
+                    updateRange(event.min, event.max);
+            }
+          },
+        },
+
         legend: {
           enabled: true,
-          align: 'right',
-          layout: 'vertical',
-          verticalAlign: 'top',
-          y: 100,
         },
         chart: {
+          backgroundColor: null,
           height: 500,
           zoomType: 'x'
         },
 
-		    rangeSelector: {
-		        selected: 8
-		    },
+        rangeSelector: {
+            selected: 8
+        },
 
-		    yAxis: [{
-		        title: {
-		            text: 'Retail Turnover (million AUD)'
-		        },
-		        height: 300,
-		        lineWidth: 2
-		    }],
+        yAxis: [{
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: lineColor,
+              dashStyle: 'dash',
+              zIndex: 3
+          }],
+          title: {
+              text: yText
+          },
+          lineWidth: 2
+        }],
         series:this.createConfigSeries(dataArray, labels)
+
       };
-        return (<ReactHighstock config={config} />);
+      return (<ReactHighstock config={config} />);
     }
 }

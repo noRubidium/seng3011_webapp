@@ -21,12 +21,15 @@ const default_state = {
 };
 
 export default (state=default_state, action) => {
-  const { type, payload } = action;
+  const { type, payload={} } = action;
   switch (type) {
     case actionTypes.COMPANY_NEWS_LOADING:
       return {
         ...state,
         loading: true,
+        loaded: false,
+        news: [],
+        error: false,
         id: payload.company_code,
       };
     case actionTypes.COMPANY_NEWS_LOADED:
@@ -34,9 +37,9 @@ export default (state=default_state, action) => {
         ...state,
         loading: false,
         loaded: true,
-        
+
         /* a lot of updates */
-        news: payload,
+        news: payload.data,
       };
     case actionTypes.COMPANY_NEWS_FAILED:
       return {

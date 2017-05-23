@@ -18,7 +18,7 @@ export const actionTypes = {
 };
 
 
-export function load_abs_stats (dispatch, category) {
+export function load_abs_stats (dispatch, category, area) {
   async_action(
     {
       type: ABS_LOADING,
@@ -26,7 +26,7 @@ export function load_abs_stats (dispatch, category) {
     },
     ABS_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/v5/Retail/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
+    `http://api.kaiworship.xyz/v5/${area}/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
   );
 }
 

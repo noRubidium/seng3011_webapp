@@ -5,13 +5,14 @@ import Error from 'components/Error';
 
 export default class LoadableComponent extends React.Component {
   render () {
-    
+    const { className } = this.props;
+
     return this.props.loaded ?
       <div>{this.loaded_object}</div>
       : (
         this.props.error?
           <Error message={this.props.error_msg}/>
-        : <Loading />
+        : <Loading className={className} />
       );
   }
 }
