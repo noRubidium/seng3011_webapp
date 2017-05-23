@@ -11,9 +11,11 @@ export default class RelatedCompanies extends React.Component {
       if (!c) {
         return null;
       }
+
       if (c.indexOf('.AX') === -1) {
         c = `${c}.AX`;
       }
+
       return (
         <Link to={`/company/${c}`}  key={i}>
           <CompanyListItem title={getCmp(c)} content={''}/>

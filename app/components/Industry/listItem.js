@@ -14,5 +14,14 @@ export class IndustryPercentage extends React.Component {
 }
 
 export default class IndustryListItem extends ListItem {
-
+  getFirstColumn(title, content) {
+    const { type } = this.props;
+    return(
+      <div>
+        <h4 className='list-item-title industry-list-item-title'>{title}</h4>
+        <span className='label label-primary industry-type'>{type}</span>
+        <div>{content}</div>
+      </div>
+    );
+  }
 }

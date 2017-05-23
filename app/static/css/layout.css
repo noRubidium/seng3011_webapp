@@ -73,11 +73,11 @@ input {
   padding: 30px 60px;
 }
 
-.discover-sidebar, .feeds-sidebar, .preferences-sidebar {
+.sidebar {
   text-transform: capitalize;
 }
 
-.discover-icon, .feeds-icon, .preferences-icon{
+.icon {
   height: 14px;
   position: relative;
   bottom: 2px;
