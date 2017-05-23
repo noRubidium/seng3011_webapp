@@ -107,7 +107,7 @@ export default class News extends LoadableComponent {
               <CompareChart {...this.state} date={date}/>
             </div>
             <div className='news-compare'>
-              <CompareButton text={'Compare with other company'} companies={companies}
+              <CompareButton text={'Compare Companies in this Industry'} companies={companies}
               related_companies={involved_companies}/>
             </div>
           </div>
