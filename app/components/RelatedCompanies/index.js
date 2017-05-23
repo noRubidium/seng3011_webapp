@@ -23,11 +23,13 @@ export default class RelatedCompanies extends React.Component {
       );
     });
     const { onCompanyPage } = this.props;
+    const moreThanThree = companies.length > 3;
+    const className = onCompanyPage ? ('related-companies-list' + (moreThanThree ? ' pre-scrollable' : '')) : '';
 
     return(
       <div className='white-bg related-companies-div'>
         <div className='sub-title'> Related Companies </div>
-          <div className={onCompanyPage ? 'pre-scrollable related-companies-list' : ''}>
+          <div className={className}>
             {list}
           </div>
       </div>
