@@ -10,11 +10,24 @@ export default class SentimentEmotion extends LoadableComponent {
   }
   render() {
     this.loaded_object = null;
-    const { loaded, emotion } = this.props;
-    
+    const { loaded, emotion ,sentiment} = this.props;
+
     if (loaded) {
+
+      const { label, score } = sentiment;
+      const positive = label === 'positive';
+      const style = `label label-${positive ? 'success':'danger'}`
+
       this.loaded_object = (<div>
         <div className='sub-title'>Sentiment Analysis</div>
+          <div>
+              <span className={style}>
+                {label} article
+              </span>
+              <span className='sentiment-score' style={{'float':'right'}}>
+                Sentiment strength: {score.toFixed(3)}
+              </span>
+          </div>
         <SentimentChart data={emotion} />
       </div>);
     }
