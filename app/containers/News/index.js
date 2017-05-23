@@ -85,7 +85,7 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    const { loading, error, loaded, emotion={}, sentiment, headline, date, image, text, involved_companies } = this.props;
+    const { loading, error, loaded, emotion={}, sentiment, headline, date, image, url, text, involved_companies } = this.props;
 
     if (loaded) {
       console.log(involved_companies);
@@ -95,7 +95,7 @@ export default class News extends LoadableComponent {
       this.loaded_object = (<div>
         <div className='row'>
           <div className='col-sm-7'>
-            <NewsArticle title={headline} date={date} image={image} content={text}/>
+            <NewsArticle title={headline} date={date} image={image} content={text} url={url}/>
           </div>
           <div className='col-sm-5'>
             <SentimentEmotion emotion={emotion} loading={loading} error={error} loaded={loaded}/>

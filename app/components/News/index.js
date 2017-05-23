@@ -21,7 +21,7 @@ export default class NewsArticle extends React.Component {
   }
 
   render() {
-    const { title, date, image, content } = this.props;
+    const { title, date, image, content, url } = this.props;
     const paras = content.split('\n').map((e) => <p>{e}</p>);
     return (
       <div>
@@ -32,6 +32,9 @@ export default class NewsArticle extends React.Component {
         </div>
         <div className='news-content'>
           {paras}
+        </div>
+        <div className='news-link'>
+          <a href={url} target='_blank'>Visit source article</a>
         </div>
       </div>
     );
