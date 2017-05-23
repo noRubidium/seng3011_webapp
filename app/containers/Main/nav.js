@@ -28,14 +28,14 @@ class SideBar extends React.Component {
 
   render() {
     const { path, token } = this.props;
-    const active = path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : 'discover');
-    const base_links = [['discover', true], ['feeds', false], ['preferences', false]];
+    const active = path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : path === '/training' ? 'training' : 'discover');
+    const base_links = [['discover', true], ['feeds', false], ['preferences', false], ['training', false]];
     const links = base_links.filter((e) => e[1] || token).map((e) => e[0]);
     const sideLinks = links.map((link, i) =>
-      <li className={link + '-sidebar ' + (active === link ? 'active' : '')} key={i}>
+      <li className={link + '-sidebar sidebar ' + (active === link ? 'active' : '')} key={i}>
         <Link to={`/${link}`}>
           <img src={`static/images/${link}.svg`}
-          className={`${link}-icon`}/>{link}
+          className={`icon`}/>{link}
         </Link>
       </li>
     )
