@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import NewsItem from 'components/News/listItem';
 import Sentiment from 'components/News/sentiment';
 import LoadableComponent from 'components/LoadableComponent';
+import EmptyState from 'components/EmptyState';
 import { load_news_feed } from 'actions/user/news_feed';
 
 @connect((store) => {
@@ -38,12 +39,9 @@ export default class NewsFeed extends LoadableComponent {
   render () {
     const { loading, loaded, news, following } = this.props;
     if (loaded) {
-      
       if(following.length == 0){
-        this.loaded_object = (
-          <div className='news-no-preferences'>
-            You have no <Link to='/discover'> favourited companies</Link>, please favourite a company to build your news feed!
-          </div>);
+
+        this.loaded_object = <EmptyState />;
       } else {
         this.loaded_object = news.map((n, i) =>
           <Link to={`/news/${btoa(n.url)}`} key={i}>
