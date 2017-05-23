@@ -21,3 +21,30 @@
   font-size: 15px;
   font-weight: bold;
 }
+
+.background-bar {
+  background-color:red;
+  height:200px;
+  width:30px;
+  margin:0 auto;
+  border-style: solid;
+  border-width: thin;
+}
+
+.positive-bar {
+  background-color:red;
+  height:100px;
+  width:30px;
+  margin:0 auto;
+  border-style: solid;
+  border-width: thin;
+}
+
+.negative-bar {
+  background-color:red;
+  height:100px;
+  width:30px;
+  margin:0 auto;
+  border-style: solid;
+  border-width: thin;
+}

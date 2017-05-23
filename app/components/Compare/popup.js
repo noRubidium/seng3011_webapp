@@ -78,7 +78,7 @@ export default class ComparePopup extends React.Component {
   }
 
   render () {
-    const compareLink = `/compare/${this.state.value}`;
+    const compareLink = `/compare/${this.state.value}/2014-01-01`;
     const { companies, related_companies } = this.props;
 
     return (

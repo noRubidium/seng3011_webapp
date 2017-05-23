@@ -75,6 +75,32 @@ const toCompanyStatsItems = (data, min, max, f) => {
 }
 
 class CompanyStatistics extends React.Component {
+
+  getPositiveHeight(rate) {
+    if (rate >= 0) {
+      if (rate > 0.1) {
+        return 100;
+      } else {
+        return (0.1 - rate)*100;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+  getNegativeHeight(rate) {
+    if (rate < 0) {
+      if (rate < 0.1) {
+        return 100;
+      } else {
+        return rate*100;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+
   render () {
     const { min, max, data } = this.props;
     const minDate = new Date(min);
@@ -85,15 +111,39 @@ class CompanyStatistics extends React.Component {
       <p>Current date range:</p>
       <p className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</p>
       <div className='row'>
-        <div className='col-md-6'>
-          <div className='background-bar'>
-            <div className='foreground-bar' style={{'background-color':'red','height':toString((100 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)) + '%'}}>
 
+        <div className='col-md-6'>
+
+          <div className='bar-chart-title'>Volatility</div>
+          <div className='row'>
+            <div className='background-bar'>
+              <div className='foreground-bar' style={{'background-color':'white', 'height':200 - (200 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}}>
+              </div>
             </div>
           </div>
           <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
         </div>
+
         <div className='col-md-6'>
+          <div className='bar-chart-title'>Growth Rate</div>
+          <div className='row'>
+            <div className='positive-bar'>
+              <div className='positive-background-bar'>
+
+              </div>
+              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(1 - Math.sqrt(1 / (stdDev + 1))).toFixed(2)}}>
+
+              </div>
+            </div>
+            <div className='negative-bar'>
+              <div className='negative-background-bar'>
+
+              </div>
+              <div className='negative-foreground-bar'>
+
+              </div>
+            </div>
+          </div>
         <p>Growth Rate: $ {m.toFixed(2) || 0} per share everyday </p>
         </div>
       </div>
