@@ -32,6 +32,7 @@ export default class Industries extends LoadableComponent {
         <IndustryItem title={i.title}
                       content={i.content}
                       secondComponent={<IndustryPercentage content={i.change}/>}
+                      type={i.type}
         />
         </Link>
       );

@@ -16,7 +16,8 @@ export default (state=default_state, action) => {
     case actionTypes.NEWS_FEED_START:
       return {
         ...state,
-        news: []
+        news: [],
+        loaded: 0,
       };
     case actionTypes.NEWS_FEED_LOADING:
       return {
@@ -42,7 +43,6 @@ export default (state=default_state, action) => {
         loaded: state.loaded + 1,
       };
     case actionTypes.NEWS_FEED_FAILED:
-
       return {
         ...state,
         loading: state.loading - 1,

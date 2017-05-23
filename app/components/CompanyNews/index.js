@@ -45,16 +45,14 @@ export default class CompanyNews extends LoadableComponent {
         />
       </Link>
     );
-    this.loaded_object = (<div style={{float:'left'}}>
-      <div className='latest-news-heading'>Latest News</div>
+    this.loaded_object = (
       <div>
-      <div className='list-group' className='news-list'>
-        { newsItems.length !== 0 ?
-          newsItems
-          : <Error message='There is no news for this company' />}
+        <div className='list-group' className='news-list'>
+          { newsItems.length !== 0 ?
+            newsItems
+            : <Error message='There is no news for this company' />}
         </div>
-      </div>
-    </div>);
+      </div>);
     return super.render();
   }
 }

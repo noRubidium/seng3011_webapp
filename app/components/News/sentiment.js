@@ -75,6 +75,8 @@ export default class Sentiment extends React.Component {
       loaded={this.state.loaded}
       error={this.state.error}
       sentiment={this.state.sentiment}
+      className={'news-sentiment'}
+      error_msg={'sentiment not found'}
     />);
   }
 }
