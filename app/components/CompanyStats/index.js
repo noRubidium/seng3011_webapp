@@ -50,9 +50,13 @@ export default class CompanyInfo extends LoadableComponent {
       this.other_child = <CompanyStatistics {...this.state} data={this.props.financeData}/>;
       this.chart = <StockChartFlag financeData={this.props.financeData}
       company_name={company_name} newsData={this.props.news.news} updateRange={this.updateRange.bind(this)}/>;
-      this.loaded_object = (<div>
-        {this.chart}
-        {this.other_child}
+      this.loaded_object = (<div className='row'>
+        <div className='col-sm-8'>
+          {this.chart}
+        </div>
+        <div className='col-sm-4'>
+          {this.other_child}
+        </div>
       </div>);
     }
     return super.render();
@@ -78,7 +82,8 @@ class CompanyStatistics extends React.Component {
     const [m, b] = findTrend(data, minDate, maxDate);
     const stdDev = getStandardDev(data, minDate, maxDate);
     return (<div>
-      Current date range: {minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}
+      <p>Current date range:</p>
+      <p className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</p>
       <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
       <p>Growth Rate: $ {m.toFixed(2) || 0} per share everyday </p>
     </div>);

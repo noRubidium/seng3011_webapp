@@ -136,7 +136,7 @@ export default class StockChartFlag extends React.Component{
         },
 
         chart: {
-          height: '500px',
+          height: '400px',
           zoomType: 'x'
         },
 

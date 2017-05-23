@@ -17,14 +17,14 @@ export default class CompanyPrice extends LoadableComponent {
     const { cid, dispatch } = this.props;
     load_company_price(cid, dispatch, this.props);
   }
-  
+
   componentDidUpdate () {
     const { cid, dispatch } = this.props;
     load_company_price(cid, dispatch, this.props);
   }
 
   render () {
-    this.loaded_object = (<div className='col-md-12'>
+    this.loaded_object = (<div className='col-md-12 no-padding'>
       <div className='sub-title'>Stock Price Information</div>
       <table className='table table-bordered company-price-table'>
         <tbody>
