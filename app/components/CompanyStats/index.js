@@ -84,8 +84,19 @@ class CompanyStatistics extends React.Component {
     return (<div>
       <p>Current date range:</p>
       <p className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</p>
-      <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
-      <p>Growth Rate: $ {m.toFixed(2) || 0} per share everyday </p>
+      <div className='row'>
+        <div className='col-md-6'>
+          <div className='background-bar'>
+            <div className='foreground-bar' style={{'background-color':'red','height':toString((100 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)) + '%'}}>
+
+            </div>
+          </div>
+          <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
+        </div>
+        <div className='col-md-6'>
+        <p>Growth Rate: $ {m.toFixed(2) || 0} per share everyday </p>
+        </div>
+      </div>
     </div>);
   }
 }
