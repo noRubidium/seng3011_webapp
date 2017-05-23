@@ -14,7 +14,7 @@ export default class NewsArticle extends React.Component {
     const { title, date, image, content, url, involved_companies } = this.props;
     const paras = content.split('\n').map((e) => <p>{e}</p>);
     const companies = involved_companies.map((c) =>
-                    <span className='label label-info'>{c}</span>)
+                    <span className='label label-info'><a href={'/#/company/' + c + '.AX'}>{c}</a></span>)
     return (
       <div>
         <div className='title'>{title}</div>
