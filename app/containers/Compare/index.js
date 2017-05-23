@@ -28,16 +28,15 @@ export default class Compare extends React.Component {
       loaded: 0,
       error: false,
       data: [],
-      minDate: '2014-01-01',
+      minDate: new Date(this.props.match.params.start || '2014-01-01'),
+      startDate: new Date(this.props.match.params.start || '2014-01-01'),
       maxDate: new Date(),
       companies: companies
     };
     this.loadCompareData();
   }
 
-
   updateRange (minDate, maxDate) {
-
     if (minDate !== this.state.minDate || maxDate !== this.state.maxDate) {
       this.setState({minDate, maxDate});
     }
@@ -50,10 +49,10 @@ export default class Compare extends React.Component {
       return;
     }
     const companies = this.getCompanies();
+    const sD = this.state.startDate.toISOString().split('T')[0];
     this.setState({started: true, data: []});
-
     companies.map((cid) => {
-      fetch(`http://api.kaiworship.xyz/cmp/${cid}/2014-01-01/2018-01-01`)
+      fetch(`http://api.kaiworship.xyz/cmp/${cid}/${sD}/2018-01-01`)
       .then((response) => {
         return response.ok ? response.text():null;
       })
@@ -80,6 +79,16 @@ export default class Compare extends React.Component {
     });
   }
 
+  setDate (e) {
+    this.setState({startDate: new Date(e.target.value), started: false});
+    this.props.history.push(`/compare/${this.props.match.params.company_ids}/${new Date(e.target.value).toISOString().split('T')[0]}`);
+  }
+
+  componentDidUpdate () {
+    this.loadCompareData();
+
+  }
+
   getCompanies () {
     const { company_ids='' } = this.props.match.params;
     return company_ids.split(',');
@@ -100,6 +109,10 @@ export default class Compare extends React.Component {
       <div>
         <div className='title'>
           Comparison for {companies.join(', ')}
+          <p>
+            <input  type='date' onChange={this.setDate.bind(this)} value={this.state.startDate.toISOString().split('T')[0]}  max='2017-06-01' min='2000-01-01'
+             locale="en-gb"/>
+          </p>
         </div>
         <center>
           <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>

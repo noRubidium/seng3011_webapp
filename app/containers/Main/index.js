@@ -28,7 +28,7 @@ export default class Main extends React.Component {
                     <Route path='/feeds' component={NewsFeed}/>
                     <Route path='/preferences' component={Favourites}/>
                     <Route path='/news/:news_url' component={News}/>
-                    <Route path='/compare/:company_ids' component={Compare} />
+                    <Route path='/compare/:company_ids/:start?' component={Compare} />
                   </Switch>
                 </div>
             </div>
