@@ -21,10 +21,15 @@ export default class NewsFeed extends LoadableComponent {
     load_news_feed(following, dispatch);
   }
 
+  prettifyDate(date_string) {
+    const d = new Date(date_string);
+    return d.toDateString();
+  }
+
   createContent(date, summary) {
     return (
       <div>
-        <div className='news-list-item-date'>{date}</div>
+        <div className='news-list-item-date'>{this.prettifyDate(date)}</div>
         <div className='news-list-item-summary'>{summary}</div>
       </div>
     )
