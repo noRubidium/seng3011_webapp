@@ -22,7 +22,6 @@ export default class Industries extends LoadableComponent {
     this.loaded_object = null;
     const { dispatch } = this.props;
     const industry = this.props.match.params.industry_name;
-    console.log(getType(industry));
     load_companies(dispatch, industry);
     load_abs_stats(dispatch, industry, getType(industry));
   }
