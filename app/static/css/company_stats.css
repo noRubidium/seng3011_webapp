@@ -23,9 +23,9 @@
 }
 
 .background-bar {
-  background-color:orange;
+  background-color:#f0ad4e;
   height:200px;
-  width:40px;
+  width:35px;
   margin:0 auto;
   border-style: solid;
   border-width: medium;
@@ -39,9 +39,9 @@
 }
 
 .positive-bar {
-  background-color:green;
+  background-color:#5cb85c;
   height:100px;
-  width:40px;
+  width:35px;
   margin:0 auto;
   border-style: solid;
   border-width: medium;
@@ -59,7 +59,7 @@
 .negative-bar {
   background-color:white;
   height:100px;
-  width:40px;
+  width:35px;
   margin:0 auto;
   border-style: solid;
   border-width: medium;
@@ -78,7 +78,7 @@
 .bar-chart-title {
   text-align: center;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
