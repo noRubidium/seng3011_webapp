@@ -73,7 +73,8 @@ export default class ComparePopup extends React.Component {
   }
 
   compare() {
-    $('.modal-backdrop').hide();
+    $('.modal-backdrop').remove();
+    $("body").attr('class', '');
   }
 
   render () {

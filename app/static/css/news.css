@@ -37,3 +37,7 @@ p {
 .involved-company-label a {
   text-decoration: none;
 }
+
+.news-link a {
+  color: black;
+}

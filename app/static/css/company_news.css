@@ -23,3 +23,13 @@
 	font-size: 12px;
 	margin-top: 10px;
 }
+
+.latest-news-heading {
+	font-weight: bold;
+	font-size: 16px;
+	padding-bottom: 10px;
+}
+
+.news-list-item-date {
+	font-size: smaller;
+}
