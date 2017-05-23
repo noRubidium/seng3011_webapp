@@ -19,7 +19,7 @@
 .news-no-preferences a {
   color: grey;
   text-decoration: none;
-
+  cursor: pointer;
 }
 
 .news-no-preferences a:hover {
