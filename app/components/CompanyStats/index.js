@@ -79,21 +79,21 @@ class CompanyStatistics extends React.Component {
   getPositiveHeight(rate) {
     if (rate >= 0) {
       if (rate > 0.1) {
-        return 100;
+        return 0;
       } else {
-        return (0.1 - rate)*100;
+        return (0.1 - rate)*1000;
       }
     } else {
-      return 0;
+      return 100;
     }
   }
 
   getNegativeHeight(rate) {
     if (rate < 0) {
-      if (rate < 0.1) {
+      if (rate < -0.1) {
         return 100;
       } else {
-        return rate*100;
+        return Math.abs(rate*1000);
       }
     } else {
       return 0;
@@ -117,34 +117,30 @@ class CompanyStatistics extends React.Component {
           <div className='bar-chart-title'>Volatility</div>
           <div className='row'>
             <div className='background-bar'>
-              <div className='foreground-bar' style={{'background-color':'white', 'height':200 - (200 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}}>
+              <div className='foreground-bar' style={{'background-color':'white', 'height':200 - (200 * (1 - Math.sqrt(1 / (stdDev + 1))))}}>
               </div>
             </div>
           </div>
-          <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
+          <div className='stock-stat-value'>{(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</div>
+          <div className='stock-stat-blurb'>Volatility Score</div>
         </div>
 
         <div className='col-md-6'>
           <div className='bar-chart-title'>Growth Rate</div>
           <div className='row'>
             <div className='positive-bar'>
-              <div className='positive-background-bar'>
-
-              </div>
-              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(1 - Math.sqrt(1 / (stdDev + 1))).toFixed(2)}}>
+              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m)}}>
 
               </div>
             </div>
             <div className='negative-bar'>
-              <div className='negative-background-bar'>
-
-              </div>
-              <div className='negative-foreground-bar'>
+              <div className='negative-foreground-bar' style={{'background-color': 'red', 'height':this.getNegativeHeight(m)}}>
 
               </div>
             </div>
           </div>
-        <p>Growth Rate: $ {m.toFixed(2) || 0} per share everyday </p>
+        <div className='stock-stat-value'>$ {m.toFixed(2) || 0}</div>
+        <div className='stock-stat-blurb'>growth per share per day</div>
         </div>
       </div>
     </div>);
