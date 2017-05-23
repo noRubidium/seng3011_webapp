@@ -26,6 +26,16 @@
   color: black;
 }
 
+.title .afr-link {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.title .afr-link:hover {
+  color: grey;
+}
+
 .news-date-container {
   font-size: smaller;
 }
