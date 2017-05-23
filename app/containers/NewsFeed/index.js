@@ -37,7 +37,6 @@ export default class NewsFeed extends LoadableComponent {
 
   render () {
     const { loading, loaded, news, following } = this.props;
-    console.log('WHAAT',this);
     if (loaded) {
       
       if(following.length == 0){
