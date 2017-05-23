@@ -16,14 +16,33 @@
   float: none;
 }
 
+.news-no-preferences a {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 'large';
+  margin-top: 60;
+}
+
+.news-no-preferences a:hover {
+  color: black;
+}
+
+.title .afr-link {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.title .afr-link:hover {
+  color: grey;
+}
+
 .news-date-container {
   font-size: smaller;
 }
 
 p {
-  -ms-word-break: break-all;
-      word-break: break-all;
-
  -webkit-hyphens: auto;
     -moz-hyphens: auto;
          hyphens: auto;
@@ -38,6 +57,17 @@ p {
   text-decoration: none;
 }
 
+.news-link {
+  text-align: right;
+}
+
 .news-link a {
   color: black;
+  text-decoration: underline;
+}
+
+.news-compare {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
 }

@@ -6,7 +6,6 @@ import LoadableComponent from 'components/LoadableComponent';
 
 // Highcharts exporting
 var HighchartsExporting = require('highcharts-exporting');
-HighchartsExporting(ReactHighstock.Highcharts);
 
 export default class StockChart extends React.Component{
 
@@ -83,6 +82,7 @@ export default class StockChart extends React.Component{
 
     //Create the div which the chart will be rendered to.
     render () {
+      HighchartsExporting(ReactHighstock.Highcharts);
       const retailData = this.getData().MonthlyRetailData;
       const dataArray = this.getDataForStates(retailData);
       const stateNames = this.getStateNames(retailData);

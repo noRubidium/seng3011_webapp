@@ -8,7 +8,6 @@ import data from './data.json';
 
 // Highcharts exporting
 var HighchartsExporting = require('highcharts-exporting');
-HighchartsExporting(ReactHighstock.Highcharts);
 
 export default class SentimentChart extends React.Component{
     getData() {
@@ -41,9 +40,9 @@ export default class SentimentChart extends React.Component{
 
     //Create the div which the chart will be rendered to.
     render () {
+        HighchartsExporting(ReactHighstock.Highcharts);
         // const emotionsData = this.props.emotionsData;
         const emotionsData = {emotion: this.getData()};
-        
 
         const config = {
           plotOptions: {

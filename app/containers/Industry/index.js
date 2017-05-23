@@ -9,6 +9,7 @@ import IndustryChart from 'components/Industry/chart';
 import { load_companies, load_abs_stats } from 'actions/company_list';
 import { getCmp, getType } from 'utils/lookup';
 import industries from 'components/Industry/data';
+import InfoButton from 'components/InfoButton';
 
 
 @connect((store) => {
@@ -40,13 +41,17 @@ export default class Industries extends LoadableComponent {
       this.loaded_object = (
         <div>
           <div className='row'>
-            <div className='col-sm-8'>
+            <div className='col-sm-8 white-bg-container'>
               <IndustryInfo title={industry.title} details={industry.content}/>
-              <IndustryChart industry={category}/>
-              {/*<IndustryStatistics stats={industry.stats}/>*/}
-
+              <div className='white-bg'>
+                <div className='sub-title'>Industry Chart
+                  <InfoButton text={'Clinton please change this!'}/>
+                </div>
+                  <IndustryChart industry={category}/>
+                {/*<IndustryStatistics stats={industry.stats}/>*/}
+              </div>
             </div>
-            <div className='col-sm-4'>
+            <div className='col-sm-4 white-bg-container'>
               <RelatedCompanies companies={related_companies.map((e) => e.instrumentId)}/>
             </div>
           </div>
