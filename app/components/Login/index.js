@@ -17,6 +17,7 @@ export default class Login extends React.Component {
   logout(e){
     e.preventDefault();
     this.props.dispatch(logout());
+    window.location.href = '/#/discover';
   }
 
   render(){

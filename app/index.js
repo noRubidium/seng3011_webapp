@@ -25,7 +25,7 @@ const access = (route) => {
   localStorage.setItem('id_token', idToken);
   store.dispatch({type: 'LOGGEDIN',payload: idToken});
   store.dispatch(loadProfile(lock, idToken));
-  return (<Redirect to='/'/>);
+  return (<Redirect to='/feeds'/>);
 }
 
 const loadProf = () => {
