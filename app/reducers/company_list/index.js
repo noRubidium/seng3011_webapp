@@ -3,7 +3,7 @@ import { actionTypes } from 'actions/company_list';
 const default_state = {
   loading: false,
   error: false,
-  loaded: true,
+  loaded: false,
   industry: 'Total',
   companies: [],
   abs: {

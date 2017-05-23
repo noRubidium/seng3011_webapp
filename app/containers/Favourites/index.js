@@ -9,10 +9,9 @@ import { unfollow } from 'actions/user/follow';
 @connect((store) => {
   return store.user;
 })
-export default class News extends LoadableComponent {
+export default class News extends React.Component {
   constructor (props) {
     super(props);
-    this.loaded_object = null;
   }
 
   unfollow (cid) {
@@ -20,7 +19,6 @@ export default class News extends LoadableComponent {
   }
 
   render () {
-    // const loaded = true;
     const { following } = this.props;
 
     return (

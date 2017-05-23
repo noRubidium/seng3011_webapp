@@ -17,6 +17,8 @@ export default (state=default_state, action) => {
       return {
         ...state,
         loading: true,
+        loaded: false,
+        error: false,
         url: payload,
       };
     case actionTypes.NEWS_LOADED:

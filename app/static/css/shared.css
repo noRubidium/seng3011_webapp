@@ -90,3 +90,53 @@
 .compare-popup-button {
   margin-left: 10px;
 }
+
+.table-bordered {
+  border: #858585;
+}
+
+.related-company-compare {
+  margin-top: 10px;
+}
+
+.related-company-compare-title {
+  font-weight: bold;
+}
+
+.related-compare-item {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn.compare-related {
+  font-size: 12px;
+  margin: 10px 10px 0 0;
+}
+
+.btn.compare-related:focus, .btn.compare-related:active {
+   outline: none !important;
+   background-color: #fff;
+}
+
+.industry-list-item-title {
+  display: inline;
+}
+
+.label.industry-type {
+  position: absolute;
+  top: 3px;
+  margin-left: 10px;
+}
+
+.involved-companies-labels {
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.involved-companies-labels .label {
+  margin-right: 5px;
+}
+
+.news-date-container {
+  margin-bottom: 5px;
+}

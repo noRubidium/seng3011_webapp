@@ -15,3 +15,29 @@
 .news-compare .compare-button {
   float: none;
 }
+
+.news-date-container {
+  font-size: smaller;
+}
+
+p {
+  -ms-word-break: break-all;
+      word-break: break-all;
+
+ -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+         hyphens: auto;
+}
+
+.involved-company-label:hover {
+  /*background-color: #2bacd4;*/
+  cursor: pointer;
+}
+
+.involved-company-label a {
+  text-decoration: none;
+}
+
+.news-link a {
+  color: black;
+}

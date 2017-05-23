@@ -21,11 +21,25 @@ export default class NewsFeed extends LoadableComponent {
     load_news_feed(following, dispatch);
   }
 
+  prettifyDate(date_string) {
+    const d = new Date(date_string);
+    return d.toDateString();
+  }
+
+  createContent(date, summary) {
+    return (
+      <div>
+        <div className='news-list-item-date'>{this.prettifyDate(date)}</div>
+        <div className='news-list-item-summary'>{summary}</div>
+      </div>
+    )
+  }
+
   render () {
     const { loading, loaded, news, following } = this.props;
     console.log('WHAAT',this);
     if (loaded) {
-
+      
       if(following.length == 0){
         this.loaded_object = (
           <div>
@@ -42,6 +56,7 @@ export default class NewsFeed extends LoadableComponent {
           </Link>
         );
       }
+
     }
 
     return (
