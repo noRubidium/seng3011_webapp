@@ -80,7 +80,7 @@ class CompanyStatistics extends React.Component {
     return (<div>
       Current date range: {minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}
       <p>Volatility Score: {(10 * (1 - Math.sqrt(1 / (stdDev + 1)))).toFixed(2)}</p>
-      <p>Growth Rate: $ {findTrend(data, minDate, maxDate)[0].toFixed(2) || 0} per share everyday </p>
+      <p>Growth Rate: $ {m.toFixed(2) || 0} per share everyday </p>
     </div>);
   }
 }
