@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import CompareStats from 'components/Compare';
 import CompareChart from 'components/CompareChart';
@@ -17,6 +18,9 @@ export default class Compare extends React.Component {
     this.loaded_object = null;
 
     const companies = this.getCompanies();
+    if (companies.length === 1) {
+      return;
+    }
     this.state = {
       started: false,
       loading: companies.length,
@@ -86,6 +90,12 @@ export default class Compare extends React.Component {
       ...this.state,
     };
     const companies = this.getCompanies();
+    if (companies.length === 0) {
+      return (<Redirect to='/'/>);
+    }
+    if (companies.length === 1) {
+      return (<Redirect to={`/company/${companies[0]}`} />);
+    }
     return (
       <div>
         <div className='title'>
