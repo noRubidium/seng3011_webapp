@@ -7,7 +7,6 @@ import newsdata from './newsdata.json';
 
 // Highcharts exporting
 var HighchartsExporting = require('highcharts-exporting');
-HighchartsExporting(ReactHighstock.Highcharts);
 
 export default class StockChartFlag extends React.Component{
 
@@ -90,6 +89,7 @@ export default class StockChartFlag extends React.Component{
     }
     //Create the div which the chart will be rendered to.
     render () {
+      HighchartsExporting(ReactHighstock.Highcharts);
       const financeData = this.getFinData();
       const formattedFinanceData = this.formatFinanceData(financeData);
       const formattedNewsData = this.formatNewsData(this.getNewsData());
