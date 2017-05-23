@@ -24,6 +24,10 @@ export default class CompanyPrice extends LoadableComponent {
   }
 
   render () {
+<<<<<<< HEAD
+=======
+    this.loaded_object = (<div>
+>>>>>>> f0486c0f721a3fa4aed94c0139e0938c8a54cb97
       <table className='table table-bordered company-price-table'>
         <tbody>
           <tr>

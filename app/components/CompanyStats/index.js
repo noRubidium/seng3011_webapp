@@ -110,7 +110,7 @@ class CompanyStatistics extends React.Component {
     const norm = 1 - Math.sqrt(1 / (stdDev + 1));
     return (<div>
       <div className='date-range-title'>Current date range:</div>
-      <div className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</div>
+      <div className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} to {maxDate.toISOString().split('T')[0]}</div>
       <div className='row'>
 
         <div className='col-md-6'>
@@ -132,7 +132,11 @@ class CompanyStatistics extends React.Component {
               <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m) }}></div>
             </div>
             <div className='negative-bar'>
+<<<<<<< HEAD
               <div className='negative-foreground-bar' style={{'background-color': 'red', 'height':this.getNegativeHeight(m), 'border-bottom-left-radius': 4, 'border-bottom-right-radius': 4}}></div>
+=======
+              <div className='negative-foreground-bar' style={{'background-color': '#d9534f', 'height':this.getNegativeHeight(m)}}></div>
+>>>>>>> f0486c0f721a3fa4aed94c0139e0938c8a54cb97
             </div>
           </div>
           <div className='stock-stat-value'>$ {m.toFixed(2) || 0}</div>
