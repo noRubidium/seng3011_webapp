@@ -90,8 +90,8 @@ class CompanyStatistics extends React.Component {
 
   getNegativeHeight(rate) {
     if (rate < 0) {
-      if (rate < -0.1) {
-        return 100;
+      if (rate < -0.099) {
+        return 99;
       } else {
         return Math.abs(rate*1000);
       }
@@ -107,6 +107,7 @@ class CompanyStatistics extends React.Component {
     const maxDate = new Date(max);
     const [m, b] = findTrend(data, minDate, maxDate);
     const stdDev = getStandardDev(data, minDate, maxDate, m, b);
+    const norm = 1 - Math.sqrt(1 / (stdDev + 1));
     return (<div>
       <div className='date-range-title'>Current date range:</div>
       <div className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} - {maxDate.toISOString().split('T')[0]}</div>
@@ -128,10 +129,10 @@ class CompanyStatistics extends React.Component {
           <div className='bar-chart-title'>Growth Rate</div>
           <div className='row'>
             <div className='positive-bar'>
-              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m)}}></div>
+              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m) }}></div>
             </div>
             <div className='negative-bar'>
-              <div className='negative-foreground-bar' style={{'background-color': 'red', 'height':this.getNegativeHeight(m)}}></div>
+              <div className='negative-foreground-bar' style={{'background-color': 'red', 'height':this.getNegativeHeight(m), 'border-bottom-left-radius': 4, 'border-bottom-right-radius': 4}}></div>
             </div>
           </div>
           <div className='stock-stat-value'>$ {m.toFixed(2) || 0}</div>
