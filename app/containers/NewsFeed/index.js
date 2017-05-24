@@ -38,6 +38,7 @@ export default class NewsFeed extends LoadableComponent {
 
   render () {
     const { loading, loaded, news, following } = this.props;
+    console.log('HERERERERE',this.props);
     if (loaded) {
       if(following.length == 0){
 
@@ -46,7 +47,7 @@ export default class NewsFeed extends LoadableComponent {
         this.loaded_object = news.map((n, i) =>
           <Link to={`/news/${btoa(n.url)}`} key={i}>
             <NewsItem title={n.headline}
-                      content={n.summary}
+                      content={this.createContent(n.date,n.summary)}
                       secondComponent={<Sentiment url={btoa(n.url)}
                       analyse={loading === 0}/>}
             />
