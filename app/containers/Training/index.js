@@ -52,7 +52,7 @@ export default class Training extends React.Component {
         we are trying to help you getting started!
       </div>
       <div className='sub-title' data-toggle='collapse' href='#investing'>
-        What is investing?
+        <span className='caret'></span> What is investing?
       </div>
       <div className='collapse' id='investing'>
         <div className='well'>
@@ -63,7 +63,7 @@ export default class Training extends React.Component {
         </div>
       </div>
       <div className='sub-title' data-toggle='collapse' href='#trading'>
-        What is a trade and trading?
+        <span className='caret'></span> What is a trade and trading?
       </div>
       <div className='collapse' id='trading'>
         <div className='well'>
@@ -76,7 +76,7 @@ export default class Training extends React.Component {
         </div>
       </div>
       <div className='sub-title' data-toggle='collapse' href='#difference'>
-        What is the difference between investing and trading?
+        <span className='caret'></span> What is the difference between investing and trading?
       </div>
       <div className='collapse' id='difference'>
         <div className='well'>
@@ -95,7 +95,7 @@ export default class Training extends React.Component {
           </p>
         </div>
       </div>
-      <div className='page-title'>Interactive Playground</div>
+      <div className='page-title' style={{marginTop: '20px'}}>Interactive Playground</div>
         {this.interactive()}
     </div>);
   }
