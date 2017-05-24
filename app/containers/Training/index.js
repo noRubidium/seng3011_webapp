@@ -1,6 +1,49 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+const data_man = [
+    {label: 'line', text: 'Long term investment', lnk: '/learning-centre/long'},
+    {label: 'bar', text: 'Short term trading', lnk: '/learning-centre/short'},
+    {label: 'pie', text: 'Portfolio management', lnk: '/learning-centre/port'}];
+
+const main_style= {
+    textAlign: 'center',
+    paddingTop: 50,
+};
+
+const inner_align = {
+    maxWidth: 200,
+    margin: 'auto',
+    top: 50
+};
+
+const outer_style = {
+    width: '100%',
+    textAlign: 'center'
+};
+
+const info_img = {
+    width: 100,
+    marginBottom:10
+};
+
 
 export default class Training extends React.Component {
+  interactive () {
+      const infos = data_man.map((e) =>
+          <div className='col-md-4' style={main_style}>
+            <div style={inner_align}>
+              <Link to={e.lnk}><img src={`/static/images/${e.label}-chart.svg`} className='pref-info' style={info_img}/></Link>
+              <div>{e.text}</div>
+            </div>
+          </div>);
+      return (<div style={outer_style}>
+        <div className='row'>
+            { infos }
+        </div>
+      </div>);
+  }
+
   render () {
     return (<div className='learning-centre'>
       <div className='page-title'>Learning Centre</div>
@@ -52,6 +95,8 @@ export default class Training extends React.Component {
           </p>
         </div>
       </div>
+      <div className='page-title'>Interactive Playground</div>
+        {this.interactive()}
     </div>);
   }
 }

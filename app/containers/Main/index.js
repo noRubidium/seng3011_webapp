@@ -7,6 +7,7 @@ import Company from 'containers/Company';
 import Industry from 'containers/Industry';
 import Favourites from 'containers/Favourites';
 import Industries from 'containers/Industries';
+import Playground from 'containers/Playground';
 import Compare from 'containers/Compare';
 import News from 'containers/News';
 import NewsFeed from 'containers/NewsFeed';
@@ -30,6 +31,7 @@ export default class Main extends React.Component {
                     <Route path='/preferences' component={Favourites}/>
                     <Route path='/news/:news_url' component={News}/>
                     <Route path='/compare/:company_ids/:start?' component={Compare} />
+                    <Route path='/learning-centre/:type' component={Playground} />
                     <Route path='/learning-centre' component={Training} />
                   </Switch>
                 </div>
