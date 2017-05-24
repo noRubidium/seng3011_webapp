@@ -38,22 +38,43 @@ export default class Company extends React.Component {
     }
   }
 
+  loadIndustries () {
+    const { company_id } = this.props.match.params;
+    if (this.state.curr_cmp !== company_id) {
+      this.setState({started: false, curr_cmp: company_id});
+      const url = `http://api.kaiworship.xyz/mapping/cmp/${company_id.slice(0,3)}`
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) return;
+          return response.json();
+        })
+        .then((data) => {
+          if (this.state.curr_cmp === company_id) {
+            this.setState({ industries: data.industries });
+          }
+        });
+    }
+  }
+
   componentWillMount () {
     this.loadRelated();
+    this.loadIndustries();
   }
 
   componentDidUpdate () {
     this.loadRelated();
+    this.loadIndustries();
   }
 
   render () {
     const { company_id } = this.props.match.params;
-
     return (
       <div>
         <div className='row'>
           <div className='col-sm-8 white-bg-container'>
-            <CompanyInfo cid={company_id} related_companies={this.state.related_companies}/>
+            <CompanyInfo cid={company_id}
+                         related_companies={this.state.related_companies}
+                         industries={this.state.industries}/>
             <div className='white-bg'>
               <div className='sub-title'> Stock Price Information
                 <InfoButton text={'Clinton please change this!'}/>
@@ -84,22 +105,6 @@ export default class Company extends React.Component {
               </div>
               <CompanyNews cid={company_id}/>
             </div>
-          </div>
-          <div className='col-sm-4 white-bg-container'>
-            <RelatedCompanies companies={this.state.related_companies}
-                              onCompanyPage={true}/>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-sm-12'>
-            <div className='sub-title'> Stock Graph </div>
-            <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-sm-12'>
-            <div className='sub-title latest-news-title'> Latest News </div>
-            <CompanyNews cid={company_id}/>
           </div>
         </div>
       </div>

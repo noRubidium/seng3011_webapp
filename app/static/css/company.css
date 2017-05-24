@@ -1,6 +1,6 @@
 .company-name {
   display: inline-block;
-  width: 65%;
+  width: 67%;
 }
 
 .buttons {
@@ -34,5 +34,13 @@
 }
 
 .related-companies-list {
-  height: 230px;
+  height: 250px;
+}
+
+.industry-label {
+  margin-right: 5px;
+}
+
+.industry-label a:hover {
+  text-decoration: none;
 }

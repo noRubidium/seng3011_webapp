@@ -90,8 +90,8 @@ class CompanyStatistics extends React.Component {
 
   getNegativeHeight(rate) {
     if (rate < 0) {
-      if (rate < -0.099) {
-        return 99;
+      if (rate < -0.098) {
+        return 98;
       } else {
         return Math.abs(rate*1000);
       }
