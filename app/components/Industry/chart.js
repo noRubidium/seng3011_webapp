@@ -44,10 +44,6 @@ export default class IndustryChart extends LoadableComponent {
     if (loaded) {
       const yText = data.MonthlyRetailData ? 'Retail Turnover (million AUD)' :
                               'Merchandise Exports (thousands AUD)';
-      //
-      // const categories = data.MonthlyRetailData.map((e) => e.category);
-      // const { currentCategoryIndex } = this.state;
-      // const currentCategory = industry.split(/(?=[A-Z])/).join(' ');
       this.loaded_object = (<GenericChart data={this.beautifyData(data)} yText={yText}/>);
     }
     return super.render();
