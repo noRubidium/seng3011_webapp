@@ -12,6 +12,7 @@ const toCompanyStatsItems = (data, min, max, f, cFun=(e)=>e) => {
     <StatCompareItem company={d.label} value={d.value.toFixed(2)}/>
   );
 }
+
 export default class CompareStats extends React.Component {
   render () {
     const { companies, minDate, maxDate, data } = this.props;
@@ -23,13 +24,13 @@ export default class CompareStats extends React.Component {
 
     return (
       <div>
-        <div>
-          Current date range: {min.toISOString().split('T')[0]} - {max.toISOString().split('T')[0]}
+        <div className='compare-date-range'>
+          <span className='compare-date-range-title'>Current date range: </span>{min.toISOString().split('T')[0]} - {max.toISOString().split('T')[0]}
         </div>
         <div className='panel panel-default'>
           <div className='panel-body compare-stats-panel'>
             <div className='row'>
-              <div className='col-sm-4 compare-stats'>
+              <div className='col-md-6 compare-stats'>
                 <div className='compare-stats-sub-title sub-title'>
                   Volatility
                 </div>
@@ -37,17 +38,12 @@ export default class CompareStats extends React.Component {
                   {volatilityStats}
                 </div>
               </div>
-              <div className='col-sm-4 compare-stats side-border'>
+              <div className='col-md-6 compare-stats side-border'>
                 <div className='compare-stats-sub-title sub-title'>
                   Return
                 </div>
                 <div>
                   {returnStats}
-                </div>
-              </div>
-              <div className='col-sm-4 compare-stats'>
-                <div className='compare-stats-sub-title sub-title'>
-                  Stats #3
                 </div>
               </div>
             </div>
