@@ -7,6 +7,7 @@ import { getStandardDev, getMean, findTrend } from 'utils/statsUtil';
 
 import StockChartFlag from 'components/StockChart/flag.js';
 
+import InfoButton from 'components/InfoButton';
 
 
 @connect((store) => {
@@ -114,7 +115,7 @@ class CompanyStatistics extends React.Component {
       <div className='row'>
 
         <div className='col-md-6'>
-          <div className='bar-chart-title'>Volatility</div>
+          <div className='bar-chart-title'>Volatility<InfoButton text={'The volatility of the share price over the time period on the chart. Calculated as a normalised standard deviation.'}/></div>
           <div className='row'>
             <div className='background-bar'>
               <div className='foreground-bar' style={{'background-color':'white', 'height':200 - (200 * (1 - Math.sqrt(1 / (stdDev + 1))))}}>
@@ -126,7 +127,7 @@ class CompanyStatistics extends React.Component {
         </div>
 
         <div className='col-md-6'>
-          <div className='bar-chart-title'>Growth Rate</div>
+          <div className='bar-chart-title'>Growth Rate<InfoButton text={'The average rate of change of the share price over the time period on the chart. Calculated as the gradient of a linear regression.'}/></div>
           <div className='row'>
             <div className='positive-bar'>
               <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m) }}></div>
