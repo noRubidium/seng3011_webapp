@@ -38,7 +38,7 @@ export default class CompareStats extends React.Component {
                   {volatilityStats}
                 </div>
               </div>
-              <div className='col-md-6 compare-stats side-border'>
+              <div className='col-md-6 compare-stats' style={{borderLeft: '1px solid #ddd'}}>
                 <div className='compare-stats-sub-title sub-title'>
                   Return
                 </div>
