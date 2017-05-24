@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const data_man = [{label: 'discover', text: '1. Click on discover', lnk: '/discover'}, {label: 'search', text: '2. Search a company directly or base on industry', lnk: '/'}, {label: 'follow', text: '3. On the company page, click follow', lnk: '/company/DMP.AX'}];
+const data_man = [{label: 'discover', text: '1. Click on discover', lnk: '/discover'}, {label: 'search', text: '2. Search a company directly or based on industry', lnk: '/'}, {label: 'follow', text: '3. On the company page, click follow', lnk: '/company/DMP.AX'}];
 
 const main_style= {
   textAlign: 'center',
-  paddingTop: 150,
+  paddingTop: 100,
 };
 
 const inner_align = {
@@ -16,12 +16,13 @@ const inner_align = {
 
 const outer_style = {
   width: '100%',
-  textAlign: 'center'
+  textAlign: 'center',
+  marginTop: 40
 };
 
 const info_img = {
-  width: 100,
-  marginBottom:10
+  width: 95,
+  marginBottom: 15
 };
 
 export default class EmptyState extends React.Component {

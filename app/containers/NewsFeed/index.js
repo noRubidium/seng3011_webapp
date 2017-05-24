@@ -58,7 +58,7 @@ export default class NewsFeed extends LoadableComponent {
 
     return (
       <div>
-        <div className='page-title'>News Feeds</div>
+        <div className='page-title news-feed-title'>News Feeds</div>
         {super.render()}
       </div>
     )
