@@ -23,8 +23,8 @@ const outer_style = {
 };
 
 const info_img = {
-    width: 100,
-    marginBottom:10
+    width: 95,
+    marginBottom: 15
 };
 
 
