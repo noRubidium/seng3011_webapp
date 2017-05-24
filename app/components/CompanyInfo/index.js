@@ -24,7 +24,7 @@ export default class CompanyInfo extends React.Component {
     return (
       <div className='white-bg' style={{overflow: 'auto'}}>
         <div className='company-name'>
-          <div className='company-title title'>{c.toLowerCase()}</div>
+          <div className='company-title title'><a href={`http://www.asx.com.au/asx/statistics/announcements.do?by=asxCode&asxCode=${cid.slice(0,3)}&timeframe=D&period=M6`} style={{color:'black'}}>{c.toLowerCase()}</a></div>
         </div>
         <div className='buttons'>
           <FollowButton cid={cid}/>
