@@ -199,3 +199,25 @@
 .industries-page-title {
   display: inline-block;
 }
+
+.popover-container {
+  display: inline-block;
+}
+
+.popover-container:hover .span-popover {
+  display: block;
+}
+
+.span-popover {
+  display: none;
+  background-color: rgba(0,0,0,0.85);
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 12px;
+  font-family: 'Helvetica',sans-serif;
+  padding: 7px 10px;
+  position: absolute;
+  width: 200px;
+  z-index: 4;
+}

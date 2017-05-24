@@ -5,13 +5,10 @@ export default class InfoButton extends React.Component {
     const { text } = this.props;
 
     return (
-      <img src='/static/images/info.svg'
-           className='info-button'
-           data-container='body'
-           data-toggle='popover'
-           data-placement='right'
-           data-content={text}>
-      </img>
+      <span style={{color: 'black'}} className='popover-container'>
+        <img src='/static/images/info.svg' className='info-button' />
+        <span className='span-popover'>{text}</span>
+      </span>
     );
   }
 }

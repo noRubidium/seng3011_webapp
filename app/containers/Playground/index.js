@@ -42,14 +42,14 @@ export default class Playground extends React.Component {
       <div>Sorry, the stock price will go down, as the growth of the household goods section is nearly zero, the industry is currently experiencing a recession.</div>
       <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Next Question</button>
     </div>) : (<div style={question_style}>
-      <div> Do you think Myer's stock price will go up or down in the next 5 months? </div>
+      <div> Do you think Myer&apos;s stock price will go up or down in the next 5 months? </div>
       <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Yes</button>
       <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>No</button>
     </div>);
     const { industry:category } = this.props;
     return (<div style={{'text-align': 'center', 'font-size': 'medium'}}>
       <div style={{'font-size': 'larger', 'margin': '1em'}}><strong>Long Term Investment Training Platform</strong></div>
-      <div className='row'>
+      <div className='row white-bg'>
         <div className='col-sm-6'>
           AUSTRALIAN DEPARTMENT STORES TURNOVER
           <IndustryChart industry={category}/>
