@@ -51,9 +51,11 @@ export default class Playground extends React.Component {
       <div style={{'font-size': 'larger', 'margin': '1em'}}><strong>Long Term Investment Training Platform</strong></div>
       <div className='row'>
         <div className='col-sm-6'>
+          AUSTRALIAN DEPARTMENT STORES TURNOVER
           <IndustryChart industry={category}/>
         </div>
         <div className='col-sm-6'>
+        MYER STOCK PRICE
         <StockChartFlag financeData={this.props.financeData || []}
         company_name={'MYER'} newsData={[]}/>
         </div>
