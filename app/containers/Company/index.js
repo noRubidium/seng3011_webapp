@@ -76,8 +76,8 @@ export default class Company extends React.Component {
                          related_companies={this.state.related_companies}
                          industries={this.state.industries}/>
             <div className='white-bg'>
-              <div className='sub-title'> Stock Price Information
-                <InfoButton text={'Clinton please change this!'}/>
+              <div className='sub-title'> Stock Price Information & Fundamentals
+                <InfoButton text={'These are the key statistics to understanding the fundamental condition of the company. Click on each individual statistic to find out more.'}/>
               </div>
               <CompanyPrice cid={company_id}/>
             </div>
@@ -91,7 +91,7 @@ export default class Company extends React.Component {
           <div className='col-sm-12 white-bg-container'>
             <div className='white-bg'>
               <div className='sub-title'> Stock Graph
-                <InfoButton text={'Clinton please change this!'}/>
+                <InfoButton text={'This chart visualises the historical share price of the stock. It is also populated with news items related to the company. Use this to find trends and the impacts of news events on the stock price.'}/>
               </div>
               <CompanyStats cid={company_id} company_name={getCmp(company_id)}/>
             </div>
@@ -101,7 +101,7 @@ export default class Company extends React.Component {
           <div className='col-sm-12 white-bg-container'>
             <div className='white-bg'>
               <div className='sub-title'> Latest News
-                <InfoButton text={'Clinton please change this!'}/>
+                <InfoButton text={'The latest news relating to this company. News can inform investors of potential opportunities to buy or sell to make a profit. It can also be used as an educational tool to understand the market better.'}/>
               </div>
               <CompanyNews cid={company_id}/>
             </div>
