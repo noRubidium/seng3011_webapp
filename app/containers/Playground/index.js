@@ -3,12 +3,8 @@ import React from 'react';
 export default class Playground extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      loading: false,
-      loaded: false,
-      error: false,
-      data: [],
-    };
+    const { dispatch } = this.props;
+    load_abs_stats(dispatch, industry, getType(industry));
   }
   render () {
     return (<div>
