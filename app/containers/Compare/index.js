@@ -143,7 +143,6 @@ export default class Compare extends React.Component {
         <center>
           <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>
         </center>
-        { link_companies }
           <CompareStats {...props}/>
       </div>
     );
