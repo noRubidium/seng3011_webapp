@@ -48,7 +48,7 @@ export default class Playground extends React.Component {
     </div>);
     const { industry:category } = this.props;
     return (<div style={{'text-align': 'center', 'font-size': 'medium'}}>
-      <div style={{'font-size': 'larger', 'margin': '1em'}}><strong>Household Goods</strong></div>
+      <div style={{'font-size': 'larger', 'margin': '1em'}}><strong>Long Term Investment Training Platform</strong></div>
       <div className='row'>
         <div className='col-sm-6'>
           <IndustryChart industry={category}/>
