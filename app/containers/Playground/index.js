@@ -43,8 +43,8 @@ export default class Playground extends React.Component {
       <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Next Question</button>
     </div>) : (<div style={question_style}>
       <div> Do you think Myer&apos;s stock price will go up or down in the next 5 months? </div>
-      <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Yes</button>
-      <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>No</button>
+      <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Up</button>
+      <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Down</button>
     </div>);
     const { industry:category } = this.props;
     return (<div style={{'text-align': 'center', 'font-size': 'medium'}}>
