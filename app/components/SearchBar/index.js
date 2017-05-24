@@ -103,7 +103,7 @@ class SearchBar extends React.Component {
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: 'Type any company names',
+      placeholder: 'Search For Companies',
       value,
       onChange: this.onChange
     };
