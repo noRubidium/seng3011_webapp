@@ -12,7 +12,7 @@ const inner_align = {
   maxWidth: 200,
   margin: 'auto',
   top: 50
-}
+};
 
 const outer_style = {
   width: '100%',

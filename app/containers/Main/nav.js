@@ -28,8 +28,8 @@ class SideBar extends React.Component {
 
   render() {
     const { path, token } = this.props;
-    const active = path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : path === '/learning-centre' ? 'learning-centre' : 'discover');
-    const base_links = [['discover', true], ['feeds', false], ['preferences', false], ['learning-centre', false]];
+    const active = path === '/feeds' ? 'feeds' : (path === '/preferences' ? 'preferences' : path.match('^/learning-centre') ? 'learning-centre' : path === '/industries' ? 'industries' :'discover');
+    const base_links = [['discover', true], ['industries', true], ['feeds', false], ['preferences', false], ['learning-centre', false]];
     const links = base_links.filter((e) => e[1] || token).map((e) => e[0]);
     const sideLinks = links.map((link, i) =>
       <li className={link + '-sidebar sidebar ' + (active === link ? 'active' : '')} key={i}>
