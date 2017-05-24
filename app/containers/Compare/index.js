@@ -32,9 +32,9 @@ export default class Compare extends React.Component {
       minDate: new Date(this.props.match.params.start || '2014-01-01'),
       startDate: new Date(this.props.match.params.start || '2014-01-01'),
       maxDate: new Date(),
-      companies: companies
+      companies: [],
     };
-    this.loadCompareData();
+    this.actLoad();
   }
 
   updateRange (minDate, maxDate) {
@@ -43,16 +43,12 @@ export default class Compare extends React.Component {
     }
   }
 
-  loadCompareData() {
-    const { started } = this.state;
-
-    if (started) {
-      return;
-    }
+  actLoad () {
     const companies = this.getCompanies();
     const sD = this.state.startDate.toISOString().split('T')[0];
-    this.setState({started: true, data: []});
+    this.setState({started: true, data: [], companies: companies});
     companies.map((cid) => {
+      console.log('GETCID:', cid);
       fetch(`http://api.kaiworship.xyz/cmp/${cid}/${sD}/2018-01-01`)
       .then((response) => {
         return response.ok ? response.text():null;
@@ -67,27 +63,49 @@ export default class Compare extends React.Component {
         }
         const result = csv2json(d);
         const { finished, data, loading } = this.state;
+        if (data.filter((e) => e.label === cid).length !== 0) {
+          this.setState({
+            finished: finished + 1,
+            loading: loading - 1,
+          });
+        } else{
+          this.setState({
+            finished: finished + 1,
+            loading: loading - 1,
+            data: data.concat([getReturn(result, cid)])
+          });
+        }
 
-        this.setState({
-          finished: finished + 1,
-          loading: loading - 1,
-          data: data.concat([getReturn(result, cid)])
-        });
         if (finished === companies.length - 1) {
           this.setState({loaded: true});
         }
       });
     });
+
+  }
+  loadCompareData(a = 0) {
+    const { started, companies:currCmps } = this.state;
+    const companies = this.getCompanies();
+
+
+    if (started || currCmps.toString() === this.getCompanies().toString()) {
+      return;
+    }
+
+    this.actLoad();
   }
 
   setDate (e) {
+    if (new Date(e.target.value) === this.state.startDate) {
+      return;
+    }
+    console.log('hi!');
     this.setState({startDate: new Date(e.target.value), started: false});
     this.props.history.push(`/compare/${this.props.match.params.company_ids}/${new Date(e.target.value).toISOString().split('T')[0]}`);
   }
 
   componentDidUpdate () {
-    this.loadCompareData();
-
+    this.loadCompareData(5);
   }
 
   getCompanies () {
@@ -108,7 +126,7 @@ export default class Compare extends React.Component {
     }
 
     const link_companies = companies.map((v, i) => {
-      return <Link to={`/company/${v}`} key={i}>{(v)},</Link>;
+      return (<Link to={`/company/${v}`} key={i}>{(v)},</Link>);
     });
 
     return (
