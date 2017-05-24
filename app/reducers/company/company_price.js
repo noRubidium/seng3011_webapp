@@ -4,15 +4,16 @@ const default_state = {
   loading: false,
   error: false,
   loaded: false,
+  last_trade_date: "2017-05-23T00:00:00+1000",
   /* Stub data for testing display*/
-  company_id: 'DMP',
-  close_date: "2017-05-05T00:00:00+1000",
-  close_price: 61.5,
-  change_price: -0.19,
-  volume: 139717,
-  day_high_price: 62.11,
-  day_low_price: 61.26,
-  change_in_percent: '-0.308%',
+  // company_id: 'DMP',
+  // close_date: "2017-05-05T00:00:00+1000",
+  // close_price: 61.5,
+  // change_price: -0.19,
+  // volume: 139717,
+  // day_high_price: 62.11,
+  // day_low_price: 61.26,
+  // change_in_percent: '-0.308%',
 
 };
 
@@ -35,11 +36,10 @@ export default (state=default_state, action) => {
       }
       return {
         ...state,
-        ...payload.data[0],
+        ...payload,
         loading: false,
         loaded: true,
         error: false,
-        prev_close_price: payload.data[1].close_price,
       };
     case actionTypes.COMPANY_PRICE_FAILED:
       if (url !== state.url) {
@@ -47,7 +47,7 @@ export default (state=default_state, action) => {
       }
       return {
         ...state,
-        ...payload.data[0],
+        ...payload,
         error: true,
         loading: false,
         loaded: false,
