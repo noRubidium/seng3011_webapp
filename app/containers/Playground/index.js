@@ -39,7 +39,8 @@ export default class Playground extends React.Component {
   }
   render () {
     const qa = this.state.answer ? (<div style={question_style}>
-      Sorry, the stock price will go down, as the growth of the household goods section is nearly zero, the industry is currently experiencing a recession.
+      <div>Sorry, the stock price will go down, as the growth of the household goods section is nearly zero, the industry is currently experiencing a recession.</div>
+      <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Next Question</button>
     </div>) : (<div style={question_style}>
       <div> Do you think Myer's stock price will go up or down in the next 5 months? </div>
       <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Yes</button>
