@@ -52,7 +52,7 @@ export default class News extends LoadableComponent {
 
     this.setState({started: true, data: [], loading: companies.length});
     companies.map((cid) => {
-      fetch(`http://api.kaiworship.xyz/cmp/${cid}/${start}/${end}`)
+      fetch(`${process.env.API_URL}/cmp/${cid}/${start}/${end}`)
       .then((response) => {
         return response.ok ? response.text():null;
       })

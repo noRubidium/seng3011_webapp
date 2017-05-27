@@ -26,7 +26,7 @@ export function load_abs_stats (dispatch, category, area) {
     },
     ABS_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/v5/${area}/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
+    `${process.env.API_URL}/v5/${area}/${category}/Total,NSW,WA,SA,ACT,VIC,TAS,QLD,NT?startDate=2000-01-01&endDate=2018-01-01`
   );
 }
 
@@ -38,7 +38,7 @@ export function load_companies (dispatch, industry='Total') {
     },
     INDUSTRY_COMPANIES_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/mapping/ind/${industry}`,
+    `${process.env.API_URL}/mapping/ind/${industry}`,
     INDUSTRY_COMPANIES_FAILED
   );
 }

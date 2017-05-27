@@ -25,12 +25,12 @@ class PopupContent extends React.Component {
 	}
 
   render () {
-    const { companies, parent, related_companies } = this.props;
+    const { companies=[], parent, related_companies=[] } = this.props;
     const { value } = parent.state;
 
-    const options = companies ? companies.map((e)=>{
+    const options = companies.map((e)=>{
       return {label: `${e.id} - ${e.name}`, value: `${e.id}.AX`};
-    }) : [];
+    });
 
     const filteredRelated = related_companies.filter((d) => (value.indexOf(`${d}.AX`) == -1));
     const relatedList = filteredRelated.map((d) =>

@@ -44,7 +44,7 @@ export default class Sentiment extends React.Component {
       return;
     }
     this.setState({started: true, loading: true});
-    const url = `http://api.kaiworship.xyz/news/lnk/${this.props.url}`
+    const url = `${process.env.API_URL}/news/lnk/${this.props.url}`
     fetch(url)
       .then((response) => {
         if (!response.ok) return;

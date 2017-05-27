@@ -18,7 +18,7 @@ export function load_news (news_url, dispatch) {
     },
     NEWS_LOADED,
     dispatch,
-   `http://api.kaiworship.xyz/news/lnk/${news_url}`,
+   `${process.env.API_URL}/news/lnk/${news_url}`,
    NEWS_FAILED
   );
 }

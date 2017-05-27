@@ -18,6 +18,6 @@ export function load_company_news (company_code, dispatch) {
     },
     COMPANY_NEWS_LOADED,
     dispatch,
-   `http://api.kaiworship.xyz/news/cmp/${company_code.substr(0, 3)}`
+   `${process.env.API_URL}/news/cmp/${company_code.substr(0, 3)}`
   );
 }
