@@ -33,8 +33,8 @@ class PopupContent extends React.Component {
     });
 
     const filteredRelated = related_companies.filter((d) => (value.indexOf(`${d}.AX`) == -1));
-    const relatedList = filteredRelated.map((d) =>
-      <button value={`${d}.AX`} onClick={this.addValue} className='btn btn-default compare-related'>
+    const relatedList = filteredRelated.map((d, i) =>
+      <button value={`${d}.AX`} onClick={this.addValue} className='btn btn-default compare-related' key={i}>
         {d} - {getCmp(d)}
       </button>
     );

@@ -71,7 +71,7 @@ export default class Company extends React.Component {
     return (
       <div>
         <div className='row'>
-          <div className='col-sm-8 white-bg-container'>
+          <div className='col-sm-12 col-md-8 white-bg-container'>
             <CompanyInfo cid={company_id}
                          related_companies={this.state.related_companies}
                          industries={this.state.industries}/>
@@ -82,7 +82,7 @@ export default class Company extends React.Component {
               <CompanyPrice cid={company_id}/>
             </div>
           </div>
-          <div className='col-sm-4 white-bg-container'>
+          <div className='col-sm-12 col-md-4 white-bg-container'>
             <RelatedCompanies companies={this.state.related_companies}
                               onCompanyPage={true}/>
           </div>

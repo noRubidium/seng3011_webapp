@@ -18,7 +18,7 @@ export default class CompanyInfo extends React.Component {
     const industriesLabels = industries.map((i, idx) =>
         <span className='label label-info industry-label' key={idx}>
           <a href={`/#/industry/${i.name}`}>
-            {i.name.replace(/([A-Z])/g, ' $1').trim()}
+            {i.name.replace(/([A-Z])/g, ' $1').trim()} (PE ratio: {i.pe_ratio})
           </a>
         </span>);
     return (

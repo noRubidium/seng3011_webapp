@@ -52,10 +52,10 @@ export default class CompanyInfo extends LoadableComponent {
       this.chart = <StockChartFlag financeData={this.props.financeData}
       company_name={company_name} newsData={this.props.news.news} updateRange={this.updateRange.bind(this)}/>;
       this.loaded_object = (<div className='row'>
-        <div className='col-sm-8'>
+        <div className='col-sm-12 col-md-8'>
           {this.chart}
         </div>
-        <div className='col-sm-4'>
+        <div className='col-sm-12 col-md-4'>
           {this.other_child}
         </div>
       </div>);
@@ -114,11 +114,11 @@ class CompanyStatistics extends React.Component {
       <div className='stock-stats-date-range'>{minDate.toISOString().split('T')[0]} to {maxDate.toISOString().split('T')[0]}</div>
       <div className='row'>
 
-        <div className='col-md-6'>
+        <div className='col-sm-6'>
           <div className='bar-chart-title'>Volatility<InfoButton text={'The volatility of the share price over the time period on the chart. Calculated as a normalised standard deviation.'}/></div>
           <div className='row'>
             <div className='background-bar'>
-              <div className='foreground-bar' style={{'background-color':'white', 'height':200 - (200 * (1 - Math.sqrt(1 / (stdDev + 1))))}}>
+              <div className='foreground-bar' style={{'backgroundColor':'white', 'height':200 - (200 * (1 - Math.sqrt(1 / (stdDev + 1))))}}>
               </div>
             </div>
           </div>
@@ -126,15 +126,15 @@ class CompanyStatistics extends React.Component {
           <div className='stock-stat-blurb'>Volatility Score</div>
         </div>
 
-        <div className='col-md-6'>
+        <div className='col-sm-6'>
           <div className='bar-chart-title'>Growth Rate<InfoButton text={'The average rate of change of the share price over the time period on the chart. Calculated as the gradient of a linear regression.'}/></div>
           <div className='row'>
             <div className='positive-bar'>
-              <div className='positive-foreground-bar' style={{'background-color': 'white', 'height':this.getPositiveHeight(m) }}></div>
+              <div className='positive-foreground-bar' style={{'backgroundColor': 'white', 'height':this.getPositiveHeight(m) }}></div>
             </div>
             <div className='negative-bar'>
 
-              <div className='negative-foreground-bar' style={{'background-color': '#d9534f', 'height':this.getNegativeHeight(m), 'border-bottom-left-radius': 4, 'border-bottom-right-radius': 4}}></div>
+              <div className='negative-foreground-bar' style={{'backgroundColor': '#d9534f', 'height':this.getNegativeHeight(m), 'borderBottomLeftRadius': 4, 'borderBottomRightRadius': 4}}></div>
             </div>
           </div>
           <div className='stock-stat-value'>$ {m.toFixed(2) || 0}</div>
