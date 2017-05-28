@@ -18,6 +18,7 @@ export default class Playground extends React.Component {
         step: 0,
         history: [],
         balance: 100000,
+        date: new Date('2015-01-01')
     };
 
   }
