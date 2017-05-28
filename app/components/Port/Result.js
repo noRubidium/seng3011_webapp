@@ -6,7 +6,7 @@ export default class PortResult extends React.Component {
   }
 
   render() {
-    return (<div>MyComponent</div>);
+    return (<div>Result</div>);
   }
 }
 
