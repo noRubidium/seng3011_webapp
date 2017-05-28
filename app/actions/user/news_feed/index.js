@@ -27,7 +27,7 @@ export function load_news_feed (following, dispatch) {
       },
       NEWS_FEED_LOADED,
       dispatch,
-     `http://api.kaiworship.xyz/news/cmp/${cid.substr(0, 3)}`,
+     `${process.env.API_URL}/news/cmp/${cid.substr(0, 3)}`,
      NEWS_FEED_FAILED
     );
   });

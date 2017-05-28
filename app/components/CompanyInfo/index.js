@@ -12,15 +12,15 @@ import { getCmp } from 'utils/lookup';
 export default class CompanyInfo extends React.Component {
 
   render () {
-    const { cid, related_companies, industries } = this.props;
+    const { cid, related_companies, industries=[] } = this.props;
     const companies = data.data;
     const c = getCmp(cid);
-    const industriesLabels = industries ? industries.map((i) =>
-        <span className='label label-info industry-label'>
-          <a href={`/#/industry/${i}`}>
-            {i.replace(/([A-Z])/g, ' $1').trim()}
+    const industriesLabels = industries.map((i, idx) =>
+        <span className='label label-info industry-label' key={idx}>
+          <a href={`/#/industry/${i.name}`}>
+            {i.name.replace(/([A-Z])/g, ' $1').trim()} (PE ratio: {i.pe_ratio})
           </a>
-        </span>) : '';
+        </span>);
     return (
       <div className='white-bg' style={{overflow: 'auto'}}>
         <div className='company-name'>

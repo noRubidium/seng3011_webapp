@@ -16,6 +16,6 @@ export function load_companies (dispatch) {
     },
     COMPANIES_LOADED,
     dispatch,
-    'http://api.kaiworship.xyz/companies/'
+    '${process.env.API_URL}/companies/'
   );
 }

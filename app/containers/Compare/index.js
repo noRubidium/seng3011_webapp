@@ -48,7 +48,7 @@ export default class Compare extends React.Component {
     const sD = this.state.startDate.toISOString().split('T')[0];
     this.setState({started: true, data: [], companies: companies});
     companies.map((cid) => {
-      fetch(`http://api.kaiworship.xyz/cmp/${cid}/${sD}/2018-01-01`)
+      fetch(`${process.env.API_URL}/cmp/${cid}/${sD}/2018-01-01`)
       .then((response) => {
         return response.ok ? response.text():null;
       })

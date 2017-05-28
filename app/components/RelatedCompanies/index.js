@@ -6,7 +6,7 @@ import CompanyListItem from './listItem';
 
 export default class RelatedCompanies extends React.Component {
   render() {
-    const { companies } = this.props;
+    const { companies=[] } = this.props;
     const list = companies.map((c, i) => {
       if (!c) {
         return null;

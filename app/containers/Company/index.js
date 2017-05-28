@@ -24,7 +24,7 @@ export default class Company extends React.Component {
     const { company_id } = this.props.match.params;
     if (this.state.curr_cmp !== company_id) {
       this.setState({started: true, curr_cmp: company_id});
-      const url = `http://api.kaiworship.xyz/mapping/rel/${company_id.slice(0,3)}`
+      const url = `${process.env.API_URL}/mapping/rel/${company_id.slice(0,3)}`
       fetch(url)
         .then((response) => {
           if (!response.ok) return;
@@ -42,7 +42,7 @@ export default class Company extends React.Component {
     const { company_id } = this.props.match.params;
     if (this.state.curr_cmp !== company_id) {
       this.setState({started: false, curr_cmp: company_id});
-      const url = `http://api.kaiworship.xyz/mapping/cmp/${company_id.slice(0,3)}`
+      const url = `${process.env.API_URL}/mapping/cmp/${company_id.slice(0,3)}`
       fetch(url)
         .then((response) => {
           if (!response.ok) return;
@@ -71,7 +71,7 @@ export default class Company extends React.Component {
     return (
       <div>
         <div className='row'>
-          <div className='col-sm-8 white-bg-container'>
+          <div className='col-sm-12 col-md-8 white-bg-container'>
             <CompanyInfo cid={company_id}
                          related_companies={this.state.related_companies}
                          industries={this.state.industries}/>
@@ -82,7 +82,7 @@ export default class Company extends React.Component {
               <CompanyPrice cid={company_id}/>
             </div>
           </div>
-          <div className='col-sm-4 white-bg-container'>
+          <div className='col-sm-12 col-md-4 white-bg-container'>
             <RelatedCompanies companies={this.state.related_companies}
                               onCompanyPage={true}/>
           </div>

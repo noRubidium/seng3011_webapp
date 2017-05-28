@@ -11,7 +11,7 @@ export const companyPriceActionTypes = {
 };
 
 export function load_company_price (company_code, dispatch, props) {
-  if (props.url === `http://api.kaiworship.xyz/rapper/data.asx.com.au/data/1/share/${company_code.slice(0,3)}`) {
+  if (props.url === `${process.env.API_URL}/rapper/data.asx.com.au/data/1/share/${company_code.slice(0,3)}`) {
     return;
   }
   async_action(
@@ -21,6 +21,6 @@ export function load_company_price (company_code, dispatch, props) {
     },
     COMPANY_PRICE_LOADED,
     dispatch,
-    `http://api.kaiworship.xyz/rapper/data.asx.com.au/data/1/share/${company_code.slice(0,3)}`
+    `${process.env.API_URL}/rapper/data.asx.com.au/data/1/share/${company_code.slice(0,3)}`
   );
 }
