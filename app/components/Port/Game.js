@@ -12,8 +12,49 @@ export default class PortGame extends React.Component {
     this.state = {
       company: '',
       loading: false,
-      loaded: false,
+      loaded: true,
       error: false,
+      balance: 100000,
+      currentHoldings: [],
+    }
+  }
+
+  addCompany (company, price) {
+    return (e) => {
+      const { currentHoldings } = this.state;
+      console.log(e, company, price);
+      this.setState({
+        currentHoldings: currentHoldings.concat([{
+          amount: 0,
+          company,
+          price,
+        }])
+      });
+    };
+  }
+
+  deleteCompany (i) {
+    return () => {
+      const { currentHoldings=[] } = this.state;
+      this.setState({
+        currentHoldings: currentHoldings.filter((e, idx) => idx !== i)
+      });
+    }
+  }
+
+  updateHolding (i) {
+    return (event) => {
+      const { currentHoldings, balance } = this.state;
+      const targetObject = this.state.currentHoldings[i];
+      const amount = event.target.value.replace(/\D/g, '');
+      const v = [{...targetObject, amount }];
+      const newHoldings = currentHoldings.slice(0, i).concat(v.concat(currentHoldings.slice(i+1)));
+
+      const spending = newHoldings.map((h) => h.amount * h.price).reduce((a,b) => a + b, 0);
+      if (spending > balance) {
+        return;
+      }
+      this.setState({currentHoldings: newHoldings});
     }
   }
 
@@ -32,7 +73,6 @@ export default class PortGame extends React.Component {
       }
       const result = csv2json(d);
       this.setState({loading: false, loaded: true, data: result});
-      console.log(result);
     })
     .catch((e) => {
       if (this.state.company !== company) return;
@@ -42,14 +82,21 @@ export default class PortGame extends React.Component {
 
   render() {
     return (<div>
-      <div> This is the game </div>
-      <div> current date is : {this.props.date.toISOString().split('T')[0]} </div>
+      <h1 style={{textAlign: 'center'}}> Portfolio Management Game</h1>
+      <div> current date is:
+        {this.props.date.toISOString().split('T')[0]}
+      </div>
       <div className="row">
         <div className="col-sm-12 col-md-6">
-          <SearchCompanyPanel {...this.state} updateCompany={this.updateCompany.bind(this)}/>
+          <SearchCompanyPanel {...this.state}
+            updateCompany={this.updateCompany.bind(this)}
+            addCompany={this.addCompany.bind(this)}
+          />
         </div>
         <div className="col-sm-12 col-md-6">
-          <Holdings { ...this.state } />
+          <Holdings { ...this.state }
+            updateHolding={this.updateHolding.bind(this)}
+            deleteCompany={this.deleteCompany.bind(this)}/>
         </div>
       </div>
     </div>);
