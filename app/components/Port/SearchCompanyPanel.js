@@ -17,7 +17,7 @@ export default class SearchCompanyPanel extends LoadableComponent {
     const { data, company, addCompany=(e)=>console.log } = this.props;
     const chart = data ? (
       <div>
-        <button onClick={data.length > 1 ? addCompany(company,  data[data.length - 1].value) : console.log}>
+        <button onClick={data.length > 1 ? addCompany(company,  data[data.length - 1].value, data[0].value) : console.log}>
           add to my Portfolio
         </button>
         <StockChartFlag  financeData={data} company_name={company} newsData={[]}/>

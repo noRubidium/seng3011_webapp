@@ -19,15 +19,15 @@ export default class PortGame extends React.Component {
     }
   }
 
-  addCompany (company, price) {
+  addCompany (company, price, open_price) {
     return (e) => {
       const { currentHoldings } = this.state;
-      console.log(e, company, price);
       this.setState({
         currentHoldings: currentHoldings.concat([{
           amount: 0,
           company,
           price,
+          open_price,
         }])
       });
     };
@@ -83,17 +83,16 @@ export default class PortGame extends React.Component {
   render() {
     return (<div>
       <h1 style={{textAlign: 'center'}}> Portfolio Management Game</h1>
-      <div> current date is:
-        {this.props.date.toISOString().split('T')[0]}
+      <div style={{textAlign: 'center'}}> current date is:      {this.props.date.toISOString().split('T')[0]}
       </div>
       <div className="row">
-        <div className="col-sm-12 col-md-6">
+        <div className="col-sm-12 col-md-6" style={{padding:20}}>
           <SearchCompanyPanel {...this.state}
             updateCompany={this.updateCompany.bind(this)}
             addCompany={this.addCompany.bind(this)}
           />
         </div>
-        <div className="col-sm-12 col-md-6">
+        <div className="col-sm-12 col-md-6" style={{padding:20}}>
           <Holdings { ...this.state }
             updateHolding={this.updateHolding.bind(this)}
             deleteCompany={this.deleteCompany.bind(this)}/>
