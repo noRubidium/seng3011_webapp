@@ -22,14 +22,26 @@ export default class PortGame extends React.Component {
   addCompany (company, price, open_price) {
     return (e) => {
       const { currentHoldings } = this.state;
-      this.setState({
-        currentHoldings: currentHoldings.concat([{
-          amount: 100,
-          company,
-          price,
-          open_price,
-        }])
-      });
+      const [currObj] = currentHoldings.filter((e) => e.company === company);
+      if ( currObj ) {
+        this.setState({
+          currentHoldings: [{
+            amount: currObj.amount + 100,
+            company,
+            price,
+            open_price,
+          }].concat(currentHoldings.filter((e) => e.company !== company))
+        });
+      } else {
+        this.setState({
+          currentHoldings: [{
+            amount: 100,
+            company,
+            price,
+            open_price,
+          }].concat(currentHoldings)
+        });
+      }
     };
   }
 
@@ -59,25 +71,49 @@ export default class PortGame extends React.Component {
   }
 
   updateCompany(company) {
-    if (company === this.state.company) return;
+    if (company === this.state.company && this.props.date === this.state.loaded_date) return;
     this.setState({company, loading: true, loaded: false, error: false});
     const start_date = new Date(this.props.date);
     start_date.setYear(start_date.getFullYear() - 1);
     const end_date = this.props.date;
-    fetch(`${process.env.API_URL}/cmp/${company}.AX/${format_date(start_date)}/${format_date(end_date)}`)
+    const query_end_date = new Date(this.props.date);
+    query_end_date.setMonth(query_end_date.getMonth() + 3);
+    fetch(`${process.env.API_URL}/cmp/${company}.AX/${format_date(start_date)}/${format_date(query_end_date)}`)
     .then((r) => r.text())
     .then((d) => {
       if (this.state.company !== company) return;
+      if (end_date !== this.props.date) return;
       if (!d) {
         this.setState({loading: false, error: true});
       }
-      const result = csv2json(d);
-      this.setState({loading: false, loaded: true, data: result});
+      const complete_stock = csv2json(d);
+      const result = complete_stock.filter((e) => new Date(e.date) <= end_date);
+      const buy_price = result.length > 0 ? result[result.length - 1] : 0;
+      const sell_price = complete_stock.length > 0 ? complete_stock[complete_stock.length - 1] : 0;
+      this.setState({
+        loading: false,
+        loaded: true,
+        data: result,
+        loaded_date: end_date,
+        buy_price,
+        sell_price,
+      });
     })
     .catch((e) => {
       if (this.state.company !== company) return;
       this.setState({loading: false, error: true});
     })
+  }
+
+  nextStep (e) {
+    this.setState({
+      data: null,
+      company: '',
+      loading: false,
+      loaded: true,
+      error: false
+    });
+    this.props.nextStep(e);
   }
 
   render() {
@@ -95,7 +131,8 @@ export default class PortGame extends React.Component {
         <div className="col-sm-12 col-md-6" style={{padding:20}}>
           <Holdings { ...this.state }
             updateHolding={this.updateHolding.bind(this)}
-            deleteCompany={this.deleteCompany.bind(this)}/>
+            deleteCompany={this.deleteCompany.bind(this)}
+            nextStep = { this.nextStep.bind(this) }/>
         </div>
       </div>
     </div>);

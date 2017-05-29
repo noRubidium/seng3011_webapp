@@ -16,7 +16,6 @@ export default class HoldingPie extends LoadableComponent {
       .map((h) => {
         return {name: h.company, y: h.price * h.amount};
       });
-      console.log('INFO', info, holdings);
     if (info.length === 0 ) return <div></div>;
     const config = {
         chart: {

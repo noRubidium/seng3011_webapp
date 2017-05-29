@@ -23,8 +23,16 @@ export default class Playground extends React.Component {
 
   }
 
-  nextStep () {
-      this.setState({step: this.state.step + 1});
+  nextStep (balance, newhistory) {
+      const { step, date, history } = this.state;
+      const new_date = new Date(date);
+      new_date.setMonth(new_date.getMonth() + 3);
+      this.setState({
+        step: this.state.step + 1,
+        date: new_date,
+        balance,
+        history: history.concat(newhistory)
+      });
   }
   render () {
     const { industry:category } = this.props;
@@ -33,7 +41,7 @@ export default class Playground extends React.Component {
         case 1:
         case 2:
         case 3:
-            return (<PortGame {...this.state} />);
+            return (<PortGame {...this.state} nextStep={this.nextStep.bind(this)}/>);
         default:
             return (<PortResult {...this.state} />);
 
