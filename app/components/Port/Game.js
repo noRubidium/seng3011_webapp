@@ -24,7 +24,7 @@ export default class PortGame extends React.Component {
       const { currentHoldings } = this.state;
       this.setState({
         currentHoldings: currentHoldings.concat([{
-          amount: 0,
+          amount: 100,
           company,
           price,
           open_price,
