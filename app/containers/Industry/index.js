@@ -38,14 +38,16 @@ export default class Industries extends LoadableComponent {
           company: getCmp(e),
         };
       })
+      const type = getType(category);
+
       this.loaded_object = (
         <div>
           <div className='row'>
             <div className='col-sm-8 white-bg-container'>
-              <IndustryInfo title={industry.title} details={industry.content}/>
+              <IndustryInfo title={industry.title} details={industry.content} type={type}/>
               <div className='white-bg'>
                 <div className='sub-title'>Industry Chart
-                  <InfoButton text={'Clinton please change this!'}/>
+                  <InfoButton text={'This chart visualises the historical turnover for the current industry.'}/>
                 </div>
                   <IndustryChart industry={category}/>
                 {/*<IndustryStatistics stats={industry.stats}/>*/}
