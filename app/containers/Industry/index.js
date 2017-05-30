@@ -38,14 +38,16 @@ export default class Industries extends LoadableComponent {
           company: getCmp(e),
         };
       })
+      const type = getType(category);
+
       this.loaded_object = (
         <div>
           <div className='row'>
             <div className='col-sm-8 white-bg-container'>
-              <IndustryInfo title={industry.title} details={industry.content}/>
+              <IndustryInfo title={industry.title} details={industry.content} type={type}/>
               <div className='white-bg'>
                 <div className='sub-title'>Industry Chart
-                  <InfoButton text={'This is a chart visualising ABS Statistics data for this particular industry. Data can be viewed for the whole of Australia, or by state/region.'}/>
+                  <InfoButton text={'This is a chart visualising statistical data for this particular industry obtained from the ABS. Data can be viewed for the whole of Australia, or by state/region.'}/>
                 </div>
                   <IndustryChart industry={category}/>
                 {/*<IndustryStatistics stats={industry.stats}/>*/}

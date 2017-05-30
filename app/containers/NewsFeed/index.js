@@ -40,7 +40,7 @@ export default class NewsFeed extends LoadableComponent {
     const { loading, loaded, news, following } = this.props;
     if (loaded) {
       if(following.length == 0){
-
+        
         this.loaded_object = <EmptyState />;
       } else {
         this.loaded_object = news.map((n, i) =>
