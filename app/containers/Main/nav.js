@@ -12,7 +12,7 @@ import sharePrices from './shareprice.json';
 class Header extends React.Component {
   render() {
 
-    const { following } = this.props;
+    const { token, following } = this.props;
 
     const ticker = following.map((c) => {
 
@@ -31,6 +31,24 @@ class Header extends React.Component {
       }
     });
 
+    if (token) {
+      return(
+        <header className='header'>
+          <div className='logo'>
+            <Link to='/'>
+              <img src='static/images/logo.svg' className='logo-icon'/>
+              StockOverflow
+            </Link>
+          </div>
+          <div className="stock-ticker float-right">
+          	{/* <span className='stock-title'>Current Prices:</span> */}
+          	<ul>
+          		{ticker}
+          	</ul>
+          </div>
+        </header>
+      );
+    }
     return(
       <header className='header'>
         <div className='logo'>
@@ -38,12 +56,6 @@ class Header extends React.Component {
             <img src='static/images/logo.svg' className='logo-icon'/>
             StockOverflow
           </Link>
-        </div>
-        <div className="stock-ticker float-right">
-        	{/* <span className='stock-title'>Current Prices:</span> */}
-        	<ul>
-        		{ticker}
-        	</ul>
         </div>
       </header>
     )
