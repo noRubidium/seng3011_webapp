@@ -18,22 +18,25 @@ export default class Playground extends React.Component {
         step: 0,
         history: [],
         balance: 100000,
-        date: new Date('2015-01-01')
+        date: new Date('2015-01-01'),
+        currentHoldings: [],
     };
 
   }
 
-  nextStep (balance, newhistory) {
+  nextStep (balance, newhistory, currentHoldings=[]) {
       const { step, date, history } = this.state;
       const new_date = new Date(date);
       new_date.setMonth(new_date.getMonth() + 3);
       this.setState({
-        step: this.state.step + 1,
-        date: new_date,
         balance,
-        history: history.concat(newhistory)
+        currentHoldings,
+        date: new_date,
+        history: history.concat(newhistory),
+        step: this.state.step + 1,
       });
   }
+
   render () {
     const { industry:category } = this.props;
     switch (this.state.step) {

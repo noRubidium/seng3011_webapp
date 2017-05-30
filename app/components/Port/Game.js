@@ -15,7 +15,7 @@ export default class PortGame extends React.Component {
       loaded: true,
       error: false,
       balance: 100000,
-      currentHoldings: [],
+      currentHoldings: this.props.currentHoldings,
     }
   }
 
@@ -117,18 +117,27 @@ export default class PortGame extends React.Component {
   }
 
   render() {
-    return (<div>
+    const trading_history = this.props.history.map((e) => {
+      return (<li>
+        {e.type} {e.company} {e.amount} shares and {e.profit > 0 ? 'gained' : 'loss'} ${ (e.profit > 0 ? e.profit : -e.profit).toFixed(2) }.
+      </li>);
+    });
+    return (<div className="white-bg">
       <h1 style={{textAlign: 'center'}}> Portfolio Management Game</h1>
       <div style={{textAlign: 'center'}}> current date is:      {this.props.date.toISOString().split('T')[0]}
       </div>
       <div className="row">
-        <div className="col-sm-12 col-md-6" style={{padding:20}}>
+        <div className="col-sm-12 col-md-6" style={{padding: 20}}>
+          <TradingHistory trading_history={this.state.trading_history} />
           <SearchCompanyPanel {...this.state}
             updateCompany={this.updateCompany.bind(this)}
             addCompany={this.addCompany.bind(this)}
           />
         </div>
-        <div className="col-sm-12 col-md-6" style={{padding:20}}>
+        <div className="col-sm-12 col-md-6" style={{padding: 20}}>
+          <ul>
+            { trading_history }
+          </ul>
           <Holdings { ...this.state }
             updateHolding={this.updateHolding.bind(this)}
             deleteCompany={this.deleteCompany.bind(this)}
