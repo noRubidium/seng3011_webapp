@@ -1,0 +1,42 @@
+{
+  "DMP.AX": {
+    "price": 58.38,
+    "change": -0.810
+  },
+  "WES.AX": {
+    "price": 42.22,
+    "change": -0.330
+  },
+  "A2M.AX": {
+    "price": 3.19,
+    "change": 0.040
+  },
+  "BAL.AX": {
+    "price": 5.24,
+    "change": -0.020
+  },
+  "BGA.AX": {
+    "price": 6.01,
+    "change": 0.040
+  },
+  "CCL.AX": {
+    "price": 9.35,
+    "change": 0.060
+  },
+  "WOW.AX": {
+    "price": 25.86,
+    "change": -0.020
+  },
+  "BHP.AX": {
+    "price": 24,
+    "change": 0.160
+  },
+  "BSL.AX": {
+    "price": 11.38,
+    "change": -0.040
+  },
+  "RIO.AX": {
+    "price": 63.27,
+    "change": 0.600
+  }
+}

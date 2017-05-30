@@ -47,7 +47,7 @@ export default class Industries extends LoadableComponent {
               <IndustryInfo title={industry.title} details={industry.content} type={type}/>
               <div className='white-bg'>
                 <div className='sub-title'>Industry Chart
-                  <InfoButton text={'This chart visualises the historical turnover for the current industry.'}/>
+                  <InfoButton text={'This is a chart visualising statistical data for this particular industry obtained from the ABS. Data can be viewed for the whole of Australia, or by state/region.'}/>
                 </div>
                   <IndustryChart industry={category}/>
                 {/*<IndustryStatistics stats={industry.stats}/>*/}

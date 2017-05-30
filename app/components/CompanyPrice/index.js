@@ -104,7 +104,7 @@ export default class CompanyPrice extends LoadableComponent {
               <div className='other-prices'>{this.props.eps}</div>
             </td>
             <td>
-              DY:
+              DY
               <InfoButton text={'Annual Dividend Yield. The ratio of how much the company pays shareholders in dividends, relative to its share price. A high DY indicates a company that is prioritising shareholder wealth, whereas a low one indicates a company that is prioritising growth.'}/>
               <div>
                 <span className='other-prices'>{this.props.annual_dividend_yield} </span>

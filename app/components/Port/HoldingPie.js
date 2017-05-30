@@ -44,7 +44,7 @@ export default class HoldingPie extends LoadableComponent {
             }
         },
         series: [{
-             name: 'Emotion Strength',
+             name: 'Portfolio Share',
              colorByPoint: true,
              data: info
          }]
