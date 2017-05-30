@@ -19,7 +19,7 @@ class Header extends React.Component {
       if (!sharePrices[c]) {
         return null;
       } else {
-        return (<li className={sharePrices[c]['change'] >= 0.0 ? 'green-color' : 'red-color'}>
+        return (<li className={(sharePrices[c]['change'] >= 0.0 ? 'green-color' : 'red-color') + ' share-price'}>
             <a href={'/#/company/' + c}>
               <span> {c} </span>
               <span className='share-price'> ${sharePrices[c]['price']} </span>
