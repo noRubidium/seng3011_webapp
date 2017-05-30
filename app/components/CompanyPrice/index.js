@@ -5,6 +5,11 @@ import LoadableComponent from 'components/LoadableComponent';
 import { load_company_price } from 'actions/company/price';
 import InfoButton from 'components/InfoButton';
 
+import industryPEs from './industryPE.json';
+import data from 'components/SearchBar/data.json';
+
+const companies = data.data;
+
 @connect((store) => {
   return store.company.company_price;
 })
@@ -26,6 +31,20 @@ export default class CompanyPrice extends LoadableComponent {
 
   render () {
 
+    const companyInfo = companies.filter(x => x.id === this.props.cid.slice(0,3));
+    const gicsIndustry = companyInfo[0].industry;
+    const industryPE = industryPEs[gicsIndustry];
+    const peDifference = this.props.pe - industryPE;
+    const higherLower = peDifference > 0.0 ? 'higher' : 'lower';
+    const underOver = peDifference > 0.0 ? 'over' : 'under';
+
+    const dyStatus = 'Average';
+    if (this.props.annual_dividend_yield > 4.59) {
+      dyStatus = 'High';
+    } else if (this.props.annual_dividend_yield < 3.59) {
+      dyStatus = 'High';
+    }
+
     this.loaded_object = (<div>
       <table className='table table-bordered company-price-table'>
         <tbody>
@@ -46,7 +65,11 @@ export default class CompanyPrice extends LoadableComponent {
             <td>
               P/E Ratio
               <InfoButton text={'The stock price to company earnings ratio. An indicator of how under/over valued the stock is. The higher the P/E ratio, the more overvalued the company is, and vice versa.'}/>
-              <div className='other-prices'>{this.props.pe}</div>
+              <div>
+                <span className='other-prices'>{this.props.pe} </span>
+                (<span className={peDifference > 0.0 ? 'red-color' : 'green-color' }>{peDifference > 0.0 ? 'Overvalued' : 'Undervalued'}</span>)
+                <InfoButton text={'This company\'s P/E ratio of ' + this.props.pe + ' is ' + higherLower + ' than the ' + gicsIndustry + ' industry P/E ratio of ' + industryPE + ', suggesting that it is ' + underOver + 'valued.'}/>
+              </div>
             </td>
           </tr>
           <tr>
@@ -57,7 +80,9 @@ export default class CompanyPrice extends LoadableComponent {
             <td>
               DY:
               <InfoButton text={'Annual Dividend Yield. The ratio of how much the company pays shareholders in dividends, relative to its share price. A high DY indicates a company that is prioritising shareholder wealth, whereas a low one indicates a company that is prioritising growth.'}/>
-              <div className='other-prices'>{this.props.annual_dividend_yield}</div>
+              <div>
+                <div className='other-prices'>{this.props.annual_dividend_yield}</div>
+              </div>
             </td>
           </tr>
         </tbody>
