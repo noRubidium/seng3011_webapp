@@ -154,8 +154,12 @@ export default class PortGame extends React.Component {
     return (<div className='portfolio'>
       <div className='white-bg'>
         <div className='title'> Portfolio Management Game</div>
-        <div> Some stuff here please, like instruction </div>
-        <div> current date is: {this.props.date.toISOString().split('T')[0]}</div>
+        <div>
+          <p>Welcome to the Portfolio Management Game!</p>
+          <p>Select company stocks to invest in, and the number of shares of each. After each period (a quarter), you will be able to see how your portfolio performed, and make any changes accordingly.</p>
+          <p>At the end of the game (after four periods), you will be able to see how you performed overall and how you stacked up against others.</p>
+        </div>
+        <div className='portfolio-date-container'>Current Date: <span className='portfolio-current-date'>{this.props.date.toISOString().split('T')[0]}</span></div>
       </div>
       <TradingHistory history={this.props.history} />
       <SearchCompanyPanel {...this.state}

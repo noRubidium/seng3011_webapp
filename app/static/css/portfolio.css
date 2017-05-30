@@ -48,3 +48,12 @@ ul.result-management {
 .result-management {
   margin-top: 15px;
 }
+
+.portfolio-date-container {
+  text-align: center;
+  font-size: 18px;
+}
+
+.portfolio-current-date {
+  font-weight: bold;
+}
