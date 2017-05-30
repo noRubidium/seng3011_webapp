@@ -8,7 +8,7 @@
 
 .stock-ticker {
   /*box-shadow: inset 0 -15px 30px rgba(0,0,0,0.4), 0 5px 10px rgba(0,0,0,0.5);*/
-  width: 350px;
+  width: 320px;
   height: 30px;
   margin: 10px auto;
   overflow: hidden;
@@ -17,15 +17,15 @@
   -webkit-user-select: none
 }
 
-.stock-ticker span {
+.stock-title {
   float: left;
-  color: #fff;
+  color: #ffffff;
   padding: 6px;
   position: relative;
   top: 1%;
   border-radius: 4px;
   /*box-shadow: inset 0 -15px 30px rgba(0,0,0,0.4);*/
-  /*font: 16px 'Source Sans Pro', Helvetica, Arial, sans-serif;*/
+  font: 16px Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   cursor: pointer
@@ -41,9 +41,8 @@
 .stock-ticker ul li {line-height: 30px; list-style: none }
 
 .stock-ticker ul li a {
-  color: #fff;
   text-decoration: none;
-  /*font: 14px Helvetica, Arial, sans-serif;*/
+  font: 18px Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none
 }
@@ -53,4 +52,12 @@
 
 .float-right {
   float: right;
+}
+
+.green-color a:visited {
+  color: green;
+}
+
+.red-color a:visited {
+  color: red;
 }

@@ -4,18 +4,31 @@ import { connect } from 'react-redux';
 
 import Login from 'components/Login';
 import SearchBar from 'components/SearchBar';
+import sharePrices from './shareprice.json';
 
 @connect((store) => {
   return store.user;
 })
 class Header extends React.Component {
   render() {
-    console.log('prop',this.props);
 
     const { following } = this.props;
 
     const ticker = following.map((c) => {
-      return (<li><a href="#">{c}</a></li>)
+
+      if (!sharePrices[c]) {
+        return null;
+      } else {
+        return (<li className={sharePrices[c]['change'] >= 0.0 ? 'green-color' : 'red-color'}>
+            <a href={'/#/company/' + c}>
+              <span> {c} </span>
+              <span className='share-price'> ${sharePrices[c]['price']} </span>
+              {/* <span className={sharePrices[c]['change'] >= 0.0 ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down'} aria-hidden='true'> </span> */}
+              <span> {sharePrices[c]['change']} </span>
+              <span> ({((sharePrices[c]['change']/(sharePrices[c]['price'] - sharePrices[c]['change']))*100).toFixed(2)}%) </span>
+            </a>
+          </li>);
+      }
     });
 
     return(
@@ -27,7 +40,7 @@ class Header extends React.Component {
           </Link>
         </div>
         <div className="stock-ticker float-right">
-        	<span>Latest News</span>
+        	{/* <span className='stock-title'>Current Prices:</span> */}
         	<ul>
         		{ticker}
         	</ul>
