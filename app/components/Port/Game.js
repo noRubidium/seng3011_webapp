@@ -8,9 +8,10 @@ import csv2json from 'utils/csv2json';
 const format_date = (d) => d.toISOString().split('T')[0];
 
 const holdings_to_history = (holding) => {
+  console.log('HOLDING', holding);
   return {
     open_price: holding.open_price,
-    closing_price: holding.price,
+    price: holding.price,
     company: holding.company,
     amount: holding.amount
   };
@@ -37,10 +38,10 @@ export default class PortGame extends React.Component {
       return {
         ...e,
         open_price: e.price,
-        price: e.price * (0.7 + Math.random() * 0.6)
+        price: e.price * (0.93 + Math.random() * 0.14)
       };
     })
-    const newBalance = this.state.balance - currentHoldings.reduce((a, b) => (a + b.open_price * b.amount), 0) + newHoldings.reduce((a, b) => a + b.open_price * b.amount, 0);
+    const newBalance = this.state.balance - currentHoldings.reduce((a, b) => (a + b.price * b.amount), 0) + newHoldings.reduce((a, b) => a + b.price * b.amount, 0);
 
     this.setState({
       data: null,
@@ -143,7 +144,7 @@ export default class PortGame extends React.Component {
   render() {
     const trading_history = this.props.history.map((e) => {
       return (<li>
-        {e.type} {e.company} {e.amount} shares and {e.profit > 0 ? 'gained' : 'loss'} ${ (e.profit > 0 ? e.profit : -e.profit).toFixed(2) }.
+        {e.type} {e.company} {e.amount} shares and {e.price-e.open_price > 0 ? 'gained' : 'loss'} ${ (e.price-e.open_price > 0 ? (e.price-e.open_price) * e.amount : (e.open_price-e.price) * e.amount).toFixed(2) }.
       </li>);
     });
     return (<div className="white-bg">
