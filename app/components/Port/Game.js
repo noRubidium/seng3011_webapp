@@ -123,27 +123,21 @@ export default class PortGame extends React.Component {
         {e.type} {e.company} {e.amount} shares and {e.profit > 0 ? 'gained' : 'loss'} ${ (e.profit > 0 ? e.profit : -e.profit).toFixed(2) }.
       </li>);
     });
-    return (<div className="white-bg">
-      <h1 style={{textAlign: 'center'}}> Portfolio Management Game</h1>
-      <div style={{textAlign: 'center'}}> current date is:      {this.props.date.toISOString().split('T')[0]}
+    return (<div className='portfolio'>
+      <div className='white-bg'>
+        <div className='title'> Portfolio Management Game</div>
+        <div> current date is: {this.props.date.toISOString().split('T')[0]}</div>
       </div>
-      <div className="row">
-        <div className="col-sm-12 col-md-6" style={{padding: 20}}>
-          <TradingHistory trading_history={this.state.trading_history} />
-          <SearchCompanyPanel {...this.state}
-            updateCompany={this.updateCompany.bind(this)}
-            addCompany={this.addCompany.bind(this)}
-          />
-        </div>
-        <div className="col-sm-12 col-md-6" style={{padding: 20}}>
-          <ul>
-            { trading_history }
-          </ul>
-          <Holdings { ...this.state }
-            updateHolding={this.updateHolding.bind(this)}
-            deleteCompany={this.deleteCompany.bind(this)}
-            nextStep = { this.nextStep.bind(this) }/>
-        </div>
+      <TradingHistory trading_history={this.state.trading_history} />
+      <SearchCompanyPanel {...this.state}
+        updateCompany={this.updateCompany.bind(this)}
+        addCompany={this.addCompany.bind(this)}
+      />
+      <div className='white-bg'>
+        <Holdings { ...this.state }
+          updateHolding={this.updateHolding.bind(this)}
+          deleteCompany={this.deleteCompany.bind(this)}
+          nextStep = { this.nextStep.bind(this) }/>
       </div>
     </div>);
   }

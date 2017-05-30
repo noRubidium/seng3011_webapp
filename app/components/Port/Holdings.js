@@ -14,34 +14,42 @@ export default class Holdings extends React.Component {
     const holdings = currentHoldings.map((holding, i) => {
       currBalance -= holding.amount * holding.price;
 
-      return (<li key={i}>
-        <div className='col-sm-11'>
-          {getCmp(holding.company)}
-        </div>
-        <div className='col-sm-1' onClick={deleteCompany(i)} style={{cursor: 'pointer'}}>
-          x
-        </div>
-        <div className='col-sm-4'>
-          Current: <input name='i' value={holding.amount} onChange={updateHolding(i)}/>
-        </div>
-        <div className='col-sm-4'>
-          Total amount: ${(holding.amount * holding.price).toFixed(2)}
-        </div>
-        <div className='col-sm-4'>
-          The price {holding.open_price > holding.price? 'dropped -' : 'increased +'}{(Math.abs(1 - (holding.price / holding.open_price)) * 100).toFixed(2)}% during past year
-        </div>
+      return (<li key={i} className='list-group-item holding-item'>
+          <div className='col-sm-11 details'>
+            <div className='company-name'>{getCmp(holding.company)}</div>
+            <div className='col-sm-4 input-group-sm current'>
+              Current Stock <input name='i' value={holding.amount} onChange={updateHolding(i)} className='form-control'/>
+            </div>
+            <div className='col-sm-4 amount'>
+              Total Amount <br/> ${(holding.amount * holding.price).toFixed(2)}
+            </div>
+            <div className='col-sm-4 info'>
+              The price&nbsp;
+                <span className={holding.open_price > holding.price ? 'red-color' : 'green-color'}>
+                  {holding.open_price > holding.price? 'dropped -' : 'increased +'}{(Math.abs(1 - (holding.price / holding.open_price)) * 100).toFixed(2)}%
+                </span>
+              &nbsp;during past year
+            </div>
+          </div>
+          <div className='col-sm-1 button'>
+            <button
+              type='button'
+              className='btn btn-danger remove-button'
+              onClick={deleteCompany(i)}
+              >
+              <span className='glyphicon glyphicon-remove'></span>
+            </button>
+          </div>
       </li>);
     })
     return (<div>
-      <h3> Panel for result and current management</h3>
-      <h4>
-        current balance: ${currBalance.toFixed(2)}
-      </h4>
-      <ul style={{margin: 20, height: 300, overflowY: 'scroll'}}>
+      <div className='sub-title'> Result and Current Management</div>
+        Current balance: ${currBalance.toFixed(2)}
+      <ul className='result-management list-group'>
         {holdings}
       </ul>
       <HoldingPie holdings={currentHoldings} loaded={true}/>
-      <button onClick={nextStep}>Go to next period</button>
+      <button onClick={nextStep} className='btn btn-success'>Go to next period</button>
     </div>);
   }
 }
