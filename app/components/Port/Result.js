@@ -15,7 +15,7 @@ export default class PortResult extends React.Component {
         <TradingHistory history={this.props.history} />
       </div>
       <div className='col-sm-12 col-md-6'>
-        <ResultRanking history={this.props.history} />
+        <ResultRanking history={this.props.history} balance={this.props.balance}/>
       </div>
     </div>);
   }
