@@ -48,7 +48,7 @@ export default class SummaryPanel extends LoadableComponent {
         },
         title: {
             text: 'Emotion Breakdown',
-            style: {'fontSize':'16px'}
+            style: {'fontSize':'14px'}
         },
         subtitle: {
           text: '(of recent news articles)'
@@ -103,7 +103,7 @@ export default class SummaryPanel extends LoadableComponent {
         colors: ['green', '#da0b0b'],
         title: {
             text: 'Sentiment Breakdown',
-            style: {'fontSize':'16px'}
+            style: {'fontSize':'14px'}
         },
         subtitle: {
           text: '(of recent news articles)'
@@ -133,8 +133,8 @@ export default class SummaryPanel extends LoadableComponent {
     }
 
     this.loaded_object = (<div>
-        <div> Summary of recent news&apos; emotion
-          <InfoButton text={'Summary or recent news\' emotion'} right={true}/>
+        <div className='summary-news'> Summary of recent news
+          <InfoButton text={'Summary or recent news\' sentiment and emotion'} right={true}/>
         </div>
         <ReactHighcharts config={sentimentConfig} />
         <ReactHighcharts config={config} />

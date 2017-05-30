@@ -44,3 +44,8 @@
 .industry-label a:hover {
   text-decoration: none;
 }
+
+.summary-news {
+  margin-bottom: 5px;
+  text-align: center;
+}
