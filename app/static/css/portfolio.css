@@ -14,10 +14,6 @@
   margin-top: 10px;
 }
 
-button.add-to-portfolio {
-  float: right;
-}
-
 ul.result-management {
   overflow-y: scroll;
   max-height: 200px;
