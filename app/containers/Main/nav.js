@@ -5,8 +5,19 @@ import { connect } from 'react-redux';
 import Login from 'components/Login';
 import SearchBar from 'components/SearchBar';
 
+@connect((store) => {
+  return store.user;
+})
 class Header extends React.Component {
   render() {
+    console.log('prop',this.props);
+
+    const { following } = this.props;
+
+    const ticker = following.map((c) => {
+      return (<li><a href="#">{c}</a></li>)
+    });
+
     return(
       <header className='header'>
         <div className='logo'>
@@ -14,6 +25,12 @@ class Header extends React.Component {
             <img src='static/images/logo.svg' className='logo-icon'/>
             StockOverflow
           </Link>
+        </div>
+        <div className="stock-ticker float-right">
+        	<span>Latest News</span>
+        	<ul>
+        		{ticker}
+        	</ul>
         </div>
       </header>
     )
