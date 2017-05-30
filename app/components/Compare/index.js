@@ -2,6 +2,11 @@ import React from 'react';
 import { getStandardDev, getMean } from 'utils/statsUtil';
 import StatCompareItem from './statItem';
 import priceStats from './compareStats.json';
+import industryPEs from 'components/CompanyPrice/industryPE.json';
+import data from 'components/SearchBar/data.json';
+import InfoButton from 'components/InfoButton';
+
+const companyData = data.data;
 
 const toCompanyStatsItems = (data, min, max, f, cFun=(e)=>e) => {
   return data
@@ -15,6 +20,40 @@ const toCompanyStatsItems = (data, min, max, f, cFun=(e)=>e) => {
 }
 
 export default class CompareStats extends React.Component {
+
+  getDyStatus(dy) {
+    if (dy > 4.59) {
+      return 'a high';
+    } else if (dy < 3.59) {
+      return 'a low';
+    } else {
+      return 'an average';
+    }
+  }
+
+  getDyStatusClassName(dy) {
+    if (dy > 4.59) {
+      return 'green-color';
+    } else if (dy < 3.59) {
+      return 'red-color';
+    } else {
+      return 'yellow-color';
+    }
+  }
+
+  getDyRelation(dy) {
+    if (dy > 4.59) {
+      return 'higher than';
+    } else if (dy < 3.59) {
+      return 'lower than';
+    } else {
+      if (dy === 4.09) {
+        return 'equal to';
+      }
+      return 'close to';
+    }
+  }
+
   render () {
     const { companies, minDate, maxDate, data } = this.props;
     const min = new Date(minDate);
@@ -36,8 +75,23 @@ export default class CompareStats extends React.Component {
     const sortedPEs = pes.sort((a,b) => a.pe - b.pe);
 
     const peStats = sortedPEs.map((s) => {
+
+      const companyInfo = companyData.filter(x => x.id === s.comp.slice(0,3));
+      const gicsIndustry = companyInfo[0].industry;
+      const industryPE = industryPEs[gicsIndustry];
+      const peDifference = s.pe - industryPE;
+      const higherLower = peDifference > 0.0 ? 'higher' : 'lower';
+      const underOver = peDifference > 0.0 ? 'over' : 'under';
+
+      const peInfoText = 'This is ' + higherLower + ' than the ' + gicsIndustry + ' P/E ratio of ' + industryPE + ', suggesting that it is ' + underOver + 'valued.';
+
       return(
-      <StatCompareItem company={s.comp} value={s.pe.toFixed(2)}/>);
+        <div className={peDifference > 0.0 ? 'red-color' : 'green-color'}>
+          <div className='stat-item'>
+            <span className='stat-item-company'>{s.comp}</span>
+            <span className='stat-item-value'>{s.pe} <InfoButton text={peInfoText} /></span>
+          </div>
+        </div>);
     });
 
     const dys = [];
@@ -52,15 +106,18 @@ export default class CompareStats extends React.Component {
 
     const sortedDYs = dys.sort((a,b) => b.dy - a.dy);
 
-    console.log('st', sortedDYs);
-
-
     const dyStats = sortedDYs.map((s) => {
-      return(
-      <StatCompareItem company={s.comp} value={s.dy}/>);
-    });
 
-    console.log('dy', dyStats);
+      const dyInfoText = 'This is ' + this.getDyStatus(s.dy) + ' dividend yield. It is ' + this.getDyRelation(s.dy) + ' the All Ordinaries Index\'s current annual dividend yield of 4.09.';
+
+      return(
+      <div className={this.getDyStatusClassName(s.dy)}>
+        <div className='stat-item'>
+          <span className='stat-item-company'>{s.comp}</span>
+          <span className='stat-item-value'>{s.dy} <InfoButton text={dyInfoText} /></span>
+        </div>
+      </div>);
+    });
 
     return (
       <div>
@@ -71,22 +128,6 @@ export default class CompareStats extends React.Component {
           <div className='panel-body compare-stats-panel'>
             <div className='row'>
               <div className='col-md-3 compare-stats'>
-                <div className='compare-stats-sub-title sub-title'>
-                  Volatility
-                </div>
-                <div>
-                  {volatilityStats}
-                </div>
-              </div>
-              <div className='col-md-3 compare-stats' style={{borderLeft: '1px solid #ddd'}}>
-                <div className='compare-stats-sub-title sub-title'>
-                  Return
-                </div>
-                <div>
-                  {returnStats}
-                </div>
-              </div>
-              <div className='col-md-3 compare-stats' style={{borderLeft: '1px solid #ddd'}}>
                 <div className='compare-stats-sub-title sub-title'>
                   P/E Ratio
                 </div>
@@ -100,6 +141,22 @@ export default class CompareStats extends React.Component {
                 </div>
                 <div>
                   {dyStats}
+                </div>
+              </div>
+              <div className='col-md-3 compare-stats' style={{borderLeft: '1px solid #ddd'}}>
+                <div className='compare-stats-sub-title sub-title'>
+                  Return
+                </div>
+                <div>
+                  {returnStats}
+                </div>
+              </div>
+              <div className='col-md-3 compare-stats' style={{borderLeft: '1px solid #ddd'}}>
+                <div className='compare-stats-sub-title sub-title'>
+                  Volatility
+                </div>
+                <div>
+                  {volatilityStats}
                 </div>
               </div>
             </div>
