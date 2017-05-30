@@ -37,11 +37,11 @@ export default class ResultRanking extends React.Component {
     const rankings = ranking_data.map((e, i) => (
       <div key={i} className='holding-item' style={{margin: '10px 0'}}>
         <div className='company-name'>
-          {e.name}
+          No. {1 + i} - {e.name}
         </div>
         <div>
           <div className='col-md-6'>
-            Total profit: ${e.total_profit}
+            Total profit: ${e.total_profit.toFixed(2)}
           </div>
           <div className='col-md-6'>
             <button className='btn btn-success' style={{float: 'right'}}onClick={console.log}>Check the detail</button>
