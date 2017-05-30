@@ -62,9 +62,17 @@
 }
 
 .green-color a:visited {
-  color: green;
+  color: #3fcc3f;
 }
 
 .red-color a:visited {
-  color: red;
+  color: #ff2323;
+}
+
+.share-price.red-color {
+	color: #ff2323;
+}
+
+.share-price.green-color {
+	color: #3fcc3f;
 }
