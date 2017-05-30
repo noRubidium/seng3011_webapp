@@ -13,22 +13,28 @@ export default class SummaryPanel extends LoadableComponent {
     const { emotion={}, sentiment={} } = this.props.data;
     const info = [];
 
-    info.push({
-      name: 'Anger',
-      y:emotion.anger
-    },{
-      name: 'Joy',
-      y:emotion.joy
-    },{
-      name: 'Sadness',
-      y:emotion.sadness
-    },{
-      name: 'Fear',
-      y:emotion.fear
-    },{
-      name: 'Disgust',
-      y:emotion.disgust
-    });
+    for (let key in emotion) {
+        var newKey;
+
+        if (key === 'anger') {
+          newKey = 'Anger';
+        } else if (key === 'joy') {
+          newKey = 'Joy';
+        } else if (key === 'sadness') {
+          newKey = 'Sadness';
+        } else if (key === 'fear') {
+          newKey = 'Fear';
+        } else if (key === 'disgust') {
+          newKey = 'Disgust';
+        } else {
+          newKey = key;
+        }
+
+        info.push({
+            name: newKey,
+            y: emotion[key]
+        });
+    }
 
     const config = {
         chart: {
@@ -69,9 +75,16 @@ export default class SummaryPanel extends LoadableComponent {
     }
 
     const sentimentInfo = [];
+
     for (let key in sentiment) {
+        var newKey;
+        if (key === 'negative') {
+          newKey = 'Negative';
+        } else if (key === 'positive') {
+          newKey = 'Positive';
+        }
         sentimentInfo.push({
-            name: key,
+            name: newKey,
             y: sentiment[key]['count']
         });
     }
