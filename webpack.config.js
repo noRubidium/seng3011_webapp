@@ -44,14 +44,14 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('debug'),
-        API_URL: JSON.stringify('http://127.0.0.1:8000')
+        API_URL: JSON.stringify('http://api.kaiworship.xyz')
       }
     }),
   ] : [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        API_URL: JSON.stringify('http://api.kaiworship.xyz')
+        API_URL: JSON.stringify('http://127.0.0.1:8000')
       }
     }),
     /* new webpack.optimize.DedupePlugin(),
