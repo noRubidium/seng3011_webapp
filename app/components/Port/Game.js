@@ -126,6 +126,7 @@ export default class PortGame extends React.Component {
     return (<div className='portfolio'>
       <div className='white-bg'>
         <div className='title'> Portfolio Management Game</div>
+        <div> Some stuff here please, like instruction </div>
         <div> current date is: {this.props.date.toISOString().split('T')[0]}</div>
       </div>
       <TradingHistory trading_history={this.state.trading_history} />
