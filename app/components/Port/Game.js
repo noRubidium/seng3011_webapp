@@ -7,14 +7,16 @@ import csv2json from 'utils/csv2json';
 
 const format_date = (d) => d.toISOString().split('T')[0];
 
-const holdings_to_history = (holding) => {
-  console.log('HOLDING', holding);
-  return {
-    open_price: holding.open_price,
-    price: holding.price,
-    company: holding.company,
-    amount: holding.amount
-  };
+const holdings_to_history = (date) => {
+  return (holding) => {
+    return {
+      open_price: holding.open_price,
+      price: holding.price,
+      company: holding.company,
+      amount: holding.amount,
+      date,
+    };
+  }
 }
 
 export default class PortGame extends React.Component {
@@ -31,9 +33,11 @@ export default class PortGame extends React.Component {
   }
 
   nextStep (e) {
-    console.log(this.state.currentHoldings);
     const { currentHoldings } = this.state;
-    const newHistory = currentHoldings.map(holdings_to_history);
+    const end_date = new Date(this.props.date);
+    end_date.setMonth(end_date.getMonth() + 3);
+    const histories = currentHoldings.map(holdings_to_history(this.props.date));
+    const newHistory = [{company: 'END_OF_PERIOD', start_date: new Date(this.props.date), end_date, profit: histories.reduce((a,b) => a + (b.price - b.open_price) * b.amount, 0)}].concat(histories);
     const newHoldings = currentHoldings.map((e) => {
       return {
         ...e,
@@ -55,6 +59,7 @@ export default class PortGame extends React.Component {
     this.props.nextStep(newBalance, newHistory, newHoldings);
   }
 
+  addCompany (company, price, open_price) {
     return (e) => {
       const { currentHoldings } = this.state;
       const [currObj] = currentHoldings.filter((e) => e.company === company);
@@ -152,7 +157,7 @@ export default class PortGame extends React.Component {
         <div> Some stuff here please, like instruction </div>
         <div> current date is: {this.props.date.toISOString().split('T')[0]}</div>
       </div>
-      <TradingHistory trading_history={this.state.trading_history} />
+      <TradingHistory history={this.props.history} />
       <SearchCompanyPanel {...this.state}
         updateCompany={this.updateCompany.bind(this)}
         addCompany={this.addCompany.bind(this)}
