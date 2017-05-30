@@ -35,6 +35,7 @@ export default class Playground extends React.Component {
         history: history.concat(newhistory),
         step: this.state.step + 1,
       });
+      window.scrollTo(0, 0);
   }
 
   render () {
