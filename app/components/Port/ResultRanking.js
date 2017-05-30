@@ -52,7 +52,7 @@ export default class ResultRanking extends React.Component {
 
     return (<div className='white-bg'>
       <div className='sub-title'>Ranking for global users</div>
-      <div>You have made ${this.props.balance - 100000}</div>
+      <div>You have made ${(this.props.balance - 100000).toFixed(2)}</div>
       <div>
         { rankings }
       </div>
