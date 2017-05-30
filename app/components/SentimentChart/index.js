@@ -120,7 +120,7 @@ export default class SentimentChart extends React.Component{
               pointWidth: 15
           }, {
               data: this.createRealSeries(emotionsData.emotion),
-              colors: ['#FB6262', '#89C980', '#8087C9', '#A44C4C', '#AE80C9'],
+              colors: ['#ef443e', '#5cce60', '#378ad3', '#c3c4b2', '#a791bf'],
               dataLabels: false,
               pointWidth: 15
           }]

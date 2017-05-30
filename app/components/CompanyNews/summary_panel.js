@@ -3,6 +3,8 @@ import Highcharts from 'highcharts';
 import ReactHighcharts from 'react-highcharts';
 import LoadableComponent from 'components/LoadableComponent';
 
+import InfoButton from 'components/InfoButton';
+
 export default class SummaryPanel extends LoadableComponent {
 
   constructor(props) {
@@ -56,7 +58,8 @@ export default class SummaryPanel extends LoadableComponent {
         series: [{
              name: 'Emotion Strength',
              colorByPoint: true,
-             data: info
+             data: info,
+             colors: ['#ef443e', '#5cce60', '#378ad3', '#c3c4b2', '#a791bf']
          }]
     }
 
@@ -110,12 +113,11 @@ export default class SummaryPanel extends LoadableComponent {
     }
 
     this.loaded_object = (<div>
-        <div style={{'height':'50%'}}>
-          <ReactHighcharts config={sentimentConfig} />
+        <div> Summary of recent news&apos; emotion
+          <InfoButton text={'Summary or recent news\' emotion'} right={true}/>
         </div>
-        <div style={{'height':'50%'}}>
-          <ReactHighcharts config={config} />
-        </div>
+        <ReactHighcharts config={sentimentConfig} />
+        <ReactHighcharts config={config} />
     </div>);
     return super.render();
   }
