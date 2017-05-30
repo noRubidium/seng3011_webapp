@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import StockChartFlag from 'components/StockChart/flag.js';
 import IndustryChart from 'components/Industry/chart';
@@ -82,7 +83,9 @@ export default class Playground extends React.Component {
      } else if(this.state.question == 3) {
          qa = this.state.answer ? (<div style={question_style}>
            <div>In our opinion the stock price will go up, as the growth of the retail food is significant each year, the industry is currently experiencing a boom.</div>
-           <button style={ans_button_style} className='btn btn-success' onClick={this.nextQuestion.bind(this)}>Next Question</button>
+           <button style={ans_button_style} className='btn btn-success' onClick={this.nextQuestion.bind(this)}><Link to={'/learning-centre'}>Next Question</Link></button>
+
+
          </div>) : (<div style={question_style}>
            <div> Do you think Freedom Food Group&apos;s stock price will go up or down in the next 5 months? </div>
            <button style={ans_button_style} className='btn btn-success' onClick={this.setAns.bind(this)}>Up</button>
