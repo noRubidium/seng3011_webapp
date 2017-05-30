@@ -13,12 +13,22 @@ export default class SummaryPanel extends LoadableComponent {
     const { emotion={}, sentiment={} } = this.props.data;
     const info = [];
 
-    for (let key in emotion) {
-        info.push({
-            name: key,
-            y: emotion[key]
-        });
-    }
+    info.push({
+      name: 'Anger',
+      y:emotion.anger
+    },{
+      name: 'Joy',
+      y:emotion.joy
+    },{
+      name: 'Sadness',
+      y:emotion.sadness
+    },{
+      name: 'Fear',
+      y:emotion.fear
+    },{
+      name: 'Disgust',
+      y:emotion.disgust
+    });
 
     const config = {
         chart: {
@@ -47,16 +57,14 @@ export default class SummaryPanel extends LoadableComponent {
                     enabled: true,
                     distance: 7,
                     format: '<b>{point.name}</b>: {point.percentage:.1f}%',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
                 }
             }
         },
         series: [{
              name: 'Emotion Strength',
              colorByPoint: true,
-             data: info
+             data: info,
+             colors: ['#FB6262', '#89C980', '#8087C9', '#A44C4C', '#CE8CE3']
          }]
     }
 
@@ -105,7 +113,7 @@ export default class SummaryPanel extends LoadableComponent {
             name: 'Sentiment Share',
             innerSize: '65%',
             data: sentimentInfo
-        }]
+        }],
 
     }
 
