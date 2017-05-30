@@ -31,11 +31,11 @@ export default class CompanyPrice extends LoadableComponent {
 
   getDyStatus(dy) {
     if (dy > 4.59) {
-      return 'High';
+      return 'high';
     } else if (dy < 3.59) {
-      return 'Low';
+      return 'low';
     } else {
-      return 'Average';
+      return 'average';
     }
   }
 
@@ -63,6 +63,9 @@ export default class CompanyPrice extends LoadableComponent {
   }
 
   render () {
+    if (!this.props.loaded) {
+      return super.render();
+    }
 
     const companyInfo = companies.filter(x => x.id === this.props.cid.slice(0,3));
     const gicsIndustry = companyInfo[0].industry;
@@ -71,6 +74,9 @@ export default class CompanyPrice extends LoadableComponent {
     const higherLower = peDifference > 0.0 ? 'higher' : 'lower';
     const underOver = peDifference > 0.0 ? 'over' : 'under';
 
+    const { previous_close_price: prev, previous_day_percentage_change: percentage} = this.props;
+    const change = prev - prev / (1 + percentage.slice(0,-1) / 100);
+
     this.loaded_object = (<div>
       <table className='table table-bordered company-price-table'>
         <tbody>
@@ -78,8 +84,8 @@ export default class CompanyPrice extends LoadableComponent {
             <td rowSpan='2'>
               <div className='stock-price'>${this.props.last_price}</div>
               <div className='stock-price-change'>
-                Change: <span className={this.props.last_price - this.props.previous_close_price > 0.0 ? 'green-color glyphicon glyphicon-arrow-up' : 'red-color glyphicon glyphicon-arrow-down'} aria-hidden='true'></span>
-                <span className={this.props.last_price - this.props.previous_close_price > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}> {(this.props.last_price - this.props.previous_close_price).toFixed(3)} ({this.props.previous_day_percentage_change})</span>
+                Change: <span className={ change > 0.0 ? 'green-color glyphicon glyphicon-arrow-up' : 'red-color glyphicon glyphicon-arrow-down'} aria-hidden='true'></span>
+                <span className={ change > 0.0 ? 'green-color stock-price-change-value' : 'red-color stock-price-change-value'}> {change.toFixed(3)} ({this.props.previous_day_percentage_change})</span>
               </div>
               <div className='stock-close-date'>Closing date: <span className='stock-close-date-value'>{this.props.last_trade_date.slice(0,10)}</span></div>
             </td>
@@ -93,14 +99,14 @@ export default class CompanyPrice extends LoadableComponent {
               <InfoButton text={'The stock price to company earnings ratio. An indicator of how under/over valued the stock is. The higher the P/E ratio, the more overvalued the company is, and vice versa.'}/>
               <div>
                 <span className='other-prices'>{this.props.pe} </span>
-                - <span className={peDifference > 0.0 ? 'red-color' : 'green-color' }>{peDifference > 0.0 ? 'Overvalued' : 'Undervalued'}</span>
+                - <span className={peDifference > 0.0 ? 'red-color' : 'green-color' }>{peDifference > 0.0 ? 'overvalued' : 'undervalued'}</span>
                 <InfoButton text={'This company\'s P/E ratio of ' + this.props.pe + ' is ' + higherLower + ' than the ' + gicsIndustry + ' industry P/E ratio of ' + industryPE + ', suggesting that it is ' + underOver + 'valued.'}/>
               </div>
             </td>
           </tr>
           <tr>
             <td>
-              EPS <InfoButton text={'Earnings Per Share - the portion of a company\'s profit allocated to each outstanding share of common stock'}/>
+              EPS<InfoButton text={'Earnings Per Share - the portion of a company\'s profit allocated to each outstanding share of common stock'}/>
               <div className='other-prices'>{this.props.eps}</div>
             </td>
             <td>
