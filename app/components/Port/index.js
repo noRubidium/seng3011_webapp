@@ -24,7 +24,7 @@ export default class Playground extends React.Component {
 
   }
 
-  nextStep (balance, newhistory, currentHoldings=[]) {
+  nextStep (balance, newhistory = [], currentHoldings=[]) {
       const { step, date, history } = this.state;
       const new_date = new Date(date);
       new_date.setMonth(new_date.getMonth() + 3);

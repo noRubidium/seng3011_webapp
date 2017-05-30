@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 
 import SearchCompanyPanel from './SearchCompanyPanel';
 import Holdings from './Holdings';
+import TradingHistory from './TradingHistory';
 import csv2json from 'utils/csv2json';
 
 const format_date = (d) => d.toISOString().split('T')[0];
