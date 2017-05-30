@@ -3,6 +3,8 @@ import Highcharts from 'highcharts';
 import ReactHighcharts from 'react-highcharts';
 import LoadableComponent from 'components/LoadableComponent';
 
+import InfoButton from 'components/InfoButton';
+
 export default class SummaryPanel extends LoadableComponent {
 
   constructor(props) {
@@ -10,12 +12,28 @@ export default class SummaryPanel extends LoadableComponent {
   }
 
   render() {
-    const { emotion={} } = this.props.data;
+    const { emotion={}, sentiment={} } = this.props.data;
     const info = [];
 
     for (let key in emotion) {
+        var newKey;
+
+        if (key === 'anger') {
+          newKey = 'Anger';
+        } else if (key === 'joy') {
+          newKey = 'Joy';
+        } else if (key === 'sadness') {
+          newKey = 'Sadness';
+        } else if (key === 'fear') {
+          newKey = 'Fear';
+        } else if (key === 'disgust') {
+          newKey = 'Disgust';
+        } else {
+          newKey = key;
+        }
+
         info.push({
-            name: key,
+            name: newKey,
             y: emotion[key]
         });
     }
@@ -25,35 +43,100 @@ export default class SummaryPanel extends LoadableComponent {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'pie'
+            type: 'pie',
+            height: '220px'
         },
         title: {
-            text: 'Summary of recent news\'s emotion'
+            text: 'Emotion Breakdown',
+            style: {'fontSize':'16px'}
+        },
+        subtitle: {
+          text: '(of recent news articles)'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
             pie: {
+                size: '115px',
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
+                    distance: 7,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f}%',
                 }
             }
         },
         series: [{
              name: 'Emotion Strength',
              colorByPoint: true,
-             data: info
+             data: info,
+             colors: ['#FB6262', '#89C980', '#8087C9', '#A44C4C', '#CE8CE3']
          }]
     }
 
+    const sentimentInfo = [];
+
+    for (let key in sentiment) {
+        var newKey;
+        if (key === 'negative') {
+          newKey = 'Negative';
+        } else if (key === 'positive') {
+          newKey = 'Positive';
+        }
+        sentimentInfo.push({
+            name: newKey,
+            y: sentiment[key]['count']
+        });
+    }
+
+    console.log(this.props);
+
+    const sentimentConfig = {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            height: '180px'
+        },
+        colors: ['green', '#da0b0b'],
+        title: {
+            text: 'Sentiment Breakdown',
+            style: {'fontSize':'16px'}
+        },
+        subtitle: {
+          text: '(of recent news articles)'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                size: '160px',
+                dataLabels: {
+                    enabled: true,
+                    distance: 5
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '100%']
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Sentiment Share',
+            innerSize: '65%',
+            data: sentimentInfo
+        }],
+
+    }
+
     this.loaded_object = (<div>
+        <div> Summary of recent news&apos; emotion
+          <InfoButton text={'Summary or recent news\' emotion'} right={true}/>
+        </div>
+        <ReactHighcharts config={sentimentConfig} />
         <ReactHighcharts config={config} />
     </div>);
     return super.render();

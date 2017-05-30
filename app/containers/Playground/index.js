@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import StockChartFlag from 'components/StockChart/flag.js';
 import IndustryChart from 'components/Industry/chart';
+import Portfolio from 'components/Port';
 import { getCmp, getType } from 'utils/lookup';
 import { load_companies, load_abs_stats } from 'actions/company_list';
 import { load_company_stats } from 'actions/company/stats';
@@ -55,7 +56,9 @@ export default class Playground extends React.Component {
 
   }
   render () {
-
+    if (this.props.match.params.type === 'port') {
+        return <Portfolio />;
+    }
       console.log('WHAT STATE IS IT', this.state);
       var qa = this.state.answer ? (<div style={question_style}>
         <div>Sorry, the stock price will go down, as the growth of the household goods section is nearly zero, the industry is currently experiencing a recession.</div>
