@@ -7,6 +7,15 @@ import csv2json from 'utils/csv2json';
 
 const format_date = (d) => d.toISOString().split('T')[0];
 
+const holdings_to_history = (holding) => {
+  return {
+    open_price: holding.open_price,
+    closing_price: holding.price,
+    company: holding.company,
+    amount: holding.amount
+  };
+}
+
 export default class PortGame extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +27,31 @@ export default class PortGame extends React.Component {
       balance: 100000,
       currentHoldings: this.props.currentHoldings,
     }
+  }
+
+  nextStep (e) {
+    console.log(this.state.currentHoldings);
+    const { currentHoldings } = this.state;
+    const newHistory = currentHoldings.map(holdings_to_history);
+    const newHoldings = currentHoldings.map((e) => {
+      return {
+        ...e,
+        open_price: e.price,
+        price: e.price * (0.7 + Math.random() * 0.6)
+      };
+    })
+    const newBalance = this.state.balance - currentHoldings.reduce((a, b) => (a + b.open_price * b.amount), 0) + newHoldings.reduce((a, b) => a + b.open_price * b.amount, 0);
+
+    this.setState({
+      data: null,
+      company: '',
+      loading: false,
+      loaded: true,
+      error: false,
+      balance: newBalance,
+      currentHoldings: newHoldings,
+    });
+    this.props.nextStep(newBalance, newHistory, newHoldings);
   }
 
   addCompany (company, price, open_price) {
@@ -104,17 +138,6 @@ export default class PortGame extends React.Component {
       if (this.state.company !== company) return;
       this.setState({loading: false, error: true});
     })
-  }
-
-  nextStep (e) {
-    this.setState({
-      data: null,
-      company: '',
-      loading: false,
-      loaded: true,
-      error: false
-    });
-    this.props.nextStep(e);
   }
 
   render() {
