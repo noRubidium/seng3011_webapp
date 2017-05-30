@@ -201,6 +201,7 @@
 
 .popover-container {
   display: inline-block;
+  color: black;
 }
 
 .popover-container:hover .span-popover {
@@ -214,9 +215,15 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.4);
   color: #fff;
   font-size: 12px;
+  font-weight: normal;
   font-family: 'Helvetica',sans-serif;
   padding: 7px 10px;
   position: absolute;
   width: 200px;
   z-index: 4;
+  text-align: left;
+}
+
+.span-popover.right {
+  margin-left: -180px;
 }

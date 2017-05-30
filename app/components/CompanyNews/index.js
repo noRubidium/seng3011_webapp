@@ -91,7 +91,7 @@ export default class CompanyNews extends LoadableComponent {
         </div>
         </div>
         <div className='col-md-4 col-sm-12'>
-            <SummaryPanel {...this.state}/>
+          <SummaryPanel {...this.state}/>
         </div>
       </div>);
     return super.render();
