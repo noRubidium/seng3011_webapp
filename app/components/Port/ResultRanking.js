@@ -44,7 +44,7 @@ export default class ResultRanking extends React.Component {
             Total profit: ${e.total_profit.toFixed(2)}
           </div>
           <div className='col-md-6'>
-            <button className='btn btn-success' style={{float: 'right'}}onClick={console.log}>See details</button>
+            <button className='btn btn-success' style={{float: 'right'}}onClick={console.log}>View details</button>
           </div>
         </div>
       </div>
