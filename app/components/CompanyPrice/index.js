@@ -29,6 +29,39 @@ export default class CompanyPrice extends LoadableComponent {
     load_company_price(cid, dispatch, this.props);
   }
 
+  getDyStatus(dy) {
+    if (dy > 4.59) {
+      return 'High';
+    } else if (dy < 3.59) {
+      return 'Low';
+    } else {
+      return 'Average';
+    }
+  }
+
+  getDyStatusClassName(dy) {
+    if (dy > 4.59) {
+      return 'green-color';
+    } else if (dy < 3.59) {
+      return 'red-color';
+    } else {
+      return 'yellow-color';
+    }
+  }
+
+  getDyRelation(dy) {
+    if (dy > 4.59) {
+      return 'higher than';
+    } else if (dy < 3.59) {
+      return 'lower than';
+    } else {
+      if (dy === 4.09) {
+        return 'equal to';
+      }
+      return 'close to';
+    }
+  }
+
   render () {
 
     const companyInfo = companies.filter(x => x.id === this.props.cid.slice(0,3));
@@ -37,13 +70,6 @@ export default class CompanyPrice extends LoadableComponent {
     const peDifference = this.props.pe - industryPE;
     const higherLower = peDifference > 0.0 ? 'higher' : 'lower';
     const underOver = peDifference > 0.0 ? 'over' : 'under';
-
-    const dyStatus = 'Average';
-    if (this.props.annual_dividend_yield > 4.59) {
-      dyStatus = 'High';
-    } else if (this.props.annual_dividend_yield < 3.59) {
-      dyStatus = 'High';
-    }
 
     this.loaded_object = (<div>
       <table className='table table-bordered company-price-table'>
@@ -67,7 +93,7 @@ export default class CompanyPrice extends LoadableComponent {
               <InfoButton text={'The stock price to company earnings ratio. An indicator of how under/over valued the stock is. The higher the P/E ratio, the more overvalued the company is, and vice versa.'}/>
               <div>
                 <span className='other-prices'>{this.props.pe} </span>
-                (<span className={peDifference > 0.0 ? 'red-color' : 'green-color' }>{peDifference > 0.0 ? 'Overvalued' : 'Undervalued'}</span>)
+                - <span className={peDifference > 0.0 ? 'red-color' : 'green-color' }>{peDifference > 0.0 ? 'Overvalued' : 'Undervalued'}</span>
                 <InfoButton text={'This company\'s P/E ratio of ' + this.props.pe + ' is ' + higherLower + ' than the ' + gicsIndustry + ' industry P/E ratio of ' + industryPE + ', suggesting that it is ' + underOver + 'valued.'}/>
               </div>
             </td>
@@ -81,7 +107,9 @@ export default class CompanyPrice extends LoadableComponent {
               DY:
               <InfoButton text={'Annual Dividend Yield. The ratio of how much the company pays shareholders in dividends, relative to its share price. A high DY indicates a company that is prioritising shareholder wealth, whereas a low one indicates a company that is prioritising growth.'}/>
               <div>
-                <div className='other-prices'>{this.props.annual_dividend_yield}</div>
+                <span className='other-prices'>{this.props.annual_dividend_yield} </span>
+                - <span className={this.getDyStatusClassName(this.props.annual_dividend_yield)}>{this.getDyStatus(this.props.annual_dividend_yield)}</span>
+                <InfoButton text={'This company\'s Annual Dividend Yield of ' + this.props.annual_dividend_yield + ' is ' + this.getDyRelation(this.props.annual_dividend_yield) + ' the All Ordinaries Index\'s current annual dividend yield of 4.09'}/>
               </div>
             </td>
           </tr>
