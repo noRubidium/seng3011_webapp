@@ -70,12 +70,26 @@ export default class CompanyNews extends LoadableComponent {
     }
   }
 
+  prettifyDate(date_string) {
+    const d = new Date(date_string);
+    return d.toDateString();
+  }
+
+  createContent(date, summary) {
+    return (
+      <div>
+        <div className='news-list-item-date'>{this.prettifyDate(date)}</div>
+        <div className='news-list-item-summary'>{summary}</div>
+      </div>
+    )
+  }
+
   render () {
     const { news=[] } = this.props;
     const newsItems = news.slice(0,3).map((n, i) =>
       <Link to={`/news/${btoa(n.url)}`} key={i}>
         <NewsItem title={n.headline}
-                  content={n.summary}
+                  content={this.createContent(n.date,n.summary)}
                   secondComponent={<Sentiment url={btoa(n.url)}
                   analyse={true}/>}
         />
@@ -91,7 +105,7 @@ export default class CompanyNews extends LoadableComponent {
         </div>
         </div>
         <div className='col-md-4 col-sm-12'>
-            <SummaryPanel {...this.state}/>
+          <SummaryPanel {...this.state}/>
         </div>
       </div>);
     return super.render();

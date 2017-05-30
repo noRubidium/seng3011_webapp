@@ -6,7 +6,10 @@ export default class TradingHistory extends React.Component {
   }
 
   render() {
-    return (<div>MyComponent</div>);
+    return (<div className='white-bg'>
+      <div className='sub-title'> Trading History </div>
+      MyComponent
+    </div>);
   }
 }
 
