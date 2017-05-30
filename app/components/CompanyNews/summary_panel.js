@@ -16,8 +16,24 @@ export default class SummaryPanel extends LoadableComponent {
     const info = [];
 
     for (let key in emotion) {
+        var newKey;
+
+        if (key === 'anger') {
+          newKey = 'Anger';
+        } else if (key === 'joy') {
+          newKey = 'Joy';
+        } else if (key === 'sadness') {
+          newKey = 'Sadness';
+        } else if (key === 'fear') {
+          newKey = 'Fear';
+        } else if (key === 'disgust') {
+          newKey = 'Disgust';
+        } else {
+          newKey = key;
+        }
+
         info.push({
-            name: key,
+            name: newKey,
             y: emotion[key]
         });
     }
@@ -49,9 +65,6 @@ export default class SummaryPanel extends LoadableComponent {
                     enabled: true,
                     distance: 7,
                     format: '<b>{point.name}</b>: {point.percentage:.1f}%',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
                 }
             }
         },
@@ -59,14 +72,21 @@ export default class SummaryPanel extends LoadableComponent {
              name: 'Emotion Strength',
              colorByPoint: true,
              data: info,
-             colors: ['#ef443e', '#5cce60', '#378ad3', '#c3c4b2', '#a791bf']
+             colors: ['#FB6262', '#89C980', '#8087C9', '#A44C4C', '#CE8CE3']
          }]
     }
 
     const sentimentInfo = [];
+
     for (let key in sentiment) {
+        var newKey;
+        if (key === 'negative') {
+          newKey = 'Negative';
+        } else if (key === 'positive') {
+          newKey = 'Positive';
+        }
         sentimentInfo.push({
-            name: key,
+            name: newKey,
             y: sentiment[key]['count']
         });
     }
@@ -108,7 +128,7 @@ export default class SummaryPanel extends LoadableComponent {
             name: 'Sentiment Share',
             innerSize: '65%',
             data: sentimentInfo
-        }]
+        }],
 
     }
 

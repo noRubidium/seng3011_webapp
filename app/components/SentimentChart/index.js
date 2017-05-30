@@ -106,11 +106,7 @@ export default class SentimentChart extends React.Component{
           },
 
         	tooltip: {
-              valueDecimals: 1,
-            	valueSuffix: '%',
-              formatter: function() {
-              	return Highcharts.numberFormat(this.y, 2) + '%';
-          	}
+              pointFormat: 'Emotion Strength: <b>{point.percentage:.1f}%</b>'
           },
 
           series: [{
@@ -120,7 +116,7 @@ export default class SentimentChart extends React.Component{
               pointWidth: 15
           }, {
               data: this.createRealSeries(emotionsData.emotion),
-              colors: ['#ef443e', '#5cce60', '#378ad3', '#c3c4b2', '#a791bf'],
+              colors: ['#FB6262', '#89C980', '#8087C9', '#A44C4C', '#CE8CE3'],
               dataLabels: false,
               pointWidth: 15
           }]
