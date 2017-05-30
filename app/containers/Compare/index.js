@@ -130,19 +130,23 @@ export default class Compare extends React.Component {
 
     return (
       <div>
-        <div className='title'>
-          <div className='news-no-preferences'>
-            Comparison for {link_companies}
+        <div className='white-bg'>
+          <div className='title'>
+            <div className='news-no-preferences'>
+              Comparison for {link_companies}
+            </div>
+            <p>
+              <input  type='date' onChange={this.setDate.bind(this)} value={this.state.startDate.toISOString().split('T')[0]}  max='2017-06-01' min='2000-01-01'
+               locale="en-gb"/>
+            </p>
           </div>
-          <p>
-            <input  type='date' onChange={this.setDate.bind(this)} value={this.state.startDate.toISOString().split('T')[0]}  max='2017-06-01' min='2000-01-01'
-             locale="en-gb"/>
-          </p>
+          <center>
+            <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>
+          </center>
         </div>
-        <center>
-          <CompareChart {...props} updateRange={this.updateRange.bind(this)}/>
-        </center>
+        <div className='white-bg'>
           <CompareStats {...props}/>
+        </div>
       </div>
     );
   }

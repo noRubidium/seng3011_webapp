@@ -127,7 +127,7 @@ class CompanyStatistics extends React.Component {
         </div>
 
         <div className='col-sm-6'>
-          <div className='bar-chart-title'>Growth Rate<InfoButton text={'The average rate of change of the share price over the time period on the chart. Calculated as the gradient of a linear regression.'}/></div>
+          <div className='bar-chart-title'>Growth Rate<InfoButton text={'The average rate of change of the share price over the time period on the chart. Calculated as the gradient of a linear regression.'} right={true}/></div>
           <div className='row'>
             <div className='positive-bar'>
               <div className='positive-foreground-bar' style={{'backgroundColor': 'white', 'height':this.getPositiveHeight(m) }}></div>

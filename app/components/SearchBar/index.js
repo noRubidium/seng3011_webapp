@@ -97,7 +97,12 @@ class SearchBar extends React.Component {
   };
 
   onSuggestionSelected = (event, { suggestion }) => {
-    this.props.history.push(`/company/${suggestion.id}.AX`);
+    const { callback } = this.props;
+    if (callback) {
+      callback(suggestion.id);
+    } else {
+      this.props.history.push(`/company/${suggestion.id}.AX`);
+    }
   }
 
   render() {
