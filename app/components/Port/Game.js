@@ -7,6 +7,18 @@ import csv2json from 'utils/csv2json';
 
 const format_date = (d) => d.toISOString().split('T')[0];
 
+const holdings_to_history = (date) => {
+  return (holding) => {
+    return {
+      open_price: holding.open_price,
+      price: holding.price,
+      company: holding.company,
+      amount: holding.amount,
+      date,
+    };
+  }
+}
+
 export default class PortGame extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +30,33 @@ export default class PortGame extends React.Component {
       balance: 100000,
       currentHoldings: this.props.currentHoldings,
     }
+  }
+
+  nextStep (e) {
+    const { currentHoldings } = this.state;
+    const end_date = new Date(this.props.date);
+    end_date.setMonth(end_date.getMonth() + 3);
+    const histories = currentHoldings.map(holdings_to_history(this.props.date));
+    const newHistory = [{company: 'END_OF_PERIOD', start_date: new Date(this.props.date), end_date, profit: histories.reduce((a,b) => a + (b.price - b.open_price) * b.amount, 0)}].concat(histories);
+    const newHoldings = currentHoldings.map((e) => {
+      return {
+        ...e,
+        open_price: e.price,
+        price: e.price * (0.93 + Math.random() * 0.14)
+      };
+    })
+    const newBalance = this.state.balance - currentHoldings.reduce((a, b) => (a + b.price * b.amount), 0) + newHoldings.reduce((a, b) => a + b.price * b.amount, 0);
+
+    this.setState({
+      data: null,
+      company: '',
+      loading: false,
+      loaded: true,
+      error: false,
+      balance: newBalance,
+      currentHoldings: newHoldings,
+    });
+    this.props.nextStep(newBalance, newHistory, newHoldings);
   }
 
   addCompany (company, price, open_price) {
@@ -106,30 +145,23 @@ export default class PortGame extends React.Component {
     })
   }
 
-  nextStep (e) {
-    this.setState({
-      data: null,
-      company: '',
-      loading: false,
-      loaded: true,
-      error: false
-    });
-    this.props.nextStep(e);
-  }
-
   render() {
     const trading_history = this.props.history.map((e) => {
       return (<li>
-        {e.type} {e.company} {e.amount} shares and {e.profit > 0 ? 'gained' : 'loss'} ${ (e.profit > 0 ? e.profit : -e.profit).toFixed(2) }.
+        {e.type} {e.company} {e.amount} shares and {e.price-e.open_price > 0 ? 'gained' : 'loss'} ${ (e.price-e.open_price > 0 ? (e.price-e.open_price) * e.amount : (e.open_price-e.price) * e.amount).toFixed(2) }.
       </li>);
     });
     return (<div className='portfolio'>
       <div className='white-bg'>
         <div className='title'> Portfolio Management Game</div>
-        <div> Some stuff here please, like instruction </div>
-        <div> current date is: {this.props.date.toISOString().split('T')[0]}</div>
+        <div>
+          <p>Welcome to the Portfolio Management Game!</p>
+          <p>Select company stocks to invest in, and the number of shares of each. After each period (a quarter), you will be able to see how your portfolio performed, and make any changes accordingly.</p>
+          <p>At the end of the game (after four periods), you will be able to see how you performed overall and how you stacked up against others.</p>
+        </div>
+        <div className='portfolio-date-container'>Current Date: <span className='portfolio-current-date'>{this.props.date.toISOString().split('T')[0]}</span></div>
       </div>
-      <TradingHistory trading_history={this.state.trading_history} />
+      <TradingHistory history={this.props.history} />
       <SearchCompanyPanel {...this.state}
         updateCompany={this.updateCompany.bind(this)}
         addCompany={this.addCompany.bind(this)}
