@@ -44,7 +44,7 @@ export default (state=default_state, action) => {
 
       const news = new_news.filter(function (a) {
         return !this[a.headline] && (this[a.headline] = true);
-      }, Object.create(null)).slice(0,20);
+      }, Object.create(null)).slice(0,25);
 
       return {
         ...state,
