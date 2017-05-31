@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const data_man = [
     {label: 'line', text: 'Long term investment', lnk: '/learning-centre/long'},
     {label: 'bar', text: 'Short term trading', lnk: '/learning-centre/short'},
-    {label: 'pie', text: 'Portfolio management', lnk: '/learning-centre/port'}];
+    {label: 'pie', text: 'Portfolio management', lnk: '/learning-centre/portfolio'}];
 
 const main_style= {
     textAlign: 'center',
