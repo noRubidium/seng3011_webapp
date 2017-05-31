@@ -158,6 +158,7 @@ export default class PortGame extends React.Component {
           <p>Welcome to the Portfolio Management Game!</p>
           <p>Select company stocks to invest in, and the number of shares of each. After each period (a quarter), you will be able to see how your portfolio performed, and make any changes accordingly.</p>
           <p>At the end of the game (after four periods), you will be able to see how you performed overall and how you stacked up against others.</p>
+          <p><strong>You should diversify your holdings to different sectors of industries to lower the risk.</strong></p>
         </div>
         <div className='portfolio-date-container'>Current Date: <span className='portfolio-current-date'>{this.props.date.toISOString().split('T')[0]}</span></div>
       </div>
